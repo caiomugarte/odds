@@ -11,19 +11,18 @@ function normalize(text) {
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "") // Remove acentos
-        .replace(/\s*-\s*/g, ' - ') // Garante espaço antes e depois do hífen
-        .replace(/\s+/g, ' ')        // Remove espaços duplicados
+        .replace(/\s*-\s*/g, ' - ')      // Garante espaço antes e depois do hífen
+        .replace(/\s+/g, ' ')            // Remove espaços duplicados
         .trim();
 }
 
-
-function normalizeParticipante(participante) {
-    if (!participante) return participante;
-    const p = participante.toLowerCase();
-    if (p.includes('mais') || p.includes('acima')) return 'over';
-    if (p.includes('menos') || p.includes('abaixo')) return 'under';
-    return participante.trim().toLowerCase();
+function normalizeParticipante(p) {
+    const norm = p.toLowerCase();
+    if (norm.includes('acima') || norm.includes('mais')) return 'over';
+    if (norm.includes('menos') || norm.includes('under')) return 'under';
+    return norm;
 }
+
 
 
 
@@ -80,7 +79,7 @@ const mercadoMap = {
     'total -1º tempo': ['1º tempo gols + ou -', '1º tempo - gols +/- - mais alternativas'],
     'handicap (escanteios) - partida': ['handicap asiatico - escanteios'],
     'total (escanteios) - partida': ['total (escanteios) - partida'],
-    'total (escanteios) -1º tempo': [
+    'total (escanteios) - 1º tempo': [
         '1º tempo - escanteios asiaticos',
         '1º tempo - escanteios asiáticos',
         '1º tempo escanteios asiaticos',
@@ -406,90 +405,61 @@ function extractPinnacleMarkets(html) {
     return mercados;
 }
 
-function normalizeMarketName(market) {
-    const norm = normalize(market);
-    // First, check for escanteios (corners) markets
-    if (norm.includes('escanteios') && norm.includes('total')) {
-        //console.log('[normalizeMarketName] Pattern match', market, '-> total (escanteios) - partida');
-        return 'total (escanteios) - partida';
-    }
-    if (norm.includes('escanteios') && norm.includes('handicap')) {
-        //console.log('[normalizeMarketName] Pattern match', market, '-> handicap (escanteios) - partida');
-        return 'handicap (escanteios) - partida';
-    }
+const MARKET_ALIASES = {
+    // Handicap
+    'handicappartida': 'handicap - partida',
+    'handicapprimeirotempo': 'handicap - 1º tempo',
+    'handicapasiatico': 'handicap - partida',
+    'handicapasiaticoprimeirotempo': 'handicap - 1º tempo',
+    'handicapasiaticomaisopcoes': 'handicap - partida',
+    'primeirotempohandicapasiaticomaisalternativas': 'handicap - 1º tempo',
 
-    // Then check for other markets
-    // First half Asian Handicap
-    if (norm.includes('1º tempo') && norm.includes('handicap') && norm.includes('asiatico')) {
-        //console.log('[normalizeMarketName] Pattern match', market, '-> handicap -1º tempo');
-        return 'handicap -1º tempo';
-    }
-    // Full match Asian Handicap
-    // Mapeamento explícito para mercados da Pinnacle
-    if (norm === 'handicap - partida') return 'handicap - partida';
-    if (norm === 'handicap - 1º tempo') return 'handicap -1º tempo';
-    if (norm === 'total - partida') return 'total - partida';
-    if (norm === 'total - 1º tempo') return 'total -1º tempo';
-    if (norm === 'handicap (escanteios) - partida') return 'handicap (escanteios) - partida';
-    if (norm === 'total (escanteios) - partida') return 'total (escanteios) - partida';
-    if (norm === 'total (escanteios) - 1º tempo') return 'total (escanteios) -1º tempo';
-    if (norm === 'handicap - 1º tempo') return 'handicap -1º tempo';
+    // Total Gols
+    'totalpartida': 'total - partida',
+    'totalprimeirotempo': 'total - 1º tempo',
+    'gols+/': 'total - partida',
+    'gols+/maisalternativas': 'total - partida',
+    'primeirotempogols+ou': 'total - 1º tempo',
+    'primeirotempogols+/maisalternativas': 'total - 1º tempo',
 
+    // Escanteios Total
+    'totalescanteiospartida': 'total (escanteios) - partida',
+    'totalescanteiosprimeirotempo': 'total (escanteios) - 1º tempo',
+    'totaldeescanteiosasiaticos': 'total (escanteios) - partida',
+    'primeirotempoescanteiosasiaticos': 'total (escanteios) - 1º tempo',
 
-    // First half team total
-    if (norm.includes('1º tempo') && norm.includes('gols')) {
-        //console.log('[normalizeMarketName] Pattern match', market, '-> total -1º tempo');
-        return 'total -1º tempo';
-    }
-    // Full match team total
-    // First half team total
-    if (norm.includes('1º tempo') && (norm.includes('gols') || norm.includes('total'))) {
-        //console.log('[normalizeMarketName] Pattern match', market, '-> total -1º tempo');
-        return 'total -1º tempo';
-    }
-
-// Full match team total
-    if ((norm.includes('gols') || norm.includes('total'))) {
-        //console.log('[normalizeMarketName] Pattern match', market, '-> total - partida');
-        return 'total - partida';
-    }
+    // Escanteios Handicap
+    'handicapescanteiospartida': 'handicap (escanteios) - partida',
+    'handicapasiaticoescanteios': 'handicap (escanteios) - partida',
+};
 
 
-    if (norm.includes('handicap') && norm.includes('asiatico') && norm.includes('mais')) {
-        return 'handicap - partida';
-    }
-
-    if (norm.includes('gols') && norm.includes('alternativas')) {
-        return 'total - partida';
-    }
-
-    if (norm.includes('total') && norm.includes('1º tempo')) {
-        return 'total -1º tempo';
-    }
-
-    if (norm.includes('escanteios') && norm.includes('1º tempo')) {
-        //console.log('[normalizeMarketName] match:', market, '-> total (escanteios) -1º tempo');
-        return 'total (escanteios) -1º tempo';
-    }
-
-    if (norm.includes('escanteios') && norm.includes('asiaticos') && !norm.includes('1º tempo')) {
-        //console.log('[normalizeMarketName] Pattern match', market, '-> handicap (escanteios) - partida');
-        return 'handicap (escanteios) - partida';
-    }
 
 
-    // Fallback to old mapping for other markets
-    for (const [pinnacle, bet365List] of Object.entries(mercadoMap)) {
-        for (const bet365 of bet365List) {
-            if (norm.includes(normalize(bet365))) {
-                //console.log('[normalizeMarketName] Mapping', market, '->', pinnacle);
-                return normalize(pinnacle);
-            }
-        }
-    }
-    console.log('[normalizeMarketName] No mapping for', market, '->', norm);
-    return norm;
+
+function slugifyMarketName(text) {
+    return normalize(text)
+        .replace(/\s*-\s*/g, '-')      // hífens normalizados
+        .replace(/[^\w]/g, '')         // remove pontuação e espaços
+        .toLowerCase();
 }
+
+function normalizeMarketName(market) {
+    const slug = normalize(market)
+        .replace(/[\s\-()]/g, '') // Remove espaços, hífens e parênteses
+        .replace(/1º|1o/g, 'primeiro') // Substitui notações com número por palavra
+        .toLowerCase();
+
+    if (MARKET_ALIASES[slug]) {
+        return MARKET_ALIASES[slug];
+    }
+
+    console.log('[normalizeMarketName] No mapping for:', market, '->', slug);
+    return market; // fallback
+}
+
+
+
 
 function getOppositeLine(line) {
     // Flip the sign for Asian Handicap lines
@@ -570,18 +540,36 @@ function mergeMarkets(bet365Data, pinnacleData) {
             : normalizeTeamName(bet.participante);
         const linhaBet = normalize(bet.linha);
         const key = `${mercadoBet}|${participanteBet}|${linhaBet}`;
+        if (mercadoBet.includes('escanteios') && mercadoBet.includes('1º tempo')) {
+            console.log('[DEBUG] Normalized Bet365:', {
+                mercadoOriginal: bet.mercado,
+                mercadoNormalizado: mercadoBet,
+                participante: participanteBet,
+                linha: linhaBet,
+                keyUsada: key
+            });
+        }
+
         const match = pinMap.get(key);
-        //console.log(`[KEY DEBUG] ${"bet365"}: ${key}`);
+        if (!match && mercadoBet.includes('escanteios') && mercadoBet.includes('1º tempo')) {
+            console.log('[DEBUG] NENHUMA CHAVE ENCONTRADA PARA:', key);
+            console.log('[DEBUG] CHAVES DISPONÍVEIS:');
+            for (const k of pinMap.keys()) {
+                if (k.startsWith(mercadoBet)) {
+                    console.log('  ', k);
+                }
+            }
+        }
 
 
         if (match) {
             let oppositeParticipante, oppositeLinha;
             if (mercadoBet.includes('total')) {
                 // For totals, opposite is "acima de" <-> "menos de", same line
-                if (normalize(bet.participante) === 'mais de' || normalize(bet.participante) === 'acima de') {
-                    oppositeParticipante = 'menos de';
-                } else if (normalize(bet.participante) === 'menos de') {
-                    oppositeParticipante = 'acima de';
+                if (normalizeParticipante(bet.participante) === 'over') {
+                    oppositeParticipante = 'under';
+                } else if (normalizeParticipante(bet.participante) === 'under') {
+                    oppositeParticipante = 'over';
                 } else {
                     oppositeParticipante = getOppositeParticipant(bet.participante, participantesUnicos);
                 }
@@ -592,7 +580,7 @@ function mergeMarkets(bet365Data, pinnacleData) {
                 oppositeLinha = getOppositeLine(bet.linha);
             }
             const normalizedOppositeParticipante = mercadoBet.includes('total')
-                ? normalizeParticipante(oppositeParticipante, participantesUnicos)
+                ? normalizeParticipante(oppositeParticipante)
                 : normalizeTeamName(oppositeParticipante);
             const normalizedOppositeLinha = normalize(oppositeLinha);
             const oppositeKey = `${mercadoBet}|${normalizedOppositeParticipante}|${normalizedOppositeLinha}`;

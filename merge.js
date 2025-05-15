@@ -18,25 +18,25 @@ function normalize(text) {
 
 function normalizeParticipante(nome, referenciaLista = []) {
     let normNome = normalize(nome);
-    if (normNome === 'mais de' || normNome === 'acima de') normNome = 'acima de';
+    if (['mais de', 'acima de'].includes(normNome)) normNome = 'acima de';
     if (normNome === 'menos de') normNome = 'menos de';
 
     for (const ref of referenciaLista) {
         const normRef = normalize(ref);
         if (
-            (normNome === 'acima de' && (normRef === 'mais de' || normRef === 'acima de')) ||
-            (normNome === 'mais de' && (normRef === 'mais de' || normRef === 'acima de')) ||
-            normNome === normRef
+            (normNome === 'acima de' && ['mais de', 'acima de'].includes(normRef)) ||
+            (normNome === 'menos de' && normRef === 'menos de')
         ) {
-            return ref; // Return the reference as it appears in the data
+            return ref; // keep the name as it appears
         }
     }
     return nome;
 }
 
+
 function simplificaHandicap(linha) {
     if (!linha) return linha;
-    linha = linha.replace(/\s+/g, '');
+    linha = linha.replace(/\s+/g, '').replace(/^\++/, '+'); // Remove whitespace and extra "+" signs
 
     const format = (num) => {
         const parsed = parseFloat(num);
@@ -55,6 +55,7 @@ function simplificaHandicap(linha) {
 
     return linha;
 }
+
 
 const mercadoMap = {
     'handicap - partida': [
@@ -167,7 +168,7 @@ function extractBet365Markets(html) {
                     mercados.push({
                         mercado: titulo,
                         participante: 'Mais de',
-                        linha: (lines[i].startsWith('+') ? '' : '+') + simplificaHandicap(lines[i]),
+                        linha: simplificaHandicap(lines[i]),
                         odd: parseFloat(maisOdds[i].replace(',', '.')),
                         casa: 'bet365'
                     });
@@ -176,7 +177,7 @@ function extractBet365Markets(html) {
                     mercados.push({
                         mercado: titulo,
                         participante: 'Menos de',
-                        linha: (lines[i].startsWith('+') ? '' : '+') + simplificaHandicap(lines[i]),
+                        linha: simplificaHandicap(lines[i]),
                         odd: parseFloat(menosOdds[i].replace(',', '.')),
                         casa: 'bet365'
                     });
@@ -286,20 +287,25 @@ function extractPinnacleMarkets(html) {
             return; // Skip the rest for this section
         }
 
-        if (normalize(titulo) === 'total (escanteios) - partida') {
+        if (normalize(titulo).includes('total')) {
             $(section).find('.OddStyled-sc-n6vnd1-0').each((_, button) => {
-                const name = $(button).find('.name').text().trim(); // e.g., "Acima de 10 Escanteios"
+                const name = $(button).find('.name').text().trim();
                 const odd = $(button).find('.odd').text().trim();
+
+                if (!name.toLowerCase().startsWith('acima de') && !name.toLowerCase().startsWith('menos de')) {
+                    return; // Skip entries like "Team A", "1º Tempo", etc.
+                }
+
                 let participante = '';
                 let linha = '';
-                // Remove "Escanteios" from the line
                 if (name.toLowerCase().startsWith('acima de')) {
                     participante = 'Acima de';
-                    linha = name.replace(/acima de/i, '').replace(/escanteios/i, '').trim();
+                    linha = name.replace(/acima de/i, '').trim();
                 } else if (name.toLowerCase().startsWith('menos de')) {
                     participante = 'Menos de';
-                    linha = name.replace(/menos de/i, '').replace(/escanteios/i, '').trim();
+                    linha = name.replace(/menos de/i, '').trim();
                 }
+
                 if (participante && linha && odd) {
                     mercados.push({
                         mercado: titulo,
@@ -310,7 +316,7 @@ function extractPinnacleMarkets(html) {
                     });
                 }
             });
-            return; // Skip the rest for this section
+            return;
         }
 
         const participantes = $(section).find('.sub-header span').map((_, el) => $(el).text().trim()).get();
@@ -378,10 +384,31 @@ function normalizeMarketName(market) {
         return 'total -1º tempo';
     }
     // Full match team total
-    if (!norm.includes('1º tempo') && (norm.includes('gols') || norm.includes('total'))) {
+    // First half team total
+    if (norm.includes('1º tempo') && (norm.includes('gols') || norm.includes('total'))) {
+        console.log('[normalizeMarketName] Pattern match', market, '-> total -1º tempo');
+        return 'total -1º tempo';
+    }
+
+// Full match team total
+    if ((norm.includes('gols') || norm.includes('total'))) {
         console.log('[normalizeMarketName] Pattern match', market, '-> total - partida');
         return 'total - partida';
     }
+
+
+    if (norm.includes('handicap') && norm.includes('asiatico') && norm.includes('mais')) {
+        return 'handicap - partida';
+    }
+
+    if (norm.includes('gols') && norm.includes('alternativas')) {
+        return 'total - partida';
+    }
+
+    if (norm.includes('total') && norm.includes('1º tempo')) {
+        return 'total -1º tempo';
+    }
+
 
     // Fallback to old mapping for other markets
     for (const [pinnacle, bet365List] of Object.entries(mercadoMap)) {
@@ -429,25 +456,48 @@ function mergeMarkets(bet365Data, pinnacleData) {
     const oportunidades = [];
     const pinMap = new Map();
 
+
     // Unificando participantes únicos
     const participantesUnicos = Array.from(new Set([
         ...bet365Data.map(m => m.participante),
         ...pinnacleData.map(m => m.participante)
     ]));
 
+    const pinList = pinnacleData.map(pin => ({
+        mercado: normalizeMarketName(pin.mercado),
+        participante: normalizeMarketName(pin.mercado).includes('total')
+            ? normalizeParticipante(pin.participante, participantesUnicos)
+            : normalizeTeamName(pin.participante),
+        linha: normalize(pin.linha),
+        odd: pin.odd
+    }));
+
     pinnacleData.forEach(pin => {
         const normMarket = normalizeMarketName(pin.mercado);
         const normParticipante = normMarket.includes('total')
-            ? normalize(pin.participante)
+            ? normalizeParticipante(pin.participante, participantesUnicos)
             : normalizeTeamName(pin.participante);
         const normLinha = normalize(pin.linha);
         const key = `${normMarket}|${normParticipante}|${normLinha}`;
-        pinMap.set(key, pin);
+        if (!pinMap.has(key)) {
+            pinMap.set(key, pin);
+        } else {
+            const current = pinMap.get(key);
+            const isBetter = !isNaN(pin.odd) && (!current || pin.odd < current.odd);
+            if (isBetter) {
+                console.warn('[mergeMarkets] Replacing key due to better odd:', key, '| Old:', current.odd, '| New:', pin.odd);
+                pinMap.set(key, pin);
+            } else {
+                console.warn('[mergeMarkets] Skipping duplicate key in pinMap:', key, '| Existing:', current.odd, '| Skipped:', pin.odd);
+            }
+        }
     });
 
     bet365Data.forEach(bet => {
         const mercadoBet = normalizeMarketName(bet.mercado);
-        const participanteBet = normalize(bet.participante);
+        const participanteBet = mercadoBet.includes('total')
+            ? normalizeParticipante(bet.participante, participantesUnicos)
+            : normalizeTeamName(bet.participante);
         const linhaBet = normalize(bet.linha);
         const key = `${mercadoBet}|${participanteBet}|${linhaBet}`;
         const match = pinMap.get(key);
@@ -470,16 +520,17 @@ function mergeMarkets(bet365Data, pinnacleData) {
                 oppositeLinha = getOppositeLine(bet.linha);
             }
             const normalizedOppositeParticipante = mercadoBet.includes('total')
-                ? normalize(oppositeParticipante)
+                ? normalizeParticipante(oppositeParticipante, participantesUnicos)
                 : normalizeTeamName(oppositeParticipante);
             const normalizedOppositeLinha = normalize(oppositeLinha);
             const oppositeKey = `${mercadoBet}|${normalizedOppositeParticipante}|${normalizedOppositeLinha}`;
-            const oppositeMatch = pinMap.get(oppositeKey);
+            const oppositeMatch = pinList
+                .filter(p => `${p.mercado}|${p.participante}|${p.linha}` === oppositeKey)
+                .sort((a, b) => b.odd - a.odd)[0];
 
             console.log('Looking for oppositeKey:', oppositeKey, 'in pinMap');
             if (!oppositeMatch) {
-                // Print all keys for this market for debugging
-                console.log('Available keys for this market:');
+                console.log('Available keys for market:', mercadoBet);
                 pinMap.forEach((v, k) => {
                     if (k.startsWith(`${mercadoBet}|`)) {
                         console.log('  ', k);
@@ -531,32 +582,11 @@ function mergeMarkets(bet365Data, pinnacleData) {
             }
         }
     });
-    console.log(oportunidades)
+    //console.log(oportunidades)
     // Only keep opportunities where Bet365's odd is higher than Pinnacle's
     const oportunidadesPositivas = oportunidades.filter(o => o.diferenca > 0);
 
     return oportunidadesPositivas.sort((a, b) => b.diferenca - a.diferenca);
-}
-
-function validateMarketAndLine(mercado, linha) {
-    // Verifica se o mercado é do 1º Tempo e ajusta a busca para linha correspondente do 1º Tempo
-    if (mercado.includes("1º Tempo") && !linha.includes("1º Tempo")) {
-        // Força o casamento para 1º Tempo se o mercado for de 1º Tempo
-        console.log(`Mercado de 1º Tempo: ${mercado} | Linha: ${linha}`);
-        return `${mercado} - 1º Tempo`;
-    }
-    return mercado;
-}
-
-function isValidMatch(match, participanteBet, linhaBet) {
-    // Verifica se a linha realmente pertence ao participante correto
-    if (participanteBet === 'yokohama fc' && (linhaBet === '-0.75' || linhaBet === '-0.50')) {
-        // Se for Yokohama e a linha não estiver válida para o mercado, ignora
-        console.log(`IGNORANDO: ${participanteBet} | Linha: ${linhaBet} NÃO é válida para esse time`);
-        return false;  // Não é válido para o Yokohama FC
-    }
-    // Adicionar outras verificações de linhas inválidas, se necessário
-    return true;
 }
 
 const bet365Html = fs.readFileSync('./bet365.html', 'utf-8');

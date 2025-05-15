@@ -409,6 +409,16 @@ function normalizeMarketName(market) {
         return 'total -1º tempo';
     }
 
+    if (norm.includes('escanteios') && norm.includes('1º tempo') && norm.includes('asiaticos')) {
+        console.log('[normalizeMarketName] Pattern match', market, '-> total (escanteios) -1º tempo');
+        return 'total (escanteios) -1º tempo';
+    }
+
+    if (norm.includes('escanteios') && norm.includes('asiaticos') && !norm.includes('1º tempo')) {
+        console.log('[normalizeMarketName] Pattern match', market, '-> handicap (escanteios) - partida');
+        return 'handicap (escanteios) - partida';
+    }
+
 
     // Fallback to old mapping for other markets
     for (const [pinnacle, bet365List] of Object.entries(mercadoMap)) {
@@ -441,10 +451,10 @@ function getOppositeParticipant(participante, participantesUnicos) {
 }
 
 function normalizeTeamName(name) {
-    // Remove accents, lowercase, and take only the first two words
     return name
         ?.normalize('NFD')
         .replace(/\p{Diacritic}/gu, '')
+        .replace(/\(.*?\)/g, '') // Remove "(ESCANTEIOS)" ou outros sufixos
         .toLowerCase()
         .split(' ')
         .slice(0, 2)

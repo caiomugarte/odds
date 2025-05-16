@@ -87,6 +87,12 @@ const mercadoMap = {
         '1º tempo - escanteios',
         'escanteios - 1º tempo',
         '1º tempo - escanteios asiáticos'
+    ],
+    'total (cartões) - partida': [
+        'total de cartões asiáticos'
+    ],
+    'handicap (cartões) - partida': [
+        'handicap asiático - cartões'
     ]
 };
 
@@ -276,6 +282,53 @@ function extractBet365Markets(html) {
             return; // Skip the rest of the loop for this pod
         }
 
+        if (titulo.toLowerCase().includes('cartões') && titulo.toLowerCase().includes('asiáticos')) {
+            const lines = [];
+            $(pod).find('.srb-ParticipantLabelCentered_Name').each((_, el) => {
+                lines.push($(el).text().trim());
+            });
+
+            const maisOdds = [];
+            $(pod).find('.gl-MarketColumnHeader:contains("Mais de")')
+                .parent()
+                .find('.gl-ParticipantOddsOnly_Odds')
+                .each((_, el) => {
+                    maisOdds.push($(el).text().trim());
+                });
+
+            const menosOdds = [];
+            $(pod).find('.gl-MarketColumnHeader:contains("Menos de")')
+                .parent()
+                .find('.gl-ParticipantOddsOnly_Odds')
+                .each((_, el) => {
+                    menosOdds.push($(el).text().trim());
+                });
+
+            for (let i = 0; i < lines.length; i++) {
+                const linha = simplificaHandicap(lines[i]);
+                if (maisOdds[i]) {
+                    mercados.push({
+                        mercado: titulo,
+                        participante: 'Mais de',
+                        linha,
+                        odd: parseFloat(maisOdds[i].replace(',', '.')),
+                        casa: 'bet365'
+                    });
+                }
+                if (menosOdds[i]) {
+                    mercados.push({
+                        mercado: titulo,
+                        participante: 'Menos de',
+                        linha,
+                        odd: parseFloat(menosOdds[i].replace(',', '.')),
+                        casa: 'bet365'
+                    });
+                }
+            }
+            return;
+        }
+
+
         $(pod).find('.gl-Market').each((_, bloco) => {
             const header = $(bloco).find('.gl-MarketColumnHeader').first().text().trim();
             $(bloco).find('.gl-ParticipantCentered').each((_, opt) => {
@@ -431,6 +484,11 @@ const MARKET_ALIASES = {
     // Escanteios Handicap
     'handicapescanteiospartida': 'handicap (escanteios) - partida',
     'handicapasiaticoescanteios': 'handicap (escanteios) - partida',
+
+    'totalcartoespartida': 'total (cartões) - partida',
+    'totaldecartoesasiaticos': 'total (cartões) - partida',
+    'handicapasiaticocartoes': 'handicap (cartões) - partida',
+    'handicapcartoespartida': 'handicap (cartões) - partida'
 };
 
 
@@ -658,3 +716,8 @@ const pinnacleMarkets = extractPinnacleMarkets(pinnacleHtml);
 const comparacoes = mergeMarkets(bet365Markets, pinnacleMarkets);
 
 console.log(JSON.stringify(comparacoes, null, 2));
+
+const comparacoesComStake = comparacoes.filter(o => o.stake > 0 && o.quarter_kelly > 0.25);
+
+console.log('--- COMPARAÇÕES COM STAKE POSITIVA ---');
+console.log(JSON.stringify(comparacoesComStake, null, 2));

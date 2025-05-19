@@ -96,262 +96,177 @@ const mercadoMap = {
     ]
 };
 
+function fillCenteredOdds($, pod, mercados, titulo) {
+    $(pod).find('.gl-Market').each((_, bloco) => {
+        const header = $(bloco).find('.gl-MarketColumnHeader').first().text().trim();
+        $(bloco).find('.gl-ParticipantCentered').each((_, opt) => {
+            let linha = $(opt).find('.gl-ParticipantCentered_Handicap').text().trim();
+            if (!linha) return;
+            linha = simplificaHandicap(linha);
+            const odd = $(opt).find('.gl-ParticipantCentered_Odds').text().trim();
+            if (linha && odd && header) {
+                //console.log('header:', header, 'linha:', linha, 'odd:', odd);
+                mercados.push({
+                    mercado: titulo,
+                    participante: header,
+                    linha,
+                    odd: parseFloat(odd.replace(',', '.')),
+                    casa: 'bet365'
+                });
+            }
+        });
+    });
+}
+
+function fillCs2Markets($, pod, mercados, titulo) {
+    const linhas = [];
+    const colunas = [];
+
+    // Pega os rótulos à esquerda (ex: Para Ganhar, Handicap da Partida...)
+    $(pod).find('.gl-Market .srb-ParticipantLabel_Name').each((_, el) => {
+        linhas.push($(el).text().trim());
+    });
+
+    // Pega os nomes dos times nas colunas (ignorando a primeira coluna que é vazia)
+    $(pod).find('.gl-MarketColumnHeader').each((i, el) => {
+        const nome = $(el).text().trim();
+        if (nome !== '') {
+            colunas.push(nome);
+        }
+    });
+
+    // Para cada coluna de time (ex: MongolZ, FURIA)
+    $(pod).find('.gl-Market').each((colIndex, colEl) => {
+        // Ignora a primeira coluna de labels
+        if (colIndex === 0) return;
+
+        const nomeTime = colunas[colIndex - 1]; // alinhado com os labels
+
+        $(colEl).find('.srb-ParticipantCenteredStackedMarketRow').each((rowIndex, rowEl) => {
+            const linhaNome = linhas[rowIndex] || `Linha ${rowIndex + 1}`;
+
+            const oddEl = $(rowEl).find('.srb-ParticipantCenteredStackedMarketRow_Odds');
+            const handicapEl = $(rowEl).find('.srb-ParticipantCenteredStackedMarketRow_Handicap');
+
+            const odd = oddEl.text().trim().replace(',', '.');
+            const linha = handicapEl.length ? handicapEl.text().trim() : linhaNome;
+
+            if (odd) {
+                mercados.push({
+                    mercado: titulo,
+                    participante: nomeTime,
+                    linha: simplificaHandicap(linha),
+                    odd: parseFloat(odd),
+                    casa: 'bet365'
+                });
+            }
+        });
+    });
+}
+
+
+
+function fillOverUnderMarkets($, pod, mercados, titulo) {
+    const lines = [];
+    $(pod).find('.srb-ParticipantLabelCentered_Name').each((_, el) => {
+        lines.push($(el).text().trim());
+    });
+
+    const maisOdds = [];
+    $(pod).find('.gl-MarketColumnHeader:contains("Mais de")').parent().find('.gl-ParticipantOddsOnly_Odds').each((_, el) => {
+        maisOdds.push($(el).text().trim());
+    });
+
+    const menosOdds = [];
+    $(pod).find('.gl-MarketColumnHeader:contains("Menos de")').parent().find('.gl-ParticipantOddsOnly_Odds').each((_, el) => {
+        menosOdds.push($(el).text().trim());
+    });
+
+    for (let i = 0; i < lines.length; i++) {
+        if (maisOdds[i]) {
+            mercados.push({
+                mercado: titulo,
+                participante: 'Mais de',
+                linha: simplificaHandicap(lines[i]),
+                odd: parseFloat(maisOdds[i].replace(',', '.')),
+                casa: 'bet365'
+            });
+        }
+        if (menosOdds[i]) {
+            mercados.push({
+                mercado: titulo,
+                participante: 'Menos de',
+                linha: simplificaHandicap(lines[i]),
+                odd: parseFloat(menosOdds[i].replace(',', '.')),
+                casa: 'bet365'
+            });
+        }
+    }
+}
+
+function loadSoccerMarket(mercados, titulo, $, pod) {
+    const tituloLower = titulo.toLowerCase();
+
+    const shouldUseOverUnder = (
+        tituloLower.includes('gols') ||
+        (tituloLower.includes('total') && tituloLower.includes('escanteios')) ||
+        (tituloLower.includes('1º tempo') && tituloLower.includes('escanteios') && tituloLower.includes('asiáticos')) ||
+        (tituloLower.includes('cartões') && tituloLower.includes('asiáticos'))
+    );
+
+    if (shouldUseOverUnder) {
+        fillOverUnderMarkets($, pod, mercados, titulo);
+    } else {
+        fillCenteredOdds($, pod, mercados, titulo);
+    }
+}
+
+function loadCs2Market(mercados, titulo, $, pod) {
+    const tituloLower = titulo.toLowerCase();
+    fillCs2Markets($, pod, mercados, tituloLower);
+}
+
 function extractBet365Markets(html) {
     const $ = cheerio.load(html);
     const mercados = [];
+    const breadcrumb = $('.sph-Breadcrumb').text();
 
     $('.gl-MarketGroupPod').each((_, pod) => {
         const titulo = $(pod).find('.cm-MarketGroupWithIconsButton_Text').first().text().trim();
-        ////console.log('Bet365 market title:', titulo);
         if (!titulo) return;
-
-        if (titulo.toLowerCase().includes('gols')) {
-            // Find all lines (e.g., 2.0, 2.5, etc.)
-            const lines = [];
-            $(pod).find('.srb-ParticipantLabelCentered_Name').each((_, el) => {
-                lines.push($(el).text().trim());
-            });
-
-            // Find all "Mais de" odds
-            const maisOdds = [];
-            $(pod).find('.gl-MarketColumnHeader:contains("Mais de")').parent().find('.gl-ParticipantOddsOnly_Odds').each((_, el) => {
-                maisOdds.push($(el).text().trim());
-            });
-
-            // Find all "Menos de" odds
-            const menosOdds = [];
-            $(pod).find('.gl-MarketColumnHeader:contains("Menos de")').parent().find('.gl-ParticipantOddsOnly_Odds').each((_, el) => {
-                menosOdds.push($(el).text().trim());
-            });
-
-            // For each line, add both "Mais de" and "Menos de" as separate markets
-            for (let i = 0; i < lines.length; i++) {
-                if (maisOdds[i]) {
-                    mercados.push({
-                        mercado: titulo,
-                        participante: 'Mais de',
-                        linha: simplificaHandicap(lines[i]),
-                        odd: parseFloat(maisOdds[i].replace(',', '.')),
-                        casa: 'bet365'
-                    });
-                }
-                if (menosOdds[i]) {
-                    mercados.push({
-                        mercado: titulo,
-                        participante: 'Menos de',
-                        linha: simplificaHandicap(lines[i]),
-                        odd: parseFloat(menosOdds[i].replace(',', '.')),
-                        casa: 'bet365'
-                    });
-                }
-            }
-            return; // Skip the rest of the loop for this pod
+        if(breadcrumb.includes('Futebol')) {
+            loadSoccerMarket(mercados, titulo, $, pod);
         }
-
-        if (titulo.toLowerCase().includes('total') && titulo.toLowerCase().includes('escanteios')) {
-            //console.log('DEBUG: HTML for Total de Escanteios Asiáticos:', $(pod).html());
-            // Find the line (e.g., 9.5, 10.5, etc.)
-            const lines = [];
-            $(pod).find('.srb-ParticipantLabelCentered_Name').each((_, el) => {
-                lines.push($(el).text().trim());
-            });
-
-            // Find all "Mais de" odds
-            const maisOdds = [];
-            $(pod).find('.gl-MarketColumnHeader:contains("Mais de")').parent().find('.gl-ParticipantOddsOnly_Odds').each((_, el) => {
-                maisOdds.push($(el).text().trim());
-            });
-
-            // Find all "Menos de" odds
-            const menosOdds = [];
-            $(pod).find('.gl-MarketColumnHeader:contains("Menos de")').parent().find('.gl-ParticipantOddsOnly_Odds').each((_, el) => {
-                menosOdds.push($(el).text().trim());
-            });
-
-            // For each line, add both "Mais de" and "Menos de" as separate markets
-            for (let i = 0; i < lines.length; i++) {
-                if (maisOdds[i]) {
-                    mercados.push({
-                        mercado: titulo,
-                        participante: 'Mais de',
-                        linha: simplificaHandicap(lines[i]),
-                        odd: parseFloat(maisOdds[i].replace(',', '.')),
-                        casa: 'bet365'
-                    });
-                }
-                if (menosOdds[i]) {
-                    mercados.push({
-                        mercado: titulo,
-                        participante: 'Menos de',
-                        linha: simplificaHandicap(lines[i]),
-                        odd: parseFloat(menosOdds[i].replace(',', '.')),
-                        casa: 'bet365'
-                    });
-                }
-            }
-            return; // Skip the rest of the loop for this pod
+        if(breadcrumb.includes('CS2')) {
+            loadCs2Market(mercados, titulo, $, pod);
         }
-
-        if (titulo.toLowerCase().includes('1º tempo') && titulo.toLowerCase().includes('escanteios') && titulo.toLowerCase().includes('asiáticos')) {
-            const lines = [];
-            $(pod).find('.srb-ParticipantLabelCentered_Name').each((_, el) => {
-                lines.push($(el).text().trim());
-            });
-
-            const maisOdds = [];
-            $(pod).find('.gl-MarketColumnHeader:contains("Mais de")')
-                .parent()
-                .find('.gl-ParticipantOddsOnly_Odds')
-                .each((_, el) => {
-                    maisOdds.push($(el).text().trim());
-                });
-
-            const menosOdds = [];
-            $(pod).find('.gl-MarketColumnHeader:contains("Menos de")')
-                .parent()
-                .find('.gl-ParticipantOddsOnly_Odds')
-                .each((_, el) => {
-                    menosOdds.push($(el).text().trim());
-                });
-
-            for (let i = 0; i < lines.length; i++) {
-                const linha = simplificaHandicap(lines[i]);
-                if (maisOdds[i]) {
-                    mercados.push({
-                        mercado: '1º Tempo - Escanteios Asiáticos',
-                        participante: 'Mais de',
-                        linha,
-                        odd: parseFloat(maisOdds[i].replace(',', '.')),
-                        casa: 'bet365'
-                    });
-                }
-                if (menosOdds[i]) {
-                    mercados.push({
-                        mercado: '1º Tempo - Escanteios Asiáticos',
-                        participante: 'Menos de',
-                        linha,
-                        odd: parseFloat(menosOdds[i].replace(',', '.')),
-                        casa: 'bet365'
-                    });
-                }
-            }
-            return;
-        }
-
-
-
-        if (titulo.toLowerCase().includes('escanteios') && titulo.toLowerCase().includes('asiaticos')) {
-            // Find the line (e.g., 9.5)
-            let line = null;
-            $(pod).find('.gl-Market').each((_, bloco) => {
-                const header = $(bloco).find('.gl-MarketColumnHeader').first().text().trim();
-                if (header === '' || header === '&nbsp;') {
-                    // This block contains the line
-                    line = $(bloco).find('.srb-ParticipantLabelCentered_Name').first().text().trim();
-                }
-            });
-            if (!line) return;
-
-            // Now find the odds for "Mais de" and "Menos de"
-            let maisOdd = null, menosOdd = null;
-            $(pod).find('.gl-Market').each((_, bloco) => {
-                const header = $(bloco).find('.gl-MarketColumnHeader').first().text().trim();
-                const odd = $(bloco).find('.gl-ParticipantOddsOnly_Odds').first().text().trim();
-                if (header === 'Mais de') maisOdd = odd;
-                if (header === 'Menos de') menosOdd = odd;
-            });
-
-            if (maisOdd) {
-                mercados.push({
-                    mercado: titulo,
-                    participante: 'Mais de',
-                    linha: (line.startsWith('+') ? '' : '+') + simplificaHandicap(line),
-                    odd: parseFloat(maisOdd.replace(',', '.')),
-                    casa: 'bet365'
-                });
-            }
-            if (menosOdd) {
-                mercados.push({
-                    mercado: titulo,
-                    participante: 'Menos de',
-                    linha: (line.startsWith('+') ? '' : '+') + simplificaHandicap(line),
-                    odd: parseFloat(menosOdd.replace(',', '.')),
-                    casa: 'bet365'
-                });
-            }
-            return; // Skip the rest of the loop for this pod
-        }
-
-        if (titulo.toLowerCase().includes('cartões') && titulo.toLowerCase().includes('asiáticos')) {
-            const lines = [];
-            $(pod).find('.srb-ParticipantLabelCentered_Name').each((_, el) => {
-                lines.push($(el).text().trim());
-            });
-
-            const maisOdds = [];
-            $(pod).find('.gl-MarketColumnHeader:contains("Mais de")')
-                .parent()
-                .find('.gl-ParticipantOddsOnly_Odds')
-                .each((_, el) => {
-                    maisOdds.push($(el).text().trim());
-                });
-
-            const menosOdds = [];
-            $(pod).find('.gl-MarketColumnHeader:contains("Menos de")')
-                .parent()
-                .find('.gl-ParticipantOddsOnly_Odds')
-                .each((_, el) => {
-                    menosOdds.push($(el).text().trim());
-                });
-
-            for (let i = 0; i < lines.length; i++) {
-                const linha = simplificaHandicap(lines[i]);
-                if (maisOdds[i]) {
-                    mercados.push({
-                        mercado: titulo,
-                        participante: 'Mais de',
-                        linha,
-                        odd: parseFloat(maisOdds[i].replace(',', '.')),
-                        casa: 'bet365'
-                    });
-                }
-                if (menosOdds[i]) {
-                    mercados.push({
-                        mercado: titulo,
-                        participante: 'Menos de',
-                        linha,
-                        odd: parseFloat(menosOdds[i].replace(',', '.')),
-                        casa: 'bet365'
-                    });
-                }
-            }
-            return;
-        }
-
-
-        $(pod).find('.gl-Market').each((_, bloco) => {
-            const header = $(bloco).find('.gl-MarketColumnHeader').first().text().trim();
-            $(bloco).find('.gl-ParticipantCentered').each((_, opt) => {
-                let linha = $(opt).find('.gl-ParticipantCentered_Handicap').text().trim();
-                if (!linha) return;
-                linha = simplificaHandicap(linha);
-                const odd = $(opt).find('.gl-ParticipantCentered_Odds').text().trim();
-                if (linha && odd && header) {
-                    //console.log('header:', header, 'linha:', linha, 'odd:', odd);
-                    mercados.push({
-                        mercado: titulo,
-                        participante: header,
-                        linha,
-                        odd: parseFloat(odd.replace(',', '.')),
-                        casa: 'bet365'
-                    });
-                }
-            });
-        });
     });
-    //console.log('--- Bet365 Markets ---');
-    //mercados.forEach(m => console.log(m.mercado));
     return mercados;
+}
+
+function handleTotalMatchPinnacle($, section, mercados, titulo) {
+    $(section).find('.OddStyled-sc-n6vnd1-0').each((_, button) => {
+        const name = $(button).find('.name').text().trim(); // e.g., "Acima de 2.5"
+        const odd = $(button).find('.odd').text().trim();
+        let participante = '';
+        let linha = '';
+        if (name.toLowerCase().startsWith('acima de')) {
+            participante = 'Acima de';
+            linha = name.replace(/acima de/i, '').trim();
+        } else if (name.toLowerCase().startsWith('menos de')) {
+            participante = 'Menos de';
+            linha = name.replace(/menos de/i, '').trim();
+        }
+        if (participante && linha && odd) {
+            mercados.push({
+                mercado: titulo,
+                participante,
+                linha: simplificaHandicap(linha),
+                odd: parseFloat(odd.replace(',', '.')),
+                casa: 'pinnacle'
+            });
+        }
+    });
 }
 
 function extractPinnacleMarkets(html) {
@@ -359,67 +274,18 @@ function extractPinnacleMarkets(html) {
     const mercados = [];
 
     $('.SectionStyled-sc-o6nwof-0').each((_, section) => {
-        const titulo = $(section).find('.title').first().text().trim();
+        const titulo = normalize($(section).find('.title').first().text().trim());
 
-        // IGNORAR mercados de Total da Equipe
-        if (normalize(titulo).includes('total da equipe')) return;
+        if (titulo.includes('total da equipe')) return;
 
         // Special handling for "Total - Partida"
-        if (normalize(titulo) === 'total - partida') {
-            $(section).find('.OddStyled-sc-n6vnd1-0').each((_, button) => {
-                const name = $(button).find('.name').text().trim(); // e.g., "Acima de 2.5"
-                const odd = $(button).find('.odd').text().trim();
-                let participante = '';
-                let linha = '';
-                if (name.toLowerCase().startsWith('acima de')) {
-                    participante = 'Acima de';
-                    linha = name.replace(/acima de/i, '').trim();
-                } else if (name.toLowerCase().startsWith('menos de')) {
-                    participante = 'Menos de';
-                    linha = name.replace(/menos de/i, '').trim();
-                }
-                if (participante && linha && odd) {
-                    mercados.push({
-                        mercado: titulo,
-                        participante,
-                        linha: simplificaHandicap(linha),
-                        odd: parseFloat(odd.replace(',', '.')),
-                        casa: 'pinnacle'
-                    });
-                }
-            });
+        if (titulo === 'total - partida') {
+            handleTotalMatchPinnacle($, section, mercados, titulo);
             return; // Skip the rest for this section
         }
 
         if (normalize(titulo).includes('total')) {
-            $(section).find('.OddStyled-sc-n6vnd1-0').each((_, button) => {
-                const name = $(button).find('.name').text().trim();
-                const odd = $(button).find('.odd').text().trim();
-
-                if (!name.toLowerCase().startsWith('acima de') && !name.toLowerCase().startsWith('menos de')) {
-                    return; // Skip entries like "Team A", "1º Tempo", etc.
-                }
-
-                let participante = '';
-                let linha = '';
-                if (name.toLowerCase().startsWith('acima de')) {
-                    participante = 'Acima de';
-                    linha = name.replace(/acima de/i, '').trim();
-                } else if (name.toLowerCase().startsWith('menos de')) {
-                    participante = 'Menos de';
-                    linha = name.replace(/menos de/i, '').trim();
-                }
-
-                if (participante && linha && odd) {
-                    mercados.push({
-                        mercado: titulo,
-                        participante,
-                        linha: simplificaHandicap(linha),
-                        odd: parseFloat(odd.replace(',', '.')),
-                        casa: 'pinnacle'
-                    });
-                }
-            });
+            handleTotalMatchPinnacle($, section, mercados, titulo);
             return;
         }
 
@@ -490,17 +356,6 @@ const MARKET_ALIASES = {
     'handicapasiaticocartoes': 'handicap (cartões) - partida',
     'handicapcartoespartida': 'handicap (cartões) - partida'
 };
-
-
-
-
-
-function slugifyMarketName(text) {
-    return normalize(text)
-        .replace(/\s*-\s*/g, '-')      // hífens normalizados
-        .replace(/[^\w]/g, '')         // remove pontuação e espaços
-        .toLowerCase();
-}
 
 function normalizeMarketName(market) {
     const slug = normalize(market)

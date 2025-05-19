@@ -702,7 +702,7 @@ function mergeMarkets(bet365Data, pinnacleData) {
     });
     ////console.log(oportunidades)
     // Only keep opportunities where Bet365's odd is higher than Pinnacle's
-    const oportunidadesPositivas = oportunidades.filter(o => o.diferenca > 0);
+    const oportunidadesPositivas = oportunidades.filter(o => o.diferenca > 0 && o.EV >= 3);
 
     return oportunidadesPositivas.sort((a, b) => b.diferenca - a.diferenca);
 }

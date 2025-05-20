@@ -310,6 +310,11 @@ function extractPinnacleMarkets(html) {
                 participante = $(button).find('.participant').text().trim() || '';
             }
 
+            if(titulo.includes("money")){
+                participante = linha;
+                linha = "paraganhar"
+            }
+
             if (titulo && linha && odd && participante) {
                 mercados.push({
                     mercado: titulo,
@@ -354,7 +359,20 @@ const MARKET_ALIASES = {
     'totalcartoespartida': 'total (cartões) - partida',
     'totaldecartoesasiaticos': 'total (cartões) - partida',
     'handicapasiaticocartoes': 'handicap (cartões) - partida',
-    'handicapcartoespartida': 'handicap (cartões) - partida'
+    'handicapcartoespartida': 'handicap (cartões) - partida',
+
+    //cs2
+    'handicapmapa1': 'handicap - mapa 1',
+    'totalmapa1': 'total - mapa 1',
+    'handicapmapa2': 'handicap - mapa 2',
+    'totalmapa2': 'total - mapa 2',
+    'rodadalinhas': 'rodada - linhas',
+    'mapa1linhas': 'mapa 1 - linhas',
+    'mapa1primeirotempo': 'mapa 1 - 1° tempo',
+    'mapa2linhas': 'mapa 2 - linhas',
+    'mapa2primeirotempo': 'mapa 2 - 1° tempo',
+    'linhasdapartida': 'money line - partida',
+    'moneylinepartida': 'money line - partida'
 };
 
 function normalizeMarketName(market) {
@@ -415,7 +433,7 @@ function mergeMarkets(bet365Data, pinnacleData) {
     ]));
 
     const pinList = pinnacleData.map(pin => ({
-        mercado: normalizeMarketName(pin.mercado),
+        mercado:  normalizeMarketName(pin.mercado),
         participante: normalizeMarketName(pin.mercado).includes('total')
             ? normalizeParticipante(pin.participante, participantesUnicos)
             : normalizeTeamName(pin.participante),

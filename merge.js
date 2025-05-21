@@ -111,7 +111,7 @@ function fillCenteredOdds($, pod, mercados, titulo) {
                     mercado: titulo,
                     participante: header,
                     linha,
-                    odd: parseFloat(odd.replace(',', '.')),
+                    odd: normalizeOdd(odd),
                     casa: 'bet365'
                 });
             }
@@ -154,7 +154,7 @@ function fillCs2Markets($, pod, mercados, titulo) {
 
             if (odd) {
                 mercados.push({
-                    mercado: titulo,
+                    mercado: `${titulo} - ${simplificaHandicap(linha)}`,
                     participante: nomeTime,
                     linha: simplificaHandicap(linha),
                     odd: parseFloat(odd),
@@ -263,11 +263,15 @@ function handleTotalMatchPinnacle($, section, mercados, titulo) {
                 mercado: titulo,
                 participante,
                 linha: simplificaHandicap(linha),
-                odd: parseFloat(odd.replace(',', '.')),
+                odd: normalizeOdd(odd),
                 casa: 'pinnacle'
             });
         }
     });
+}
+
+function normalizeOdd(odd) {
+    return parseFloat((odd.match(/[\d,.]+/)?.[0] || '0').replace(',', '.'));
 }
 
 function extractPinnacleMarkets(html) {
@@ -321,7 +325,7 @@ function extractPinnacleMarkets(html) {
                     mercado: titulo,
                     participante,
                     linha,
-                    odd: parseFloat(odd.replace(',', '.')),
+                    odd: normalizeOdd(odd),
                     casa: 'pinnacle'
                 });
             }
@@ -373,7 +377,22 @@ const MARKET_ALIASES = {
     'mapa2linhas': 'mapa 2 - linhas',
     'mapa2primeirotempo': 'mapa 2 - 1° tempo',
     'paraganhar': 'money line - partida',
-    'moneylinepartida': 'money line - partida'
+    'moneylinepartida': 'money line - partida',
+    'linhasdapartidaparaganhar': 'money line - partida',
+    'linhasdapartidao2.5': 'total - partida',
+    'linhasdapartida1.5': 'handicap - partida',
+    'linhasdapartidau2.5': 'total - partida',
+    'mapa1linhasparaganhar': 'money line - mapa 1',
+    'mapa2linhasparaganhar': 'money line - mapa 2',
+    'mapa1linhas+2.5': 'handicap - mapa 1',
+    'mapa1linhas-2.5': 'handicap - mapa 1',
+    'mapa2linhas+2.5': 'handicap - mapa 2',
+    'mapa2linhas-2.5': 'handicap - mapa 2',
+    'mapa1linhaso21.5': 'total - mapa 1',
+    'mapa1linhasu21.5': 'total - mapa 1',
+    'mapa2linhaso21.5': 'total - mapa 2',
+    'mapa2linhasu21.5': 'total - mapa 2',
+
 };
 
 function normalizeMarketName(market) {
@@ -386,7 +405,7 @@ function normalizeMarketName(market) {
         return MARKET_ALIASES[slug];
     }
 
-    console.log('[normalizeMarketName] No mapping for:', market, '->', slug);
+    //console.log('[normalizeMarketName] No mapping for:', market, '->', slug);
     return market; // fallback
 }
 
@@ -609,7 +628,7 @@ for (let i = 0; i < bet365Files.length; i++) {
 
     const comparacoes = mergeMarkets(bet365Markets, pinnacleMarkets);
 
-    const oportunidadesPositivas = comparacoes.filter(o => o.diferenca > 0 && o.EV >= 3 && o.stake > 0 && o.oct_kelly > 0.25);
+    const oportunidadesPositivas = comparacoes.filter(o => o.diferenca > 0 && o.EV >= 3 && o.stake > 0);
 
     if (oportunidadesPositivas.length > 0) {
         todasOportunidades.push({

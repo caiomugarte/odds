@@ -1,6 +1,7 @@
 // mergeMarkets.js (versão otimizada com cheerio e normalização de linhas)
 import fs from 'fs';
 import * as cheerio from 'cheerio';
+import path from 'path'
 
 const round2 = v => v !== undefined && v !== null ? Math.round(v * 100) / 100 : v;
 
@@ -371,7 +372,7 @@ const MARKET_ALIASES = {
     'mapa1primeirotempo': 'mapa 1 - 1° tempo',
     'mapa2linhas': 'mapa 2 - linhas',
     'mapa2primeirotempo': 'mapa 2 - 1° tempo',
-    'linhasdapartida': 'money line - partida',
+    'paraganhar': 'money line - partida',
     'moneylinepartida': 'money line - partida'
 };
 
@@ -417,7 +418,7 @@ function normalizeTeamName(name) {
         .toLowerCase()
         .split(' ')
         .slice(0, 2)
-        .join(' ')
+        .join('')
         .trim();
 }
 
@@ -442,14 +443,7 @@ function mergeMarkets(bet365Data, pinnacleData) {
     }));
 
     pinnacleData.forEach(pin => {
-        const normMarket = normalizeMarketName(pin.mercado);
-        const normParticipante = normMarket.includes('total')
-            ? normalizeParticipante(pin.participante, participantesUnicos)
-            : normalizeTeamName(pin.participante);
-
-        const normLinha = normalize(pin.linha);
-        const key = `${normMarket}|${normParticipante}|${normLinha}`;
-        //console.log(`[KEY DEBUG] ${"pinnacle"}: ${key}`);
+        const key = makeMarketKey(pin.mercado, pin.participante, pin.linha, participantesUnicos)
         if (!pinMap.has(key)) {
             pinMap.set(key, pin);
         } else {
@@ -514,9 +508,10 @@ function mergeMarkets(bet365Data, pinnacleData) {
                 ? normalizeParticipante(oppositeParticipante)
                 : normalizeTeamName(oppositeParticipante);
             const normalizedOppositeLinha = normalize(oppositeLinha);
-            const oppositeKey = `${mercadoBet}|${normalizedOppositeParticipante}|${normalizedOppositeLinha}`;
+
+            const oppositeKey = makeMarketKey(mercadoBet, normalizedOppositeParticipante, normalizedOppositeLinha, participantesUnicos);
             const oppositeMatch = pinList
-                .filter(p => `${p.mercado}|${p.participante}|${p.linha}` === oppositeKey)
+                .filter(p => makeMarketKey(p.mercado, p.participante, p.linha, participantesUnicos) === oppositeKey)
                 .sort((a, b) => b.odd - a.odd)[0];
 
             //console.log('Looking for oppositeKey:', oppositeKey, 'in pinMap');
@@ -529,7 +524,7 @@ function mergeMarkets(bet365Data, pinnacleData) {
                 });
             }
 
-            let overround, probA_fair, probB_fair, EV, kelly, quarter_kelly, stake;
+            let overround, probA_fair, probB_fair, EV, kelly, oct_kelly, stake;
             let oddA = match.odd;
             let oddB = oppositeMatch ? oppositeMatch.odd : null;
             let bankroll = 265; // or any value you want
@@ -540,8 +535,8 @@ function mergeMarkets(bet365Data, pinnacleData) {
                 probB_fair = (1/oddB) / overround;
                 EV = (bet.odd * probA_fair) - 1;
                 kelly = EV / (bet.odd - 1);
-                quarter_kelly = kelly / 4;
-                stake = quarter_kelly * bankroll;
+                oct_kelly = kelly / 8;
+                stake = oct_kelly * bankroll;
             }
 
             const diff = parseFloat((bet.odd - match.odd).toFixed(3));
@@ -560,7 +555,7 @@ function mergeMarkets(bet365Data, pinnacleData) {
                 probB_fair: round2(probB_fair),
                 EV: pct2(EV),
                 kelly: pct2(kelly),
-                quarter_kelly: pct2(quarter_kelly),
+                oct_kelly: pct2(oct_kelly),
                 stake: round2(stake)
             });
 
@@ -579,18 +574,49 @@ function mergeMarkets(bet365Data, pinnacleData) {
 
     return oportunidadesPositivas.sort((a, b) => b.diferenca - a.diferenca);
 }
+function makeMarketKey(market, participante, linha, participantesUnicos) {
+    const normMarket = normalizeMarketName(market);
+    const normParticipante = normMarket.includes('total')
+        ? normalizeParticipante(participante, participantesUnicos)
+        : normalizeTeamName(participante);
+    const normLinha = normalize(linha);
+    return `${normMarket}|${normParticipante}|${normLinha}`;
+}
 
-const bet365Html = fs.readFileSync('./bet365.html', 'utf-8');
-const pinnacleHtml = fs.readFileSync('./pinnacle.html', 'utf-8');
 
-const bet365Markets = extractBet365Markets(bet365Html);
-const pinnacleMarkets = extractPinnacleMarkets(pinnacleHtml);
+const BET365_DIR = './bet365';
+const PINNACLE_DIR = './pinnacle';
 
-const comparacoes = mergeMarkets(bet365Markets, pinnacleMarkets);
+const bet365Files = fs.readdirSync(BET365_DIR).filter(f => f.endsWith('.html')).sort();
+const pinnacleFiles = fs.readdirSync(PINNACLE_DIR).filter(f => f.endsWith('.html')).sort();
 
-console.log(JSON.stringify(comparacoes, null, 2));
+if (bet365Files.length !== pinnacleFiles.length) {
+    console.error(`Número de arquivos incompatível: Bet365 (${bet365Files.length}) vs Pinnacle (${pinnacleFiles.length})`);
+    process.exit(1);
+}
 
-const comparacoesComStake = comparacoes.filter(o => o.stake > 0 && o.quarter_kelly > 0.25);
+const todasOportunidades = [];
 
-console.log('--- COMPARAÇÕES COM STAKE POSITIVA ---');
-console.log(JSON.stringify(comparacoesComStake, null, 2));
+for (let i = 0; i < bet365Files.length; i++) {
+    const bet365Path = path.join(BET365_DIR, bet365Files[i]);
+    const pinnaclePath = path.join(PINNACLE_DIR, pinnacleFiles[i]);
+
+    const bet365Html = fs.readFileSync(bet365Path, 'utf-8');
+    const pinnacleHtml = fs.readFileSync(pinnaclePath, 'utf-8');
+
+    const bet365Markets = extractBet365Markets(bet365Html);
+    const pinnacleMarkets = extractPinnacleMarkets(pinnacleHtml);
+
+    const comparacoes = mergeMarkets(bet365Markets, pinnacleMarkets);
+
+    const oportunidadesPositivas = comparacoes.filter(o => o.diferenca > 0 && o.EV >= 3 && o.stake > 0 && o.oct_kelly > 0.25);
+
+    if (oportunidadesPositivas.length > 0) {
+        todasOportunidades.push({
+            partida: bet365Files[i],
+            oportunidades: oportunidadesPositivas
+        });
+    }
+}
+
+console.log(JSON.stringify(todasOportunidades, null, 2));

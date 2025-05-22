@@ -1,4 +1,20 @@
 {
+  "Handicap Asiático": [
+    {
+      "mercado": "Handicap Asiático",
+      "participante": "CRB",
+      "linha": "0.0, +0.5",
+      "odd": 1.875,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "Handicap Asiático",
+      "participante": "Santos",
+      "linha": "0.0, -0.5",
+      "odd": 1.925,
+      "casa": "bet365"
+    }
+  ],
   "Gols +/ -": [
     {
       "mercado": "Gols +/ -",
@@ -18,9 +34,16 @@
   "Handicap Asiático - 1º Tempo": [
     {
       "mercado": "Handicap Asiático - 1º Tempo",
-      "participante": "Menos de",
-      "linha": "0",
+      "participante": "CRB",
+      "linha": "0.0",
       "odd": 2.25,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "Handicap Asiático - 1º Tempo",
+      "participante": "Santos",
+      "linha": "0.0",
+      "odd": 1.625,
       "casa": "bet365"
     }
   ],
@@ -59,14 +82,14 @@
   "Handicap Asiático - Escanteios": [
     {
       "mercado": "Handicap Asiático - Escanteios",
-      "participante": "Menos de",
-      "linha": "0.5",
+      "participante": "CRB",
+      "linha": "+0.5",
       "odd": 1.95,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Escanteios",
-      "participante": "Menos de",
+      "participante": "Santos",
       "linha": "-0.5",
       "odd": 1.85,
       "casa": "bet365"
@@ -163,9 +186,86 @@
   "1º Tempo - Handicap Asiático - Mais Alternativas": [
     {
       "mercado": "1º Tempo - Handicap Asiático - Mais Alternativas",
-      "participante": "Menos de",
-      "linha": "N/A",
+      "participante": "CRB",
+      "linha": "-0.5, -1.0",
       "odd": 5.9,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "1º Tempo - Handicap Asiático - Mais Alternativas",
+      "participante": "CRB",
+      "linha": "-0.5",
+      "odd": 3.9,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "1º Tempo - Handicap Asiático - Mais Alternativas",
+      "participante": "CRB",
+      "linha": "0.0, -0.5",
+      "odd": 3.1,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "1º Tempo - Handicap Asiático - Mais Alternativas",
+      "participante": "CRB",
+      "linha": "0.0, +0.5",
+      "odd": 1.6,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "1º Tempo - Handicap Asiático - Mais Alternativas",
+      "participante": "CRB",
+      "linha": "+0.5",
+      "odd": 1.375,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "1º Tempo - Handicap Asiático - Mais Alternativas",
+      "participante": "CRB",
+      "linha": "+0.5, +1.0",
+      "odd": 1.225,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "1º Tempo - Handicap Asiático - Mais Alternativas",
+      "participante": "Santos",
+      "linha": "+0.5, +1.0",
+      "odd": 1.13,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "1º Tempo - Handicap Asiático - Mais Alternativas",
+      "participante": "Santos",
+      "linha": "+0.5",
+      "odd": 1.24,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "1º Tempo - Handicap Asiático - Mais Alternativas",
+      "participante": "Santos",
+      "linha": "0.0, +0.5",
+      "odd": 1.35,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "1º Tempo - Handicap Asiático - Mais Alternativas",
+      "participante": "Santos",
+      "linha": "0.0, -0.5",
+      "odd": 2.3,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "1º Tempo - Handicap Asiático - Mais Alternativas",
+      "participante": "Santos",
+      "linha": "-0.5",
+      "odd": 3,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "1º Tempo - Handicap Asiático - Mais Alternativas",
+      "participante": "Santos",
+      "linha": "-0.5, -1.0",
+      "odd": 4.1,
       "casa": "bet365"
     }
   ],
@@ -342,106 +442,155 @@
   "Handicap Asiático - Mais Opções": [
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "-1",
+      "participante": "CRB",
+      "linha": "-1.0",
       "odd": 6.6,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "-0.75",
+      "participante": "CRB",
+      "linha": "-0.5, -1.0",
       "odd": 4.1,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
+      "participante": "CRB",
       "linha": "-0.5",
       "odd": 3.1,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "-0.25",
+      "participante": "CRB",
+      "linha": "0.0, -0.5",
       "odd": 2.75,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "0",
+      "participante": "CRB",
+      "linha": "0.0",
       "odd": 2.3,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "0.5",
+      "participante": "CRB",
+      "linha": "+0.5",
       "odd": 1.65,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "0.75",
+      "participante": "CRB",
+      "linha": "+0.5, +1.0",
       "odd": 1.45,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "1",
+      "participante": "CRB",
+      "linha": "+1.0",
       "odd": 1.275,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "1.25",
+      "participante": "CRB",
+      "linha": "+1.0, +1.5",
       "odd": 1.225,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "1.5",
+      "participante": "CRB",
+      "linha": "+1.5",
       "odd": 1.19,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "1.75",
+      "participante": "CRB",
+      "linha": "+1.5, +2.0",
       "odd": 1.12,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "0.25",
+      "participante": "Santos",
+      "linha": "+1.0",
+      "odd": 1.11,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "Handicap Asiático - Mais Opções",
+      "participante": "Santos",
+      "linha": "+0.5, +1.0",
+      "odd": 1.225,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "Handicap Asiático - Mais Opções",
+      "participante": "Santos",
+      "linha": "+0.5",
+      "odd": 1.35,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "Handicap Asiático - Mais Opções",
+      "participante": "Santos",
+      "linha": "0.0, +0.5",
       "odd": 1.425,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "-1.25",
+      "participante": "Santos",
+      "linha": "0.0",
+      "odd": 1.6,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "Handicap Asiático - Mais Opções",
+      "participante": "Santos",
+      "linha": "-0.5",
+      "odd": 2.2,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "Handicap Asiático - Mais Opções",
+      "participante": "Santos",
+      "linha": "-0.5, -1.0",
+      "odd": 2.675,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "Handicap Asiático - Mais Opções",
+      "participante": "Santos",
+      "linha": "-1.0",
+      "odd": 3.55,
+      "casa": "bet365"
+    },
+    {
+      "mercado": "Handicap Asiático - Mais Opções",
+      "participante": "Santos",
+      "linha": "-1.0, -1.5",
       "odd": 4.1,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
+      "participante": "Santos",
       "linha": "-1.5",
       "odd": 4.5,
       "casa": "bet365"
     },
     {
       "mercado": "Handicap Asiático - Mais Opções",
-      "participante": "Menos de",
-      "linha": "-1.75",
+      "participante": "Santos",
+      "linha": "-1.5, -2.0",
       "odd": 6.25,
       "casa": "bet365"
     }

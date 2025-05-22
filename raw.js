@@ -33,8 +33,16 @@ function parseBet365Raw(content) {
 
         if (tag === 'MA') {
             const nome = (parts.find(p => p.startsWith('NA=')) || '').replace('NA=', '').trim();
-            if (nome && (nome === 'Mais de' || nome === 'Menos de' || nome.includes('Corinthians') || nome.includes('Novorizontino'))) {
-                currentParticipant = nome;
+            if (nome) {
+                // Se for mercado de Handicap Asiático, aceita nomes de times como participantes
+                if (currentMarket && (currentMarket.includes('Handicap Asiático'))) {
+                    if (nome !== ' ') { // Ignora linhas com espaço em branco
+                        currentParticipant = nome;
+                    }
+                } else if (nome === 'Mais de' || nome === 'Menos de') {
+                    // Para outros mercados, mantém apenas Mais de/Menos de
+                    currentParticipant = nome;
+                }
             }
         }
 
@@ -53,20 +61,24 @@ function parseBet365Raw(content) {
             if (!odd || !currentParticipant) continue;
 
             let linha = '';
-            if (marketType === 'alternatives') {
-                // Para mercados com alternativas, usa as linhas em ordem
+            if (marketType === 'alternatives' && !currentMarket.includes('Handicap')) {
+                // Para mercados com alternativas (exceto handicap), usa as linhas em ordem
                 const idx = mercados.filter(m => m.mercado === currentMarket && m.participante === currentParticipant).length;
-                linha = availableLines[idx] || 'N/A';
+                if (idx >= availableLines.length) continue; // Pula se não houver mais linhas disponíveis
+                linha = availableLines[idx];
             } else {
-                // Para outros mercados
-                linha = (parts.find(p => p.startsWith('HA=')) || '').replace('HA=', '').trim();
+                // Para handicap e outros mercados
+                linha = (parts.find(p => p.startsWith('HD=')) || '').replace('HD=', '').trim();
+                if (!linha) linha = (parts.find(p => p.startsWith('HA=')) || '').replace('HA=', '').trim();
                 if (!linha && availableLines.length > 0) linha = availableLines[0];
             }
+
+            if (!linha) continue; // Pula se não tiver linha definida
 
             mercados.push({
                 mercado: currentMarket,
                 participante: currentParticipant,
-                linha: linha || 'N/A',
+                linha: linha,
                 odd: fractionalToDecimal(odd),
                 casa: 'bet365'
             });

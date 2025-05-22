@@ -385,14 +385,19 @@ const MARKET_ALIASES = {
     'mapa1linhasparaganhar': 'money line - mapa 1',
     'mapa2linhasparaganhar': 'money line - mapa 2',
     'mapa1linhas+2.5': 'handicap - mapa 1',
+    'mapa1linhas2.5': 'handicap - mapa 1',
     'mapa1linhas-2.5': 'handicap - mapa 1',
     'mapa2linhas+2.5': 'handicap - mapa 2',
+    'mapa2linhas2.5': 'handicap - mapa 2',
     'mapa2linhas-2.5': 'handicap - mapa 2',
     'mapa1linhaso21.5': 'total - mapa 1',
+    'mapa1linhaso20.5': 'total - mapa 1',
     'mapa1linhasu21.5': 'total - mapa 1',
+    'mapa1linhasu20.5': 'total - mapa 1',
     'mapa2linhaso21.5': 'total - mapa 2',
+    'mapa2linhaso20.5': 'total - mapa 2',
     'mapa2linhasu21.5': 'total - mapa 2',
-
+    'mapa2linhasu20.5': 'total - mapa 2',
 };
 
 function normalizeMarketName(market) {

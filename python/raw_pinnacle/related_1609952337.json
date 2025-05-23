@@ -1,0 +1,5382 @@
+[
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": true,
+    "hasAltTotal": true,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1609952337,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": null,
+    "parentId": null,
+    "parlayRestriction": "unique_matchups",
+    "participants": [
+      {
+        "alignment": "home",
+        "name": "Gremio",
+        "order": 0,
+        "stats": [
+          {
+            "period": 0
+          },
+          {
+            "period": 1
+          }
+        ]
+      },
+      {
+        "alignment": "away",
+        "name": "Bahia",
+        "order": 1,
+        "stats": [
+          {
+            "period": 0
+          },
+          {
+            "period": 1
+          }
+        ]
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "hasMoneyline": true,
+        "hasSpread": true,
+        "hasTeamTotal": true,
+        "hasTotal": true,
+        "period": 0,
+        "status": "open"
+      },
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "hasMoneyline": true,
+        "hasSpread": true,
+        "hasTeamTotal": true,
+        "hasTotal": true,
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 48,
+    "type": "matchup",
+    "units": "Regular",
+    "version": 600914217
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": true,
+    "hasAltTotal": true,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125451,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 6310,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 0,
+      "matchupCountSE": 0,
+      "name": "Brazil - Serie A Corners",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": "unique_matchups",
+    "participants": [
+      {
+        "alignment": "home",
+        "name": "Gremio (Corners)",
+        "order": 0,
+        "stats": [
+          {
+            "period": 0
+          },
+          {
+            "period": 1
+          }
+        ]
+      },
+      {
+        "alignment": "away",
+        "name": "Bahia (Corners)",
+        "order": 1,
+        "stats": [
+          {
+            "period": 0
+          },
+          {
+            "period": 1
+          }
+        ]
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "hasMoneyline": false,
+        "hasSpread": true,
+        "hasTeamTotal": false,
+        "hasTotal": true,
+        "period": 0,
+        "status": "open"
+      },
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "hasMoneyline": false,
+        "hasSpread": false,
+        "hasTeamTotal": false,
+        "hasTotal": true,
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 3,
+    "type": "matchup",
+    "units": "Corners",
+    "version": 600915413
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125453,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125454,
+        "name": "Gremio - Gremio",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125455,
+        "name": "Gremio - Draw",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125456,
+        "name": "Gremio - Bahia",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125457,
+        "name": "Draw - Gremio",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125458,
+        "name": "Draw - Draw",
+        "order": 0,
+        "rotation": 2976
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125459,
+        "name": "Draw - Bahia",
+        "order": 0,
+        "rotation": 2977
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125460,
+        "name": "Bahia - Gremio",
+        "order": 0,
+        "rotation": 2978
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125461,
+        "name": "Bahia - Draw",
+        "order": 0,
+        "rotation": 2979
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125462,
+        "name": "Bahia - Bahia",
+        "order": 0,
+        "rotation": 2980
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Half-Time/Full-Time"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "CombinedResult",
+    "version": 424292059
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125471,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125472,
+        "name": "Gremio",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125473,
+        "name": "Bahia",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Draw No Bet"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125474,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125475,
+        "name": "Gremio Or Draw",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125476,
+        "name": "Draw Or Bahia",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125477,
+        "name": "Gremio Or Bahia",
+        "order": 0,
+        "rotation": 2974
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Double Chance"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125478,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125479,
+        "name": "Gremio",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125480,
+        "name": "Bahia",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Draw No Bet 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125481,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125482,
+        "name": "Gremio By 1",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125483,
+        "name": "Gremio By 2+",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125484,
+        "name": "Bahia By 1",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125485,
+        "name": "Bahia By 2+",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125486,
+        "name": "Any Score Draw (0:0 Excluded)",
+        "order": 0,
+        "rotation": 2976
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125487,
+        "name": "No Goal",
+        "order": 0,
+        "rotation": 2977
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Winning Margin 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125488,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125489,
+        "name": "Gremio By 1",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125490,
+        "name": "Gremio By 2",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125491,
+        "name": "Gremio By 3",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125492,
+        "name": "Gremio By 4+",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125493,
+        "name": "Bahia By 1",
+        "order": 0,
+        "rotation": 2976
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125494,
+        "name": "Bahia By 2",
+        "order": 0,
+        "rotation": 2977
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125495,
+        "name": "Bahia By 3",
+        "order": 0,
+        "rotation": 2978
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125496,
+        "name": "Bahia By 4+",
+        "order": 0,
+        "rotation": 2979
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125497,
+        "name": "Any Score Draw (0:0 Excluded)",
+        "order": 0,
+        "rotation": 2980
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125498,
+        "name": "No Goal",
+        "order": 0,
+        "rotation": 2981
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Winning Margin"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125499,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125500,
+        "name": "Yes",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125501,
+        "name": "No",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Gremio To Win to Nil?"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125502,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125503,
+        "name": "0 - 1",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125504,
+        "name": "2 - 3",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125505,
+        "name": "4+",
+        "order": 0,
+        "rotation": 2974
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Total Goals Range 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125506,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125507,
+        "name": "Yes & Over 2.5",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125508,
+        "name": "Yes & Under 2.5",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125509,
+        "name": "No & Over 2.5",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125510,
+        "name": "No & Under 2.5",
+        "order": 0,
+        "rotation": 2975
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Both Teams To Score/Total Goals"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125515,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125516,
+        "name": "Yes",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125517,
+        "name": "No",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Gremio To Score?"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125518,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125519,
+        "name": "Odd",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125520,
+        "name": "Even",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Total Goals Odd/Even 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125525,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125526,
+        "name": "Gremio 0, Bahia 0",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125527,
+        "name": "Gremio 0, Bahia 1",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125528,
+        "name": "Gremio 0, Bahia 2",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125529,
+        "name": "Gremio 0, Bahia 3",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125530,
+        "name": "Gremio 0, Bahia 4",
+        "order": 0,
+        "rotation": 2976
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125531,
+        "name": "Gremio 0, Bahia 5",
+        "order": 0,
+        "rotation": 2977
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125532,
+        "name": "Gremio 0, Bahia 6",
+        "order": 0,
+        "rotation": 2978
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125533,
+        "name": "Gremio 1, Bahia 0",
+        "order": 0,
+        "rotation": 2979
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125534,
+        "name": "Gremio 1, Bahia 1",
+        "order": 0,
+        "rotation": 2980
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125535,
+        "name": "Gremio 1, Bahia 2",
+        "order": 0,
+        "rotation": 2981
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125536,
+        "name": "Gremio 1, Bahia 3",
+        "order": 0,
+        "rotation": 2982
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125537,
+        "name": "Gremio 1, Bahia 4",
+        "order": 0,
+        "rotation": 2983
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125538,
+        "name": "Gremio 1, Bahia 5",
+        "order": 0,
+        "rotation": 2984
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125539,
+        "name": "Gremio 1, Bahia 6",
+        "order": 0,
+        "rotation": 2985
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125540,
+        "name": "Gremio 2, Bahia 0",
+        "order": 0,
+        "rotation": 2986
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125541,
+        "name": "Gremio 2, Bahia 1",
+        "order": 0,
+        "rotation": 2987
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125542,
+        "name": "Gremio 2, Bahia 2",
+        "order": 0,
+        "rotation": 2988
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125543,
+        "name": "Gremio 2, Bahia 3",
+        "order": 0,
+        "rotation": 2989
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125544,
+        "name": "Gremio 2, Bahia 4",
+        "order": 0,
+        "rotation": 2990
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125545,
+        "name": "Gremio 2, Bahia 5",
+        "order": 0,
+        "rotation": 2991
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125546,
+        "name": "Gremio 2, Bahia 6",
+        "order": 0,
+        "rotation": 2992
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125547,
+        "name": "Gremio 3, Bahia 0",
+        "order": 0,
+        "rotation": 2993
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125548,
+        "name": "Gremio 3, Bahia 1",
+        "order": 0,
+        "rotation": 2994
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125549,
+        "name": "Gremio 3, Bahia 2",
+        "order": 0,
+        "rotation": 2995
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125550,
+        "name": "Gremio 3, Bahia 3",
+        "order": 0,
+        "rotation": 2996
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125551,
+        "name": "Gremio 3, Bahia 4",
+        "order": 0,
+        "rotation": 2997
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125552,
+        "name": "Gremio 3, Bahia 5",
+        "order": 0,
+        "rotation": 2998
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125553,
+        "name": "Gremio 3, Bahia 6",
+        "order": 0,
+        "rotation": 2999
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125554,
+        "name": "Gremio 4, Bahia 0",
+        "order": 0,
+        "rotation": 3000
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125555,
+        "name": "Gremio 4, Bahia 1",
+        "order": 0,
+        "rotation": 3001
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125556,
+        "name": "Gremio 4, Bahia 2",
+        "order": 0,
+        "rotation": 3002
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125557,
+        "name": "Gremio 4, Bahia 3",
+        "order": 0,
+        "rotation": 3003
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125558,
+        "name": "Gremio 4, Bahia 4",
+        "order": 0,
+        "rotation": 3004
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125559,
+        "name": "Gremio 4, Bahia 5",
+        "order": 0,
+        "rotation": 3005
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125560,
+        "name": "Gremio 4, Bahia 6",
+        "order": 0,
+        "rotation": 3006
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125561,
+        "name": "Gremio 5, Bahia 0",
+        "order": 0,
+        "rotation": 3007
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125562,
+        "name": "Gremio 5, Bahia 1",
+        "order": 0,
+        "rotation": 3008
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125563,
+        "name": "Gremio 5, Bahia 2",
+        "order": 0,
+        "rotation": 3009
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125564,
+        "name": "Gremio 5, Bahia 3",
+        "order": 0,
+        "rotation": 3010
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125565,
+        "name": "Gremio 5, Bahia 4",
+        "order": 0,
+        "rotation": 3011
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125566,
+        "name": "Gremio 5, Bahia 5",
+        "order": 0,
+        "rotation": 3012
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125567,
+        "name": "Gremio 5, Bahia 6",
+        "order": 0,
+        "rotation": 3013
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125568,
+        "name": "Gremio 6, Bahia 0",
+        "order": 0,
+        "rotation": 3014
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125569,
+        "name": "Gremio 6, Bahia 1",
+        "order": 0,
+        "rotation": 3015
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125570,
+        "name": "Gremio 6, Bahia 2",
+        "order": 0,
+        "rotation": 3016
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125571,
+        "name": "Gremio 6, Bahia 3",
+        "order": 0,
+        "rotation": 3017
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125572,
+        "name": "Gremio 6, Bahia 4",
+        "order": 0,
+        "rotation": 3018
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125573,
+        "name": "Gremio 6, Bahia 5",
+        "order": 0,
+        "rotation": 3019
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125574,
+        "name": "Gremio 6, Bahia 6",
+        "order": 0,
+        "rotation": 3020
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Correct Score"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125575,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125576,
+        "name": "Yes",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125577,
+        "name": "No",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Either Team To Score? 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125578,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125579,
+        "name": "Odd",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125580,
+        "name": "Even",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Bahia Goals Odd/Even"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125581,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125582,
+        "name": "Gremio (-2)",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125583,
+        "name": "Draw - (Gremio -2)",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125584,
+        "name": "Bahia (+2)",
+        "order": 0,
+        "rotation": 2974
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "3-Way Handicap Gremio -2"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125585,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125586,
+        "name": "Gremio (+1)",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125587,
+        "name": "Draw - (Gremio +1)",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125588,
+        "name": "Bahia (-1)",
+        "order": 0,
+        "rotation": 2974
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "3-Way Handicap Gremio +1"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125589,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125590,
+        "name": "Odd & Over 2.5",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125591,
+        "name": "Odd & Under 2.5",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125592,
+        "name": "Even & Over 2.5",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125593,
+        "name": "Even & Under 2.5",
+        "order": 0,
+        "rotation": 2975
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Odd/Even / Total Goals"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125594,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125595,
+        "name": "Gremio Or Draw",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125596,
+        "name": "Draw Or Bahia",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125597,
+        "name": "Gremio Or Bahia",
+        "order": 0,
+        "rotation": 2974
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Double Chance 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125598,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125599,
+        "name": "Yes",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125600,
+        "name": "No",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Bahia To Score? 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125601,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125603,
+        "name": "Yes",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125604,
+        "name": "No",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Bahia To Score?"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125605,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125606,
+        "name": "Yes",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125607,
+        "name": "No",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Both Teams To Score? 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125608,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125609,
+        "name": "Odd",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125610,
+        "name": "Even",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Gremio Goals Odd/Even"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125611,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125612,
+        "name": "Gremio",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125613,
+        "name": "Bahia",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125614,
+        "name": "Neither",
+        "order": 0,
+        "rotation": 2974
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "First Team To Score 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "1st Goal",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125615,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125616,
+        "name": "Yes",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125617,
+        "name": "No",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Bahia To Win to Nil? 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125618,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125619,
+        "name": "Gremio & Over 2.5",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125620,
+        "name": "Gremio & Under 2.5",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125621,
+        "name": "Draw & Over 2.5",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125622,
+        "name": "Draw & Under 2.5",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125623,
+        "name": "Bahia & Over 2.5",
+        "order": 0,
+        "rotation": 2976
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125624,
+        "name": "Bahia & Under 2.5",
+        "order": 0,
+        "rotation": 2977
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Winner/Total Goals"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125629,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125630,
+        "name": "0",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125631,
+        "name": "1",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125632,
+        "name": "2",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125633,
+        "name": "3",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125634,
+        "name": "4",
+        "order": 0,
+        "rotation": 2976
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125635,
+        "name": "5+",
+        "order": 0,
+        "rotation": 2977
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Gremio Goals"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125636,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125637,
+        "name": "0",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125638,
+        "name": "1",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125639,
+        "name": "2",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125640,
+        "name": "3",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125641,
+        "name": "4",
+        "order": 0,
+        "rotation": 2976
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125642,
+        "name": "5",
+        "order": 0,
+        "rotation": 2977
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125643,
+        "name": "6+",
+        "order": 0,
+        "rotation": 2978
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Exact Total Goals"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125644,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125645,
+        "name": "Yes & Gremio",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125646,
+        "name": "Yes & Draw",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125647,
+        "name": "Yes & Bahia",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125648,
+        "name": "No & Gremio",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125649,
+        "name": "No & Draw",
+        "order": 0,
+        "rotation": 2976
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125650,
+        "name": "No & Bahia",
+        "order": 0,
+        "rotation": 2977
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Both Teams To Score/Winner"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125651,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125652,
+        "name": "Yes",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125653,
+        "name": "No",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Gremio To Score? 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125654,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125655,
+        "name": "0 - 1",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125656,
+        "name": "2 - 3",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125657,
+        "name": "4 - 6",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125658,
+        "name": "7+",
+        "order": 0,
+        "rotation": 2975
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Total Goals Range"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125659,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125660,
+        "name": "0",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125661,
+        "name": "1",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125662,
+        "name": "2",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125663,
+        "name": "3",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125664,
+        "name": "4+",
+        "order": 0,
+        "rotation": 2976
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Gremio Goals 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125665,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125666,
+        "name": "Yes",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125667,
+        "name": "No",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Bahia To Win to Nil?"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125668,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125669,
+        "name": "Yes",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125670,
+        "name": "No",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Gremio To Win to Nil? 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125671,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125672,
+        "name": "Gremio 0, Bahia 0",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125673,
+        "name": "Gremio 0, Bahia 1",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125674,
+        "name": "Gremio 0, Bahia 2",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125675,
+        "name": "Gremio 0, Bahia 3",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125676,
+        "name": "Gremio 1, Bahia 0",
+        "order": 0,
+        "rotation": 2976
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125677,
+        "name": "Gremio 1, Bahia 1",
+        "order": 0,
+        "rotation": 2977
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125678,
+        "name": "Gremio 1, Bahia 2",
+        "order": 0,
+        "rotation": 2978
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125679,
+        "name": "Gremio 1, Bahia 3",
+        "order": 0,
+        "rotation": 2979
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125680,
+        "name": "Gremio 2, Bahia 0",
+        "order": 0,
+        "rotation": 2980
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125681,
+        "name": "Gremio 2, Bahia 1",
+        "order": 0,
+        "rotation": 2981
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125682,
+        "name": "Gremio 2, Bahia 2",
+        "order": 0,
+        "rotation": 2982
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125683,
+        "name": "Gremio 2, Bahia 3",
+        "order": 0,
+        "rotation": 2983
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125684,
+        "name": "Gremio 3, Bahia 0",
+        "order": 0,
+        "rotation": 2984
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125685,
+        "name": "Gremio 3, Bahia 1",
+        "order": 0,
+        "rotation": 2985
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125686,
+        "name": "Gremio 3, Bahia 2",
+        "order": 0,
+        "rotation": 2986
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125687,
+        "name": "Gremio 3, Bahia 3",
+        "order": 0,
+        "rotation": 2987
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Correct Score 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125688,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125689,
+        "name": "0",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125690,
+        "name": "1",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125691,
+        "name": "2",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125692,
+        "name": "3",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125693,
+        "name": "4+",
+        "order": 0,
+        "rotation": 2976
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Exact Total Goals 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125694,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125695,
+        "name": "Yes",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125696,
+        "name": "No",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Either Team To Score?"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125697,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125698,
+        "name": "Gremio (-1)",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125699,
+        "name": "Draw - (Gremio -1)",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125700,
+        "name": "Bahia (+1)",
+        "order": 0,
+        "rotation": 2974
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "3-Way Handicap Gremio -1"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125701,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125702,
+        "name": "Gremio (+2)",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125703,
+        "name": "Draw - (Gremio +2)",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125704,
+        "name": "Bahia (-2)",
+        "order": 0,
+        "rotation": 2974
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "3-Way Handicap Gremio +2"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125705,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125706,
+        "name": "Gremio (-3)",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125707,
+        "name": "Draw - (Gremio -3)",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125708,
+        "name": "Bahia (+3)",
+        "order": 0,
+        "rotation": 2974
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "3-Way Handicap Gremio -3"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125709,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125710,
+        "name": "0",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125711,
+        "name": "1",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125712,
+        "name": "2",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125713,
+        "name": "3",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125714,
+        "name": "4",
+        "order": 0,
+        "rotation": 2976
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125715,
+        "name": "5+",
+        "order": 0,
+        "rotation": 2977
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Bahia Goals"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125716,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125717,
+        "name": "Yes",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125718,
+        "name": "No",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Both Teams To Score?"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125719,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125720,
+        "name": "Gremio",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125721,
+        "name": "Bahia",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125722,
+        "name": "Neither",
+        "order": 0,
+        "rotation": 2974
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "First Team To Score"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "1st Goal",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125723,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125724,
+        "name": "Odd",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125725,
+        "name": "Even",
+        "order": 0,
+        "rotation": 2973
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Total Goals Odd/Even"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125726,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 1834,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 9,
+      "matchupCountSE": 9,
+      "name": "Brazil - Serie A",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": null,
+    "participants": [
+      {
+        "alignment": "neutral",
+        "id": 1610125727,
+        "name": "0",
+        "order": 0,
+        "rotation": 2972
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125728,
+        "name": "1",
+        "order": 0,
+        "rotation": 2973
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125729,
+        "name": "2",
+        "order": 0,
+        "rotation": 2974
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125730,
+        "name": "3",
+        "order": 0,
+        "rotation": 2975
+      },
+      {
+        "alignment": "neutral",
+        "id": 1610125731,
+        "name": "4+",
+        "order": 0,
+        "rotation": 2976
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "period": 1,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "special": {
+      "category": "Team Props",
+      "description": "Bahia Goals 1st Half"
+    },
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 1,
+    "type": "special",
+    "units": "Regular",
+    "version": 424292270
+  },
+  {
+    "ageLimit": 0,
+    "altTeaser": false,
+    "featureOrder": -1,
+    "hasAltSpread": false,
+    "hasAltTotal": false,
+    "hasBetshare": false,
+    "hasLive": true,
+    "hasMarkets": true,
+    "id": 1610125732,
+    "isBetshareEnabled": false,
+    "isFeatured": false,
+    "isHighlighted": false,
+    "isLive": false,
+    "isPromoted": false,
+    "league": {
+      "ageLimit": 0,
+      "featureOrder": -1,
+      "group": "Brazil",
+      "id": 226748,
+      "isFeatured": false,
+      "isHidden": false,
+      "isPromoted": false,
+      "isSticky": false,
+      "matchupCount": 0,
+      "matchupCountSE": 0,
+      "name": "Brazil - Serie A Bookings",
+      "sequence": 4,
+      "sport": {
+        "featureOrder": 0,
+        "id": 29,
+        "isFeatured": true,
+        "isHidden": false,
+        "isSticky": false,
+        "matchupCount": 958,
+        "matchupCountSE": 879,
+        "name": "Soccer",
+        "primaryMarketType": "moneyline"
+      }
+    },
+    "liveMode": null,
+    "parent": {
+      "id": 1609952337,
+      "participants": [
+        {
+          "alignment": "home",
+          "name": "Gremio",
+          "score": null
+        },
+        {
+          "alignment": "away",
+          "name": "Bahia",
+          "score": null
+        }
+      ],
+      "startTime": "2025-05-25T14:00:00+00:00"
+    },
+    "parentId": 1609952337,
+    "parlayRestriction": "unique_matchups",
+    "participants": [
+      {
+        "alignment": "home",
+        "name": "Gremio (Bookings)",
+        "order": 0,
+        "stats": [
+          {
+            "period": 0
+          }
+        ]
+      },
+      {
+        "alignment": "away",
+        "name": "Bahia (Bookings)",
+        "order": 1,
+        "stats": [
+          {
+            "period": 0
+          }
+        ]
+      }
+    ],
+    "periods": [
+      {
+        "cutoffAt": "2025-05-25T14:00:00Z",
+        "hasMoneyline": false,
+        "hasSpread": true,
+        "hasTeamTotal": false,
+        "hasTotal": true,
+        "period": 0,
+        "status": "open"
+      }
+    ],
+    "rotation": 2972,
+    "startTime": "2025-05-25T14:00:00Z",
+    "state": {},
+    "status": "pending",
+    "totalMarketCount": 2,
+    "type": "matchup",
+    "units": "Bookings",
+    "version": 600993274
+  }
+]

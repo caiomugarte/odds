@@ -110,33 +110,42 @@ async function loadAllBet365Markets() {
     return organized;
 }
 
+function getTipoMercado(mercadoNome) {
+    const nome = mercadoNome.toLowerCase();
+    if (nome.includes('escanteio')) return 'Escanteios';
+    if (nome.includes('cartões')) return 'Cartões';
+    return 'Gols';
+}
+
 function organizeMarkets(mercados) {
     const organized = {};
 
-    // Primeiro agrupa por nome de mercado
+    // Agrupa por tipo (Gols, Escanteios, Cartões)
     mercados.forEach(m => {
-        if (!organized[m.mercado]) organized[m.mercado] = [];
-        organized[m.mercado].push(m);
+        const tipo = getTipoMercado(m.mercado);
+        if (!organized[tipo]) organized[tipo] = [];
+        organized[tipo].push(m);
     });
 
-    // Depois remove duplicatas dentro de cada mercado
-    Object.keys(organized).forEach(key => {
+    // Remove duplicatas por participante + linha
+    for (const tipo in organized) {
         const unique = [];
         const seen = new Set();
 
-        organized[key].forEach(m => {
-            const marketKey = `${m.participante}|${m.linha}`;
-            if (!seen.has(marketKey)) {
-                seen.add(marketKey);
+        organized[tipo].forEach(m => {
+            const key = `${m.participante}|${m.linha}`;
+            if (!seen.has(key)) {
+                seen.add(key);
                 unique.push(m);
             }
         });
 
-        organized[key] = unique;
-    });
+        organized[tipo] = unique;
+    }
 
     return organized;
 }
+
 
 loadAllBet365Markets().then(mercados => {
     console.log('Total mercados Bet365 carregados:', mercados.length);

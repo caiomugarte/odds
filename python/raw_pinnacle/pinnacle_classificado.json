@@ -3,580 +3,608 @@
     {
       "mercado": "Handicap",
       "participante": "home",
-      "linha": "-0.25",
-      "odd": 2.09,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Handicap",
-      "participante": "away",
-      "linha": "0.25",
-      "odd": 1.7874015748031495,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Handicap",
-      "participante": "home",
       "linha": "-1.25",
-      "odd": 4.66,
-      "matchupId": 1609952337
+      "odd": 1.8547008547008548,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Handicap",
       "participante": "away",
       "linha": "1.25",
-      "odd": 1.2004008016032064,
-      "matchupId": 1609952337
+      "odd": 2.06,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "home",
+      "linha": "-2.25",
+      "odd": 3.22,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "away",
+      "linha": "2.25",
+      "odd": 1.373134328358209,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "home",
+      "linha": "-2",
+      "odd": 2.87,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "away",
+      "linha": "2",
+      "odd": 1.4484304932735426,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "home",
+      "linha": "-1.75",
+      "odd": 2.3600000000000003,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "away",
+      "linha": "1.75",
+      "odd": 1.6369426751592355,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "home",
+      "linha": "-1.5",
+      "odd": 2.06,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "away",
+      "linha": "1.5",
+      "odd": 1.819672131147541,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Handicap",
       "participante": "home",
       "linha": "-1",
-      "odd": 4.140000000000001,
-      "matchupId": 1609952337
+      "odd": 1.62111801242236,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Handicap",
       "participante": "away",
       "linha": "1",
-      "odd": 1.2392344497607655,
-      "matchupId": 1609952337
+      "odd": 2.4,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Handicap",
       "participante": "home",
       "linha": "-0.75",
-      "odd": 2.99,
-      "matchupId": 1609952337
+      "odd": 1.5025125628140703,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Handicap",
       "participante": "away",
       "linha": "0.75",
-      "odd": 1.4048582995951417,
-      "matchupId": 1609952337
+      "odd": 2.7199999999999998,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Handicap",
       "participante": "home",
       "linha": "-0.5",
-      "odd": 2.45,
-      "matchupId": 1609952337
+      "odd": 1.4132231404958677,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Handicap",
       "participante": "away",
       "linha": "0.5",
-      "odd": 1.5747126436781609,
-      "matchupId": 1609952337
+      "odd": 3.02,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Handicap",
       "participante": "home",
-      "linha": "0",
-      "odd": 1.6993006993006992,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Handicap",
-      "participante": "away",
-      "linha": "0",
-      "odd": 2.2,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Handicap",
-      "participante": "home",
-      "linha": "0.25",
-      "odd": 1.4901960784313726,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Handicap",
-      "participante": "away",
       "linha": "-0.25",
-      "odd": 2.67,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Handicap",
-      "participante": "home",
-      "linha": "0.5",
-      "odd": 1.3703703703703702,
-      "matchupId": 1609952337
+      "odd": 1.2881844380403458,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Handicap",
       "participante": "away",
-      "linha": "-0.5",
-      "odd": 3.12,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Handicap",
-      "participante": "home",
-      "linha": "0.75",
-      "odd": 1.2493765586034913,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Handicap",
-      "participante": "away",
-      "linha": "-0.75",
-      "odd": 4.02,
-      "matchupId": 1609952337
+      "linha": "0.25",
+      "odd": 3.82,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Mais/Menos",
       "participante": "over",
-      "linha": "2.25",
+      "linha": "3.25",
       "odd": 1.9345794392523366,
-      "matchupId": 1609952337
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Mais/Menos",
+      "participante": "under",
+      "linha": "3.25",
+      "odd": 1.9523809523809523,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Mais/Menos",
+      "participante": "over",
+      "linha": "2.25",
+      "odd": 1.3215434083601285,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Mais/Menos",
       "participante": "under",
       "linha": "2.25",
-      "odd": 1.900900900900901,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Mais/Menos",
-      "participante": "over",
-      "linha": "3.5",
-      "odd": 3.99,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Mais/Menos",
-      "participante": "under",
-      "linha": "3.5",
-      "odd": 1.24330900243309,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Mais/Menos",
-      "participante": "over",
-      "linha": "2.75",
-      "odd": 2.58,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Mais/Menos",
-      "participante": "under",
-      "linha": "2.75",
-      "odd": 1.510204081632653,
-      "matchupId": 1609952337
+      "odd": 3.49,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Mais/Menos",
       "participante": "over",
       "linha": "2.5",
-      "odd": 2.2199999999999998,
-      "matchupId": 1609952337
+      "odd": 1.4587155963302751,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Mais/Menos",
       "participante": "under",
       "linha": "2.5",
-      "odd": 1.6756756756756757,
-      "matchupId": 1609952337
+      "odd": 2.79,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Mais/Menos",
       "participante": "over",
-      "linha": "2",
-      "odd": 1.6289308176100628,
-      "matchupId": 1609952337
+      "linha": "2.75",
+      "odd": 1.558659217877095,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Mais/Menos",
       "participante": "under",
-      "linha": "2",
-      "odd": 2.31,
-      "matchupId": 1609952337
+      "linha": "2.75",
+      "odd": 2.52,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Mais/Menos",
       "participante": "over",
-      "linha": "1.75",
-      "odd": 1.4694835680751175,
-      "matchupId": 1609952337
+      "linha": "3",
+      "odd": 1.6944444444444444,
+      "matchupId": 1609565925
     },
     {
       "mercado": "Mais/Menos",
       "participante": "under",
+      "linha": "3",
+      "odd": 2.23,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Mais/Menos",
+      "participante": "over",
+      "linha": "3.5",
+      "odd": 2.1399999999999997,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Mais/Menos",
+      "participante": "under",
+      "linha": "3.5",
+      "odd": 1.7518796992481203,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Mais/Menos",
+      "participante": "over",
+      "linha": "3.75",
+      "odd": 2.45,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Mais/Menos",
+      "participante": "under",
+      "linha": "3.75",
+      "odd": 1.5882352941176472,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Mais/Menos",
+      "participante": "over",
+      "linha": "4",
+      "odd": 2.95,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Mais/Menos",
+      "participante": "under",
+      "linha": "4",
+      "odd": 1.4201680672268908,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Mais/Menos",
+      "participante": "over",
+      "linha": "4.25",
+      "odd": 3.27,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "Mais/Menos",
+      "participante": "under",
+      "linha": "4.25",
+      "odd": 1.3558718861209964,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Handicap",
+      "participante": "home",
+      "linha": "-0.5",
+      "odd": 1.8928571428571428,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Handicap",
+      "participante": "away",
+      "linha": "0.5",
+      "odd": 1.9803921568627452,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Handicap",
+      "participante": "home",
+      "linha": "-1",
+      "odd": 3.14,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Handicap",
+      "participante": "away",
+      "linha": "1",
+      "odd": 1.3802281368821292,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Handicap",
+      "participante": "home",
+      "linha": "-0.75",
+      "odd": 2.25,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Handicap",
+      "participante": "away",
+      "linha": "0.75",
+      "odd": 1.6711409395973154,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Handicap",
+      "participante": "home",
+      "linha": "-0.25",
+      "odd": 1.5555555555555556,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Handicap",
+      "participante": "away",
+      "linha": "0.25",
+      "odd": 2.5,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Handicap",
+      "participante": "home",
+      "linha": "0",
+      "odd": 1.2450980392156863,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Handicap",
+      "participante": "away",
+      "linha": "0",
+      "odd": 4.1899999999999995,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "over",
+      "linha": "1.25",
+      "odd": 1.8547008547008548,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "under",
+      "linha": "1.25",
+      "odd": 2.02,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "over",
+      "linha": "0.75",
+      "odd": 1.3278688524590163,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "under",
+      "linha": "0.75",
+      "odd": 3.45,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "over",
+      "linha": "1",
+      "odd": 1.4651162790697674,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "under",
+      "linha": "1",
+      "odd": 2.77,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "over",
+      "linha": "1.5",
+      "odd": 2.21,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "under",
+      "linha": "1.5",
+      "odd": 1.6896551724137931,
+      "matchupId": 1609565925
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "over",
       "linha": "1.75",
       "odd": 2.71,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Mais/Menos",
-      "participante": "over",
-      "linha": "1.5",
-      "odd": 1.3690036900369003,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "Mais/Menos",
-      "participante": "under",
-      "linha": "1.5",
-      "odd": 3.08,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Handicap",
-      "participante": "home",
-      "linha": "0",
-      "odd": 1.7194244604316546,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Handicap",
-      "participante": "away",
-      "linha": "0",
-      "odd": 2.15,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Handicap",
-      "participante": "home",
-      "linha": "-0.5",
-      "odd": 3.07,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Handicap",
-      "participante": "away",
-      "linha": "0.5",
-      "odd": 1.373134328358209,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Handicap",
-      "participante": "home",
-      "linha": "-0.25",
-      "odd": 2.4,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Handicap",
-      "participante": "away",
-      "linha": "0.25",
-      "odd": 1.5714285714285714,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Handicap",
-      "participante": "home",
-      "linha": "0.25",
-      "odd": 1.3952569169960474,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Handicap",
-      "participante": "away",
-      "linha": "-0.25",
-      "odd": 2.98,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Handicap",
-      "participante": "home",
-      "linha": "0.5",
-      "odd": 1.267379679144385,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Handicap",
-      "participante": "away",
-      "linha": "-0.5",
-      "odd": 3.78,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "over",
-      "linha": "1",
-      "odd": 2.1,
-      "matchupId": 1609952337
+      "matchupId": 1609565925
     },
     {
       "mercado": "1º Tempo Mais/Menos",
       "participante": "under",
-      "linha": "1",
-      "odd": 1.7518796992481203,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "over",
-      "linha": "0.5",
-      "odd": 1.4484304932735426,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "under",
-      "linha": "0.5",
-      "odd": 2.74,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "over",
-      "linha": "0.75",
-      "odd": 1.6451612903225805,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "under",
-      "linha": "0.75",
-      "odd": 2.25,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "over",
-      "linha": "1.25",
-      "odd": 2.69,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "under",
-      "linha": "1.25",
-      "odd": 1.4694835680751175,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "over",
-      "linha": "1.5",
-      "odd": 3.26,
-      "matchupId": 1609952337
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "under",
-      "linha": "1.5",
-      "odd": 1.3378378378378377,
-      "matchupId": 1609952337
+      "linha": "1.75",
+      "odd": 1.4807692307692308,
+      "matchupId": 1609565925
     }
   ],
   "Escanteios": [
     {
       "mercado": "Handicap",
       "participante": "home",
-      "linha": "-1",
+      "linha": "-3",
       "odd": 1.970873786407767,
-      "matchupId": 1610125451
+      "matchupId": 1610034837
     },
     {
       "mercado": "Handicap",
       "participante": "away",
-      "linha": "1",
-      "odd": 1.8264462809917354,
-      "matchupId": 1610125451
+      "linha": "3",
+      "odd": 1.8333333333333335,
+      "matchupId": 1610034837
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "home",
+      "linha": "-4",
+      "odd": 2.46,
+      "matchupId": 1610034837
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "away",
+      "linha": "4",
+      "odd": 1.529100529100529,
+      "matchupId": 1610034837
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "home",
+      "linha": "-3.5",
+      "odd": 2.17,
+      "matchupId": 1610034837
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "away",
+      "linha": "3.5",
+      "odd": 1.6802721088435373,
+      "matchupId": 1610034837
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "home",
+      "linha": "-2.5",
+      "odd": 1.78125,
+      "matchupId": 1610034837
+    },
+    {
+      "mercado": "Handicap",
+      "participante": "away",
+      "linha": "2.5",
+      "odd": 2.02,
+      "matchupId": 1610034837
     },
     {
       "mercado": "Handicap",
       "participante": "home",
       "linha": "-2",
-      "odd": 2.4699999999999998,
-      "matchupId": 1610125451
+      "odd": 1.6097560975609757,
+      "matchupId": 1610034837
     },
     {
       "mercado": "Handicap",
       "participante": "away",
       "linha": "2",
-      "odd": 1.4926108374384237,
-      "matchupId": 1610125451
+      "odd": 2.27,
+      "matchupId": 1610034837
     },
     {
-      "mercado": "Handicap",
-      "participante": "home",
-      "linha": "-1.5",
-      "odd": 2.1399999999999997,
-      "matchupId": 1610125451
+      "mercado": "Mais/Menos",
+      "participante": "over",
+      "linha": "10.5",
+      "odd": 1.9803921568627452,
+      "matchupId": 1610034837
     },
     {
-      "mercado": "Handicap",
-      "participante": "away",
-      "linha": "1.5",
-      "odd": 1.6711409395973154,
-      "matchupId": 1610125451
-    },
-    {
-      "mercado": "Handicap",
-      "participante": "home",
-      "linha": "-0.5",
-      "odd": 1.78125,
-      "matchupId": 1610125451
-    },
-    {
-      "mercado": "Handicap",
-      "participante": "away",
-      "linha": "0.5",
-      "odd": 2,
-      "matchupId": 1610125451
-    },
-    {
-      "mercado": "Handicap",
-      "participante": "home",
-      "linha": "0",
-      "odd": 1.6097560975609757,
-      "matchupId": 1610125451
-    },
-    {
-      "mercado": "Handicap",
-      "participante": "away",
-      "linha": "0",
-      "odd": 2.2199999999999998,
-      "matchupId": 1610125451
+      "mercado": "Mais/Menos",
+      "participante": "under",
+      "linha": "10.5",
+      "odd": 1.8333333333333335,
+      "matchupId": 1610034837
     },
     {
       "mercado": "Mais/Menos",
       "participante": "over",
       "linha": "9.5",
-      "odd": 1.847457627118644,
-      "matchupId": 1610125451
+      "odd": 1.6024096385542168,
+      "matchupId": 1610034837
     },
     {
       "mercado": "Mais/Menos",
       "participante": "under",
       "linha": "9.5",
-      "odd": 1.9433962264150944,
-      "matchupId": 1610125451
+      "odd": 2.29,
+      "matchupId": 1610034837
     },
     {
       "mercado": "Mais/Menos",
       "participante": "over",
-      "linha": "8.5",
-      "odd": 1.4784688995215312,
-      "matchupId": 1610125451
+      "linha": "10",
+      "odd": 1.7575757575757576,
+      "matchupId": 1610034837
     },
     {
       "mercado": "Mais/Menos",
       "participante": "under",
-      "linha": "8.5",
-      "odd": 2.51,
-      "matchupId": 1610125451
+      "linha": "10",
+      "odd": 2.06,
+      "matchupId": 1610034837
     },
     {
       "mercado": "Mais/Menos",
       "participante": "over",
-      "linha": "9",
-      "odd": 1.6134969325153374,
-      "matchupId": 1610125451
-    },
-    {
-      "mercado": "Mais/Menos",
-      "participante": "under",
-      "linha": "9",
+      "linha": "11",
       "odd": 2.24,
-      "matchupId": 1610125451
+      "matchupId": 1610034837
+    },
+    {
+      "mercado": "Mais/Menos",
+      "participante": "under",
+      "linha": "11",
+      "odd": 1.6369426751592355,
+      "matchupId": 1610034837
     },
     {
       "mercado": "Mais/Menos",
       "participante": "over",
-      "linha": "10",
+      "linha": "11.5",
+      "odd": 2.48,
+      "matchupId": 1610034837
+    },
+    {
+      "mercado": "Mais/Menos",
+      "participante": "under",
+      "linha": "11.5",
+      "odd": 1.5208333333333335,
+      "matchupId": 1610034837
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "over",
+      "linha": "5",
+      "odd": 2.01,
+      "matchupId": 1610034837
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "under",
+      "linha": "5",
+      "odd": 1.8064516129032258,
+      "matchupId": 1610034837
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "over",
+      "linha": "4.5",
+      "odd": 1.7462686567164178,
+      "matchupId": 1610034837
+    },
+    {
+      "mercado": "1º Tempo Mais/Menos",
+      "participante": "under",
+      "linha": "4.5",
       "odd": 2.0700000000000003,
-      "matchupId": 1610125451
-    },
-    {
-      "mercado": "Mais/Menos",
-      "participante": "under",
-      "linha": "10",
-      "odd": 1.7194244604316546,
-      "matchupId": 1610125451
-    },
-    {
-      "mercado": "Mais/Menos",
-      "participante": "over",
-      "linha": "10.5",
-      "odd": 2.31,
-      "matchupId": 1610125451
-    },
-    {
-      "mercado": "Mais/Menos",
-      "participante": "under",
-      "linha": "10.5",
-      "odd": 1.5649717514124295,
-      "matchupId": 1610125451
+      "matchupId": 1610034837
     },
     {
       "mercado": "1º Tempo Mais/Menos",
       "participante": "over",
-      "linha": "4.5",
-      "odd": 1.9345794392523366,
-      "matchupId": 1610125451
+      "linha": "5.5",
+      "odd": 2.29,
+      "matchupId": 1610034837
     },
     {
       "mercado": "1º Tempo Mais/Menos",
       "participante": "under",
-      "linha": "4.5",
-      "odd": 1.8620689655172413,
-      "matchupId": 1610125451
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "over",
-      "linha": "4",
-      "odd": 1.6329113924050633,
-      "matchupId": 1610125451
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "under",
-      "linha": "4",
-      "odd": 2.2,
-      "matchupId": 1610125451
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "over",
-      "linha": "5",
-      "odd": 2.2800000000000002,
-      "matchupId": 1610125451
-    },
-    {
-      "mercado": "1º Tempo Mais/Menos",
-      "participante": "under",
-      "linha": "5",
-      "odd": 1.5917159763313609,
-      "matchupId": 1610125451
+      "linha": "5.5",
+      "odd": 1.6097560975609757,
+      "matchupId": 1610034837
     }
   ],
   "Cartões": [
     {
       "mercado": "Handicap",
       "participante": "home",
-      "linha": "0.5",
-      "odd": 1.5813953488372094,
-      "matchupId": 1610125732
+      "linha": "0",
+      "odd": 2.45,
+      "matchupId": 1610035171
     },
     {
       "mercado": "Handicap",
       "participante": "away",
-      "linha": "-0.5",
-      "odd": 2.26,
-      "matchupId": 1610125732
+      "linha": "0",
+      "odd": 1.5025125628140703,
+      "matchupId": 1610035171
     },
     {
       "mercado": "Mais/Menos",
       "participante": "over",
-      "linha": "5",
-      "odd": 1.847457627118644,
-      "matchupId": 1610125732
+      "linha": "1.5",
+      "odd": 1.6329113924050633,
+      "matchupId": 1610035171
     },
     {
       "mercado": "Mais/Menos",
       "participante": "under",
-      "linha": "5",
-      "odd": 1.925925925925926,
-      "matchupId": 1610125732
+      "linha": "1.5",
+      "odd": 2.2800000000000002,
+      "matchupId": 1610035171
     }
   ],
   "desconhecido": []

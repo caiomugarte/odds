@@ -2,8 +2,8 @@ import fs from 'fs/promises';
 import path from 'path';
 
 const RAW_DIR = './python/raw_pinnacle'; // ajuste se necessário
-const RELATED_FILE = 'related_1609952337.json';
-const PINNACLE_FILE = 'pinnacle_1609952337.json';
+const RELATED_FILE = 'related_1609565925.json'; //corrigir
+const PINNACLE_FILE = 'pinnacle_1609565925.json';
 const OUTPUT_FILE = 'pinnacle_classificado.json';
 
 function americanToDecimal(american) {

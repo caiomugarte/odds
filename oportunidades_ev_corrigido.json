@@ -1,0 +1,28 @@
+[
+  {
+    "tipo": "Escanteios",
+    "mercado": "Mais/Menos",
+    "participante": "under",
+    "linha": "10.5",
+    "odd_bet365": 2,
+    "odd_pinnacle": 1.8333333333333335,
+    "odd_contraria": 1.9803921568627452,
+    "ev": "3.856",
+    "kelly": "3.856",
+    "octKelly": "0.48",
+    "stake": "1.28"
+  },
+  {
+    "tipo": "Cartões",
+    "mercado": "Mais/Menos",
+    "participante": "over",
+    "linha": "1.5",
+    "odd_bet365": 1.75,
+    "odd_pinnacle": 1.6329113924050633,
+    "odd_contraria": 2.2800000000000002,
+    "ev": "1.970",
+    "kelly": "2.627",
+    "octKelly": "0.33",
+    "stake": "0.87"
+  }
+]

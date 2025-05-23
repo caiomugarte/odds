@@ -2,6 +2,7 @@ import fs from 'fs';
 const BANCA = 265;
 const betData = JSON.parse(fs.readFileSync('./python/raw_bet365_asian/bet365_organized.json', 'utf8'));
 const pinData = JSON.parse(fs.readFileSync('./python/raw_pinnacle/pinnacle_classificado.json', 'utf8'));
+import path from 'path';
 
 const mercadoMap = {
     "Gols +/ -": "Mais/Menos",
@@ -120,11 +121,20 @@ for (const bet of betMarkets) {
     }
 }
 
+function limparTudo(diretorio) {
+    const fullPath = path.resolve(diretorio);
+    fs.readdirSync(fullPath).forEach(file => {
+        const filePath = path.join(fullPath, file);
+        fs.unlinkSync(filePath);
+        console.log(`🧹 Apagado: ${filePath}`);
+    });
+}
+
 // Ordena por EV decrescente
 oportunidades.sort((a, b) => parseFloat(b.ev) - parseFloat(a.ev));
 
 // Salva como JSON
-fs.writeFileSync('./oportunidades_ev_corrigido.json', JSON.stringify(oportunidades, null, 2), 'utf8');
+fs.writeFileSync('./oportunidades.json', JSON.stringify(oportunidades, null, 2), 'utf8');
 
 // Também exibe no console
 console.log("📊 Oportunidades com EV corrigido:");
@@ -138,5 +148,10 @@ if (oportunidades.length === 0) {
         console.log(`Bet365: ${o.odd_bet365} | Pinnacle: ${o.odd_pinnacle} | Contrária: ${o.odd_contraria}`);
         console.log(`EV: ${o.ev} | Kelly: ${o.kelly}`);
     });
-    console.log(`\n✅ Também salvo em: oportunidades_ev_corrigido.json`);
+    // Após salvar o oportunidades.json:
+    console.log(`\n✅ Também salvo em: oportunidades.json`);
+
+    // Limpa os diretórios
+    limparTudo('./python/raw_bet365_asian');
+    limparTudo('./python/raw_pinnacle');
 }

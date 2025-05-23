@@ -4,7 +4,7 @@ import fs from 'fs';
 
 const paths = {
     pinnacle: './python/raw_pinnacle',
-    bet365: './python/raw_bet365/asian'
+    bet365: './python/raw_bet365_asian'
 };
 
 function arquivosProntos() {
@@ -19,12 +19,12 @@ function rodarScripts() {
     exec('node rawBet365.js', (err, stdout) => {
         if (err) return console.error('Erro no Bet365:', err.message);
         console.log('✅ rawBet365.js concluído');
-        exec('node process_pinnacle_dinamico.js', (err2, stdout2) => {
+        exec('node process_pinnacle.js', (err2, stdout2) => {
             if (err2) return console.error('Erro no Pinnacle:', err2.message);
-            console.log('✅ process_pinnacle_dinamico.js concluído');
-            exec('node merge_ev_correto.js', (err3, stdout3) => {
+            console.log('✅ process_pinnacle.js concluído');
+            exec('node merge.js', (err3, stdout3) => {
                 if (err3) return console.error('Erro na comparação:', err3.message);
-                console.log('✅ merge_ev_correto.js concluído');
+                console.log('✅ merge.js.js concluído');
                 console.log(stdout3);
             });
         });

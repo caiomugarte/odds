@@ -146,7 +146,7 @@ if (oportunidades.length === 0) {
         console.log(`Tipo: ${o.tipo} | Mercado: ${o.mercado} | Linha: ${o.linha}`);
         console.log(`Participante: ${o.participante}`);
         console.log(`Bet365: ${o.odd_bet365} | Pinnacle: ${o.odd_pinnacle} | Contrária: ${o.odd_contraria}`);
-        console.log(`EV: ${o.ev} | Kelly: ${o.kelly}`);
+        console.log(`EV: ${o.ev} | Kelly: ${o.kelly} | OctKelly: ${o.octKelly} | Stake: ${o.stake}`);
     });
     // Após salvar o oportunidades.json:
     console.log(`\n✅ Também salvo em: oportunidades.json`);

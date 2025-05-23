@@ -14,18 +14,26 @@ function arquivosProntos() {
     return hasPinnacle && hasRelated && hasBet365;
 }
 
+let rodando = false;
+
 function rodarScripts() {
+    if (rodando) return;
+    rodando = true;
+
     console.log('📦 Arquivos detectados. Rodando processamento...');
-    exec('node rawBet365.js', (err, stdout) => {
+    exec('node rawBet365.js', (err) => {
         if (err) return console.error('Erro no Bet365:', err.message);
         console.log('✅ rawBet365.js concluído');
-        exec('node process_pinnacle.js', (err2, stdout2) => {
+
+        exec('node process_pinnacle.js', (err2) => {
             if (err2) return console.error('Erro no Pinnacle:', err2.message);
             console.log('✅ process_pinnacle.js concluído');
+
             exec('node merge.js', (err3, stdout3) => {
                 if (err3) return console.error('Erro na comparação:', err3.message);
-                console.log('✅ merge.js.js concluído');
+                console.log('✅ merge.js concluído');
                 console.log(stdout3);
+                rodando = false; // libera para próxima execução
             });
         });
     });

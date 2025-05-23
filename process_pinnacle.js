@@ -1,9 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const RAW_DIR = './python/raw_pinnacle'; // ajuste se necessário
-const RELATED_FILE = 'related_1609565925.json'; //corrigir
-const PINNACLE_FILE = 'pinnacle_1609565925.json';
+const RAW_DIR = './python/raw_pinnacle';
 const OUTPUT_FILE = 'pinnacle_classificado.json';
 
 function americanToDecimal(american) {
@@ -12,16 +10,37 @@ function americanToDecimal(american) {
         : (100 / Math.abs(american)) + 1;
 }
 
-function getTipoFromMarketType(type) {
-    if (!type) return 'desconhecido';
-    if (type.includes('corner')) return 'Escanteios';
-    if (type.includes('booking') || type.includes('card')) return 'Cartões';
+function getTipoFromMarketType(name) {
+    if (!name) return 'desconhecido';
+    const nome = name.toLowerCase();
+    if (nome.includes('corner')) return 'Escanteios';
+    if (nome.includes('booking') || nome.includes('card')) return 'Cartões';
     return 'Gols';
 }
 
 async function main() {
-    const relatedPath = path.join(RAW_DIR, RELATED_FILE);
-    const pinnaclePath = path.join(RAW_DIR, PINNACLE_FILE);
+    const files = await fs.readdir(RAW_DIR);
+
+    // Pega o último related_* e extrai o ID
+    const relatedFiles = files.filter(f => f.startsWith('related_') && f.endsWith('.json'));
+    if (relatedFiles.length === 0) {
+        console.error('❌ Nenhum arquivo related_*.json encontrado.');
+        return;
+    }
+
+    const latestRelated = relatedFiles.sort().reverse()[0]; // assume nome em ordem crescente
+    const relatedId = latestRelated.replace('related_', '').replace('.json', '');
+
+    const relatedPath = path.join(RAW_DIR, `related_${relatedId}.json`);
+    const pinnaclePath = path.join(RAW_DIR, `pinnacle_${relatedId}.json`);
+
+    // Verifica se o arquivo de odds correspondente existe
+    try {
+        await fs.access(pinnaclePath);
+    } catch (err) {
+        console.error(`❌ Arquivo de odds não encontrado para o related: ${pinnaclePath}`);
+        return;
+    }
 
     const relatedData = JSON.parse(await fs.readFile(relatedPath, 'utf-8'));
     const pinnacleData = JSON.parse(await fs.readFile(pinnaclePath, 'utf-8'));
@@ -29,7 +48,7 @@ async function main() {
     // Cria mapa de matchupId → tipo
     const matchupIdToTipo = new Map();
     for (const entry of relatedData) {
-        const tipo = getTipoFromMarketType(entry.league?.name?.toLowerCase() || '');
+        const tipo = getTipoFromMarketType(entry.league?.name || '');
         matchupIdToTipo.set(entry.id, tipo);
     }
 
@@ -45,7 +64,7 @@ async function main() {
         const tipo = matchupIdToTipo.get(market.matchupId) || 'desconhecido';
         const periodo = market.period === 1 ? '1º Tempo ' : '';
 
-        if (market.type === 'spread' || market.type === 'total') {
+        if (['spread', 'total'].includes(market.type)) {
             for (const price of market.prices) {
                 classificados[tipo].push({
                     mercado: `${periodo}${market.type === 'spread' ? 'Handicap' : 'Mais/Menos'}`,

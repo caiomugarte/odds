@@ -74,6 +74,14 @@ function flatten(data, casa) {
     return mercados;
 }
 
+function getLinhaContraria(market, linha) {
+    if (market.mercado.includes('Handicap')) {
+        const valor = parseFloat(linha);
+        if (!isNaN(valor)) return (-valor).toString();
+    }
+    return linha; // Se não for handicap, a linha contrária é a mesma
+}
+
 const betMarkets = flatten(betData, 'bet365');
 const pinMarkets = flatten(pinData, 'pinnacle');
 
@@ -92,7 +100,7 @@ for (const bet of betMarkets) {
             const lado_oposto = pinMarkets.find(p =>
                 p.tipo === pin.tipo &&
                 p.mercado === pin.mercado &&
-                p.linha === pin.linha &&
+                p.linha === getLinhaContraria(pin, pin.linha) &&
                 p.participante !== pin.participante
             );
 
@@ -152,5 +160,5 @@ if (oportunidades.length === 0) {
 }
 
 // Limpa os diretórios
-//limparTudo('./python/raw_bet365_asian');
-//limparTudo('./python/raw_pinnacle');
+limparTudo('./python/raw_bet365_asian');
+limparTudo('./python/raw_pinnacle');

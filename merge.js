@@ -108,7 +108,8 @@ for (const bet of betMarkets) {
                 const ev = calcEVComFair(bet.odd, pin.odd, lado_oposto.odd);
                 const kelly = calcKelly(bet.odd, pin.odd, lado_oposto.odd);
                 const octKelly = (kelly/8);
-                const stake = (octKelly*(BANCA/100)).toFixed(2)
+                const roundedOctKelly = Math.round(octKelly / 0.25) * 0.25;
+                const stake = (roundedOctKelly*(BANCA/100)).toFixed(2)
                     oportunidades.push({
                         tipo: bet.tipo,
                         mercado: bet.mercado,
@@ -119,7 +120,7 @@ for (const bet of betMarkets) {
                         odd_contraria: lado_oposto.odd,
                         ev: ev.toFixed(3),
                         kelly: kelly.toFixed(3),
-                        octKelly: octKelly.toFixed(2),
+                        octKelly: roundedOctKelly.toFixed(2),
                         stake: stake
                     });
             }

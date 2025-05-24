@@ -34,6 +34,9 @@ function parseBet365Raw(content) {
         return 'normal';
     };
 
+    // Crie um contador separado para cada (currentMarket + currentParticipant)
+    const participantCounters = new Map();
+
     for (const line of lines) {
         const [tag, ...parts] = line.split(';');
 
@@ -46,46 +49,39 @@ function parseBet365Raw(content) {
         if (tag === 'MA') {
             const nome = (parts.find(p => p.startsWith('NA=')) || '').replace('NA=', '').trim();
             if (nome) {
-                // Se for mercado de Handicap Asiático, aceita nomes de times como participantes
-                if (currentMarket && (currentMarket.includes('Handicap Asiático'))) {
-                    if (nome !== ' ') { // Ignora linhas com espaço em branco
-                        currentParticipant = nome;
-                    }
-                } else if (nome === 'Mais de' || nome === 'Menos de') {
-                    // Para outros mercados, mantém apenas Mais de/Menos de
-                    currentParticipant = nome;
-                }
+                currentParticipant = nome;
             }
         }
 
         if (tag === 'PA') {
             const id = (parts.find(p => p.startsWith('ID=')) || '').replace('ID=', '').trim();
 
-            // Captura linhas disponíveis
             if (id.startsWith('PC')) {
                 const lineValue = (parts.find(p => p.startsWith('NA=')) || '').replace('NA=', '').trim();
                 if (lineValue) availableLines.push(lineValue);
                 continue;
             }
 
-            // Processa odds
             const odd = (parts.find(p => p.startsWith('OD=')) || '').replace('OD=', '').trim();
             if (!odd || !currentParticipant) continue;
 
             let linha = '';
             if (marketType === 'alternatives' && !currentMarket.includes('Handicap')) {
-                // Para mercados com alternativas (exceto handicap), usa as linhas em ordem
-                const idx = mercados.filter(m => m.mercado === currentMarket && m.participante === currentParticipant).length;
-                if (idx >= availableLines.length) continue; // Pula se não houver mais linhas disponíveis
-                linha = availableLines[idx];
+                // Use um contador único por market+participant
+                const key = `${currentMarket}|${currentParticipant}`;
+                const count = participantCounters.get(key) || 0;
+
+                if (count >= availableLines.length) continue;
+                linha = availableLines[count];
+
+                participantCounters.set(key, count + 1);
             } else {
-                // Para handicap e outros mercados
                 linha = (parts.find(p => p.startsWith('HD=')) || '').replace('HD=', '').trim();
                 if (!linha) linha = (parts.find(p => p.startsWith('HA=')) || '').replace('HA=', '').trim();
                 if (!linha && availableLines.length > 0) linha = availableLines[0];
             }
 
-            if (!linha) continue; // Pula se não tiver linha definida
+            if (!linha) continue;
 
             const participantePad = homeAwayMap.get(currentParticipant.toLowerCase()) || currentParticipant.toLowerCase();
 
@@ -98,6 +94,7 @@ function parseBet365Raw(content) {
             });
         }
     }
+
 
     return mercados;
 }
@@ -156,7 +153,7 @@ function organizeMarkets(mercados) {
         const seen = new Set();
 
         organized[tipo].forEach(m => {
-            const key = `${m.participante}|${m.linha}`;
+            const key = `${m.mercado}|${m.participante}|${m.linha}|${m.odd}`; // Agora considera também mercado e odd
             if (!seen.has(key)) {
                 seen.add(key);
                 unique.push(m);

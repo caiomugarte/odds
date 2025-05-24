@@ -78,7 +78,7 @@ function parseBet365Raw(content) {
             mercados.push({
                 mercado: currentMarket,
                 participante: currentParticipant,
-                linha: parseFloat(linha).toFixed(1),
+                linha: (parseLinha(linha)).toString(),
                 odd: fractionalToDecimal(odd),
                 casa: 'bet365'
             });
@@ -87,6 +87,15 @@ function parseBet365Raw(content) {
 
     return mercados;
 }
+
+function parseLinha(linha) {
+    if (!linha) return null;
+    const partes = linha.split(',').map(l => parseFloat(l.trim()));
+    if (partes.length === 1) return partes[0]; // linha simples
+    // Para linhas asiáticas (duas partes), pode ser média ou comparar cada uma separadamente
+    return (partes[0] + partes[1]) / 2; // aqui calculamos a média
+}
+
 
 const rawDir = './python/raw_bet365_asian';
 

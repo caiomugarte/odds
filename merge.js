@@ -101,6 +101,7 @@ for (const bet of betMarkets) {
                 const kelly = calcKelly(bet.odd, pin.odd, lado_oposto.odd);
                 const octKelly = (kelly/8);
                 const stake = (octKelly*(BANCA/100)).toFixed(2)
+                if(ev > 3){
                     oportunidades.push({
                         tipo: bet.tipo,
                         mercado: bet.mercado,
@@ -114,6 +115,7 @@ for (const bet of betMarkets) {
                         octKelly: octKelly.toFixed(2),
                         stake: stake
                     });
+                }
             }
         }
     }

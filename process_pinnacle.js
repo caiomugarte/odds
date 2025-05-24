@@ -69,7 +69,7 @@ async function main() {
                 classificados[tipo].push({
                     mercado: `${periodo}${market.type === 'spread' ? 'Handicap' : 'Mais/Menos'}`,
                     participante: price.designation,
-                    linha: parseFloat(price.points?.toString()).toFixed(1) ?? '-',
+                    linha: parseFloat(price.points?.toString()).toFixed(2) ?? '-',
                     odd: americanToDecimal(price.price),
                     matchupId: market.matchupId
                 });

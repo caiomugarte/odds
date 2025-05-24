@@ -1,1 +1,54 @@
-[]
+[
+  {
+    "tipo": "Gols",
+    "mercado": "Mais/Menos",
+    "participante": "over",
+    "linha": "2.75",
+    "odd_bet365": 2.85,
+    "odd_pinnacle": 2.55,
+    "odd_contraria": 1.4219409282700421,
+    "ev": "2.029",
+    "kelly": "1.097",
+    "octKelly": "0.14",
+    "stake": "0.36"
+  },
+  {
+    "tipo": "Gols",
+    "mercado": "Mais/Menos",
+    "participante": "over",
+    "linha": "2.25",
+    "odd_bet365": 2.1,
+    "odd_pinnacle": 1.9433962264150944,
+    "odd_contraria": 1.7692307692307692,
+    "ev": "0.074",
+    "kelly": "0.068",
+    "octKelly": "0.01",
+    "stake": "0.02"
+  },
+  {
+    "tipo": "Gols",
+    "mercado": "1º Tempo Mais/Menos",
+    "participante": "over",
+    "linha": "1.25",
+    "odd_bet365": 2.85,
+    "odd_pinnacle": 2.59,
+    "odd_contraria": 1.4,
+    "ev": "0.000",
+    "kelly": "0.000",
+    "octKelly": "0.00",
+    "stake": "0.00"
+  },
+  {
+    "tipo": "Gols",
+    "mercado": "1º Tempo Mais/Menos",
+    "participante": "over",
+    "linha": "0.75",
+    "odd_bet365": 1.75,
+    "odd_pinnacle": 1.65359477124183,
+    "odd_contraria": 2.1,
+    "ev": "-2.094",
+    "kelly": "0.000",
+    "octKelly": "0.00",
+    "stake": "0.00"
+  }
+]

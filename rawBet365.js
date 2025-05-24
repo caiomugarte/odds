@@ -15,7 +15,19 @@ function parseBet365Raw(content) {
     let currentParticipant = null;
     let marketType = 'normal'; // 'normal', 'asian', 'alternatives'
 
-    // Helper para determinar o tipo de mercado
+    let homeAwayMap = new Map();
+    const firstLine = lines.find(line => line.startsWith('EV;') && line.includes('EX='));
+    if (firstLine) {
+        const exMatch = firstLine.match(/EX=([^;]+)/);
+        if (exMatch) {
+            const exValue = exMatch[1];
+            const [homeTeam, awayTeam] = exValue.split(' v ');
+            if (homeTeam && awayTeam) {
+                homeAwayMap.set(homeTeam.trim().toLowerCase(), 'home');
+                homeAwayMap.set(awayTeam.trim().toLowerCase(), 'away');
+            }
+        }
+    }
     const getMarketType = (marketName) => {
         if (marketName.includes('Mais Alternativas')) return 'alternatives';
         if (marketName.includes('Asiático') || marketName.includes('Gols +/-')) return 'asian';
@@ -75,9 +87,11 @@ function parseBet365Raw(content) {
 
             if (!linha) continue; // Pula se não tiver linha definida
 
+            const participantePad = homeAwayMap.get(currentParticipant.toLowerCase()) || currentParticipant.toLowerCase();
+
             mercados.push({
                 mercado: currentMarket,
-                participante: currentParticipant,
+                participante: participantePad,
                 linha: (parseLinha(linha)).toString(),
                 odd: fractionalToDecimal(odd),
                 casa: 'bet365'

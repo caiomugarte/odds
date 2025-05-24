@@ -22,26 +22,49 @@ function rodarScripts() {
 
     console.log('📦 Arquivos detectados. Rodando processamento...');
     exec('node rawBet365.js', (err) => {
-        if (err) return console.error('Erro no Bet365:', err.message);
+        if (err) {
+            console.error('Erro no Bet365:', err.message);
+            rodando = false;
+            return;
+        }
         console.log('✅ rawBet365.js concluído');
 
         exec('node process_pinnacle.js', (err2) => {
-            if (err2) return console.error('Erro no Pinnacle:', err2.message);
+            if (err2) {
+                console.error('Erro no Pinnacle:', err2.message);
+                rodando = false;
+                return;
+            }
             console.log('✅ process_pinnacle.js concluído');
 
+            const classificadoPath = './python/raw_pinnacle/pinnacle_classificado.json';
+            if (!fs.existsSync(classificadoPath)) {
+                console.error('❌ Arquivo pinnacle_classificado.json não encontrado. Abortando merge.');
+                rodando = false;
+                return;
+            }
+
             exec('node merge.js', (err3, stdout3) => {
-                if (err3) return console.error('Erro na comparação:', err3.message);
-                console.log('✅ merge.js concluído');
-                console.log(stdout3);
+                if (err3) {
+                    console.error('Erro na comparação:', err3.message);
+                } else {
+                    console.log('✅ merge.js concluído');
+                    console.log(stdout3);
+                }
                 rodando = false; // libera para próxima execução
             });
         });
     });
 }
 
+let debounceTimeout = null;
+
 console.log('👀 Aguardando arquivos...');
 chokidar.watch([paths.pinnacle, paths.bet365], { ignoreInitial: true }).on('add', (path) => {
-    if (arquivosProntos()) {
-        rodarScripts();
-    }
+    if (debounceTimeout) clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
+        if (arquivosProntos()) {
+            rodarScripts();
+        }
+    }, 2000); // espera 2 segundos após o último arquivo ser adicionado
 });

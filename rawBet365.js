@@ -78,7 +78,7 @@ function parseBet365Raw(content) {
             mercados.push({
                 mercado: currentMarket,
                 participante: currentParticipant,
-                linha: linha,
+                linha: parseFloat(linha).toFixed(1),
                 odd: fractionalToDecimal(odd),
                 casa: 'bet365'
             });

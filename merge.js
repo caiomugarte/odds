@@ -101,7 +101,6 @@ for (const bet of betMarkets) {
                 const kelly = calcKelly(bet.odd, pin.odd, lado_oposto.odd);
                 const octKelly = (kelly/8);
                 const stake = (octKelly*(BANCA/100)).toFixed(2)
-                if (ev > 0) {
                     oportunidades.push({
                         tipo: bet.tipo,
                         mercado: bet.mercado,
@@ -115,7 +114,6 @@ for (const bet of betMarkets) {
                         octKelly: octKelly.toFixed(2),
                         stake: stake
                     });
-                }
             }
         }
     }
@@ -142,16 +140,17 @@ if (oportunidades.length === 0) {
     console.log("Nenhuma oportunidade com EV positivo.");
 } else {
     oportunidades.forEach((o, i) => {
-        console.log(`\n🔹 #${i + 1}`);
+        console.log(`#${i + 1}`);
         console.log(`Tipo: ${o.tipo} | Mercado: ${o.mercado} | Linha: ${o.linha}`);
         console.log(`Participante: ${o.participante}`);
         console.log(`Bet365: ${o.odd_bet365} | Pinnacle: ${o.odd_pinnacle} | Contrária: ${o.odd_contraria}`);
         console.log(`EV: ${o.ev} | Kelly: ${o.kelly} | OctKelly: ${o.octKelly} | Stake: ${o.stake}`);
+        console.log(`\n`);
     });
     // Após salvar o oportunidades.json:
     console.log(`\n✅ Também salvo em: oportunidades.json`);
-
-    // Limpa os diretórios
-    limparTudo('./python/raw_bet365_asian');
-    limparTudo('./python/raw_pinnacle');
 }
+
+// Limpa os diretórios
+//limparTudo('./python/raw_bet365_asian');
+//limparTudo('./python/raw_pinnacle');

@@ -138,7 +138,7 @@ function limparTudo(diretorio) {
 }
 
 // Ordena por EV decrescente
-oportunidades.sort((a, b) => parseFloat(b.ev) - parseFloat(a.ev));
+oportunidades.sort((a, b) => parseFloat(a.ev) - parseFloat(b.ev));
 
 // Salva como JSON
 fs.writeFileSync('./oportunidades.json', JSON.stringify(oportunidades, null, 2), 'utf8');

@@ -1,8 +1,22 @@
 import fs from 'fs';
+import path from 'path';
+
 const BANCA = 265;
 const betData = JSON.parse(fs.readFileSync('./python/raw_bet365_asian/bet365_organized.json', 'utf8'));
 const pinData = JSON.parse(fs.readFileSync('./python/raw_pinnacle/pinnacle_classificado.json', 'utf8'));
-import path from 'path';
+
+// Carrega o related.json mais recente para pegar os nomes dos times
+const relatedFiles = fs.readdirSync('./python/raw_pinnacle').filter(f => f.startsWith('related_') && f.endsWith('.json'));
+const latestRelated = relatedFiles.sort().reverse()[0];
+const relatedData = JSON.parse(fs.readFileSync(`./python/raw_pinnacle/${latestRelated}`, 'utf8'));
+
+// Cria um map matchupId+alignment -> teamName
+const teamNameMap = new Map();
+for (const match of relatedData) {
+    for (const p of match.participants) {
+        teamNameMap.set(`${match.id}|${p.alignment}`, p.name);
+    }
+}
 
 const mercadoMap = {
     "Gols +/ -": "Mais/Menos",
@@ -20,12 +34,12 @@ const mercadoMap = {
 };
 
 const participanteMap = {
-    "Mais de": "over",
-    "Menos de": "under",
-    "Real Madrid": "home",
-    "Barcelona": "away",
-    "Grêmio": "home",
-    "Bahia": "away"
+    "over": "mais de",
+    "under": "menos de",
+    "mais de": "mais de",
+    "menos de": "menos de",
+    "home": "home",
+    "away": "away"
 };
 
 function normalizeLinha(linha) {
@@ -54,20 +68,19 @@ function calcKelly(odd_bet, odd_pin, odd_contraria) {
     return kelly > 0 ? kelly*100 : 0;
 }
 
-
 function flatten(data, casa) {
     const mercados = [];
     for (const tipo in data) {
         for (const m of data[tipo]) {
             const mercadoPad = mercadoMap[m.mercado?.trim()] || m.mercado?.trim();
-            const participantePad = participanteMap[m.participante?.trim()] || m.participante?.trim().toLowerCase();
             mercados.push({
                 tipo,
                 mercado: mercadoPad,
-                participante: participantePad,
+                participante: m.participante?.trim().toLowerCase(),
                 linha: normalizeLinha(m.linha),
                 odd: decimal(m.odd),
-                casa
+                casa,
+                matchupId: m.matchupId // importante para mapear o time
             });
         }
     }
@@ -79,7 +92,7 @@ function getLinhaContraria(market, linha) {
         const valor = parseFloat(linha);
         if (!isNaN(valor)) return (-valor).toString();
     }
-    return linha; // Se não for handicap, a linha contrária é a mesma
+    return linha;
 }
 
 const betMarkets = flatten(betData, 'bet365');
@@ -89,10 +102,13 @@ const oportunidades = [];
 
 for (const bet of betMarkets) {
     for (const pin of pinMarkets) {
+        const participanteBet = participanteMap[bet.participante] || bet.participante;
+        const participantePin = participanteMap[pin.participante] || pin.participante;
+
         const match = (
             bet.tipo === pin.tipo &&
             bet.mercado === pin.mercado &&
-            bet.participante === pin.participante &&
+            participanteBet === participantePin &&
             bet.linha === pin.linha
         );
 
@@ -109,7 +125,10 @@ for (const bet of betMarkets) {
                 const kelly = calcKelly(bet.odd, pin.odd, lado_oposto.odd);
                 const octKelly = (kelly/8);
                 const roundedOctKelly = Math.round(octKelly / 0.25) * 0.25;
-                const stake = (roundedOctKelly*(BANCA/100)).toFixed(2)
+                const stake = (roundedOctKelly*(BANCA/100)).toFixed(2);
+                const teamName = teamNameMap.get(`${pin.matchupId}|${bet.participante}`) || bet.participante;
+                const descricao = `${teamName} ${bet.linha}`;
+                if(ev > 3){
                     oportunidades.push({
                         tipo: bet.tipo,
                         mercado: bet.mercado,
@@ -121,8 +140,10 @@ for (const bet of betMarkets) {
                         ev: ev.toFixed(3),
                         kelly: kelly.toFixed(3),
                         octKelly: roundedOctKelly.toFixed(2),
-                        stake: stake
+                        stake: stake,
+                        descricao: descricao
                     });
+                }
             }
         }
     }
@@ -142,7 +163,7 @@ oportunidades.sort((a, b) => parseFloat(a.ev) - parseFloat(b.ev));
 
 // Salva como JSON
 fs.writeFileSync('./oportunidades.json', JSON.stringify(oportunidades, null, 2), 'utf8');
-
+const diaHoje = new Date().getDate();
 // Também exibe no console
 console.log("📊 Oportunidades com EV corrigido:");
 if (oportunidades.length === 0) {
@@ -156,7 +177,12 @@ if (oportunidades.length === 0) {
         console.log(`EV: ${o.ev} | Kelly: ${o.kelly} | OctKelly: ${o.octKelly} | Stake: ${o.stake}`);
         console.log(`\n`);
     });
-    // Após salvar o oportunidades.json:
+
+    console.log("\n📋 Copie e cole para a planilha:");
+    oportunidades.forEach(o => {
+        console.log(`${diaHoje};Eu;Bet365;SIMPLES;${o.descricao};PRÉ LIVE;Futebol ⚽️;${o.odd_bet365.toFixed(2).replace('.', ',')};${o.stake.replace('.', ',')}`);
+    });
+
     console.log(`\n✅ Também salvo em: oportunidades.json`);
 }
 

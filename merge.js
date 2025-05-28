@@ -180,7 +180,7 @@ if (oportunidades.length === 0) {
 
     console.log("\n📋 Copie e cole para a planilha:");
     oportunidades.forEach(o => {
-        console.log(`${diaHoje};Eu;Bet365;SIMPLES;${o.descricao};PRÉ LIVE;Futebol ⚽️;${o.odd_bet365.toFixed(2).replace('.', ',')};${o.stake.replace('.', ',')}`);
+        console.log(`${diaHoje};Eu;Bet365;SIMPLES;${o.descricao};PRÉ LIVE;Futebol ⚽️;${o.odd_bet365.toFixed(2).replace('.', ',')};${o.octKelly.replace('.', ',')}`);
     });
 
     console.log(`\n✅ Também salvo em: oportunidades.json`);

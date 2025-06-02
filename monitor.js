@@ -3,7 +3,7 @@ const fs = require('fs').promises;
 
 const OUTPUT_FILE = 'odds_previas.json';
 const RESUMO_FILE = 'quedas_resumo.json';
-const SPORT_ID = 29;  // Soccer
+const SPORT_ID = 29;
 const DELAY_MIN_MS = 500;
 const DELAY_MAX_MS = 2000;
 const API_KEY = 'CmX2KcMrXuFmNg6YFbmTxE0y9CIrOi0R';
@@ -68,7 +68,7 @@ async function monitor() {
     }
 
     const leagues = await fetchLeagues();
-    console.log(`🔍 Monitorando apenas mercados asiáticos: spread e total`);
+    console.log(`🔍 Monitorando apenas mercados asiáticos (spread e total) e jogos não ao vivo`);
 
     const matchupInfo = {};
 
@@ -92,7 +92,8 @@ async function monitor() {
                 away,
                 startTime: m.startTime,
                 participants,
-                specialDescription: m.special?.description ?? m.type
+                specialDescription: m.special?.description ?? m.type,
+                isLive: m.isLive ?? false
             };
         }
 
@@ -103,6 +104,8 @@ async function monitor() {
             for (const [index, price] of market.prices.entries()) {
                 const info = matchupInfo[market.matchupId] || {};
                 const confronto = info.home && info.away ? `${info.home} vs ${info.away}` : `Matchup ${market.matchupId}`;
+
+                if (info.isLive) continue;  // 🔥 Só considera se não estiver ao vivo
 
                 let participantKey = price.designation ?? 'undefined';
                 if ((!participantKey || participantKey === 'undefined') && info.participants) {
@@ -125,7 +128,6 @@ async function monitor() {
                     const previousOdd = previousOdds[key].odd;
                     const dropPercent = ((previousOdd - decimalOdd) / previousOdd) * 100;
                     if (dropPercent >= DROP_THRESHOLD_PERCENT) {
-                        // Acumular no resumo
                         if (!quedasResumo[confronto]) {
                             quedasResumo[confronto] = {
                                 liga: league.name,
@@ -164,8 +166,7 @@ async function monitor() {
         await delay(randomDelay);
     }
 
-    // Exibir resumo no console
-    console.log(`\n🔎 Resumo das quedas:`);
+    console.log(`\n🔎 Resumo das quedas (jogos não ao vivo):`);
     Object.entries(quedasResumo).forEach(([confronto, data]) => {
         console.log(`📍 ${confronto} (${data.liga}) - Total de quedas: ${data.totalQuedas}`);
     });

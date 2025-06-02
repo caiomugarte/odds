@@ -123,9 +123,9 @@ for (const bet of betMarkets) {
             if (lado_oposto) {
                 const ev = calcEVComFair(bet.odd, pin.odd, lado_oposto.odd);
                 const kelly = calcKelly(bet.odd, pin.odd, lado_oposto.odd);
-                const octKelly = (kelly/8);
-                const roundedOctKelly = Math.round(octKelly / 0.25) * 0.25;
-                const stake = (roundedOctKelly*(BANCA/100)).toFixed(2);
+                const quarterKelly = (kelly/4);
+                const rounderQuarterKelly = Math.round(quarterKelly / 0.25) * 0.25;
+                const stake = (rounderQuarterKelly*(BANCA/100)).toFixed(2);
                 const teamName = teamNameMap.get(`${pin.matchupId}|${bet.participante}`) || bet.participante;
                 const descricao = `${teamName} ${bet.linha}`;
                 if(ev > 3){
@@ -139,7 +139,7 @@ for (const bet of betMarkets) {
                         odd_contraria: lado_oposto.odd,
                         ev: ev.toFixed(3),
                         kelly: kelly.toFixed(3),
-                        octKelly: roundedOctKelly.toFixed(2),
+                        quarterKelly: rounderQuarterKelly.toFixed(2),
                         stake: stake,
                         descricao: descricao
                     });
@@ -174,13 +174,13 @@ if (oportunidades.length === 0) {
         console.log(`Tipo: ${o.tipo} | Mercado: ${o.mercado} | Linha: ${o.linha}`);
         console.log(`Participante: ${o.participante}`);
         console.log(`Bet365: ${o.odd_bet365} | Pinnacle: ${o.odd_pinnacle} | Contrária: ${o.odd_contraria}`);
-        console.log(`EV: ${o.ev} | Kelly: ${o.kelly} | OctKelly: ${o.octKelly} | Stake: ${o.stake}`);
+        console.log(`EV: ${o.ev} | Kelly: ${o.kelly} | QuarterKelly: ${o.quarterKelly} | Stake: ${o.stake}`);
         console.log(`\n`);
     });
 
     console.log("\n📋 Copie e cole para a planilha:");
     oportunidades.forEach(o => {
-        console.log(`${diaHoje};Eu;Bet365;SIMPLES;${o.descricao};PRÉ LIVE;Futebol ⚽️;${o.odd_bet365.toFixed(2).replace('.', ',')};${o.octKelly.replace('.', ',')}`);
+        console.log(`${diaHoje};Eu;Bet365;SIMPLES;${o.descricao};PRÉ LIVE;Futebol ⚽️;${o.odd_bet365.toFixed(2).replace('.', ',')};${o.quarterKelly.replace('.', ',')}`);
     });
 
     console.log(`\n✅ Também salvo em: oportunidades.json`);

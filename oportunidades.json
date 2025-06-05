@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "tipo": "Gols",
+    "mercado": "1º Tempo Mais/Menos",
+    "participante": "menos de",
+    "linha": "1.75",
+    "odd_bet365": 1.825,
+    "odd_pinnacle": 1.5714285714285714,
+    "odd_contraria": 2.2,
+    "ev": "6.458",
+    "kelly": "7.828",
+    "quarterKelly": "2.00",
+    "stake": "6.60",
+    "descricao": "menos de 1.75"
+  },
+  {
+    "tipo": "Gols",
+    "mercado": "Mais/Menos",
+    "participante": "menos de",
+    "linha": "4",
+    "odd_bet365": 1.8,
+    "odd_pinnacle": 1.526315789473684,
+    "odd_contraria": 2.27,
+    "ev": "7.631",
+    "kelly": "9.538",
+    "quarterKelly": "2.50",
+    "stake": "8.25",
+    "descricao": "menos de 4"
+  }
+]

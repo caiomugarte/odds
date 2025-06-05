@@ -14,11 +14,9 @@ function americanToDecimal(price) {
 }
 
 function classifyMarket(marketType, period) {
-    let tipo = '';
-    if (marketType === 'spread') tipo = 'Handicap';
-    else if (marketType === 'total') tipo = 'Mais/Menos';
+    let tipo = marketType;
     if (period === 1) tipo += ' (1º Tempo)';
-    return tipo || 'Outro';
+    return tipo;
 }
 
 async function delay(ms) {
@@ -68,7 +66,7 @@ async function monitor() {
     }
 
     const leagues = await fetchLeagues();
-    console.log(`🔍 Monitorando apenas mercados asiáticos (spread e total) e jogos não ao vivo`);
+    console.log(`🔍 Monitorando TODAS as quedas (exceto jogos ao vivo)`);
 
     const matchupInfo = {};
 
@@ -98,20 +96,18 @@ async function monitor() {
         }
 
         for (const market of marketData) {
-            if (!['spread', 'total'].includes(market.type)) continue;
+            const info = matchupInfo[market.matchupId] || {};
+            if (info.isLive) continue; // Ignora jogos ao vivo
 
-            const marketDesc = classifyMarket(market.type, market.period);
+            const marketDesc = classifyMarket(market.type + (info.specialDescription ? ` - ${info.specialDescription}` : ''), market.period);
+
             for (const [index, price] of market.prices.entries()) {
-                const info = matchupInfo[market.matchupId] || {};
+                if(price.points == null) continue;
                 const confronto = info.home && info.away ? `${info.home} vs ${info.away}` : `Matchup ${market.matchupId}`;
-
-                if (info.isLive) continue;  // 🔥 Só considera se não estiver ao vivo
 
                 let participantKey = price.designation ?? 'undefined';
                 if ((!participantKey || participantKey === 'undefined') && info.participants) {
-                    let participant = info.participants.find(p =>
-                        p.rotation === market.rotation || p.rotation === price.rotation
-                    );
+                    let participant = info.participants.find(p => p.rotation === market.rotation || p.rotation === price.rotation);
                     if (!participant && info.specialDescription) {
                         participant = info.participants.find(p => info.specialDescription.includes(p.name));
                     }
@@ -121,7 +117,16 @@ async function monitor() {
                     participantKey = participant?.name ?? participant?.id ?? 'undefined';
                 }
 
-                const key = `${market.matchupId}_${market.type}_${market.period}_${price.points ?? '-'}_${participantKey}`;
+                const key = [
+                    `matchup:${market.matchupId}`,
+                    `type:${market.type}`,
+                    `side:${market.side ?? '-'}`,  // <- isso aqui é o que faltava
+                    `period:${market.period}`,
+                    `participant:${participantKey}`,
+                    `line:${price.points ?? '-'}`,
+                    `designation:${price.designation ?? '-'}`,
+                    `rotation:${price.rotation ?? '-'}`,
+                ].join('|');
                 const decimalOdd = americanToDecimal(price.price);
 
                 if (previousOdds[key]) {
@@ -141,7 +146,7 @@ async function monitor() {
                             periodo: market.period,
                             linha: price.points ?? '-',
                             participante: participantKey,
-                            oddAnterior: previousOdd.toFixed(2),
+                            oddAnterior: previousOdds[key].odd.toFixed(2),
                             oddAtual: decimalOdd.toFixed(2),
                             percentualQueda: dropPercent.toFixed(1),
                             horario: info.startTime ?? 'desconhecido'
@@ -153,8 +158,7 @@ async function monitor() {
                     odd: decimalOdd,
                     leagueName: league.name,
                     confronto,
-                    mercado: market.type,
-                    period: market.period,
+                    mercado: marketDesc,
                     participante: participantKey,
                     linha: price.points ?? '-',
                     startTime: info.startTime ?? 'desconhecido'

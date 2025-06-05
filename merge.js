@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const BANCA = 265;
+const BANCA = 330;
 const betData = JSON.parse(fs.readFileSync('./python/raw_bet365_asian/bet365_organized.json', 'utf8'));
 const pinData = JSON.parse(fs.readFileSync('./python/raw_pinnacle/pinnacle_classificado.json', 'utf8'));
 

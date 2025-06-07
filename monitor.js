@@ -75,6 +75,7 @@ async function monitor() {
             fetchMarkets(league.id),
             fetchMatchups(league.id)
         ]);
+        const jogosComQuedasNestaLiga = new Set();
 
         for (const m of matchups) {
             let participants = m.participants;
@@ -98,6 +99,7 @@ async function monitor() {
         for (const market of marketData) {
             const info = matchupInfo[market.matchupId] || {};
             if (info.isLive) continue; // Ignora jogos ao vivo
+            if (!['spread', 'total'].includes(market.type)) continue;
 
             const marketDesc = classifyMarket(market.type + (info.specialDescription ? ` - ${info.specialDescription}` : ''), market.period);
 
@@ -151,6 +153,7 @@ async function monitor() {
                             percentualQueda: dropPercent.toFixed(1),
                             horario: info.startTime ?? 'desconhecido'
                         });
+                        jogosComQuedasNestaLiga.add(confronto);
                     }
                 }
 
@@ -166,21 +169,83 @@ async function monitor() {
             }
         }
 
+        // 🟢 Imprime resumo de jogos com quedas desta liga
+        for (const confronto of jogosComQuedasNestaLiga) {
+            const dados = quedasResumo[confronto];
+            console.log(`📌 ${confronto} (${dados.liga}) - ${dados.totalQuedas} queda${dados.totalQuedas > 1 ? 's' : ''}`);
+        }
+
         const randomDelay = Math.floor(Math.random() * (DELAY_MAX_MS - DELAY_MIN_MS + 1)) + DELAY_MIN_MS;
         await delay(randomDelay);
     }
 
-    console.log(`\n🔎 Resumo das quedas (jogos não ao vivo):`);
-    Object.entries(quedasResumo).forEach(([confronto, data]) => {
-        console.log(`📍 ${confronto} (${data.liga}) - Total de quedas: ${data.totalQuedas}`);
-    });
-
+    // === Salva arquivos JSON (como já fazia antes)
     await fs.writeFile(OUTPUT_FILE, JSON.stringify(previousOdds, null, 2));
     await fs.writeFile(RESUMO_FILE, JSON.stringify(quedasResumo, null, 2));
     console.log(`💾 Odds salvas em ${OUTPUT_FILE}`);
     console.log(`💾 Resumo salvo em ${RESUMO_FILE}`);
 
-    setTimeout(monitor, 60 * 1000);
+// === Classificação de prioridade + exportação CSV + logs
+    const candidatosCSV = [];
+    const dataHoje = new Date().toISOString().split('T')[0];
+
+    for (const [confronto, dados] of Object.entries(quedasResumo)) {
+        const detalhes = dados.detalhes;
+
+        const quedasFortes = detalhes.filter(q => parseFloat(q.percentualQueda) >= 5);
+        const ladoContagem = detalhes.reduce((acc, cur) => {
+            acc[cur.participante] = (acc[cur.participante] || 0) + 1;
+            return acc;
+        }, {});
+        const maisFrequente = Object.entries(ladoContagem).sort((a, b) => b[1] - a[1])[0];
+
+        const prioridadeAlta = (
+            quedasFortes.length >= 3 &&
+            maisFrequente[1] >= 3
+        );
+
+        dados.prioridadeAlta = prioridadeAlta;
+
+        candidatosCSV.push([
+            dataHoje,
+            confronto,
+            dados.liga,
+            dados.totalQuedas,
+            prioridadeAlta
+        ]);
+    }
+
+// === Log personalizado por prioridade
+    /*console.log(`\n🚀 Jogos com ALTA PRIORIDADE (potencial EV):`);
+    let algumPrioritario = false;
+    Object.entries(quedasResumo).forEach(([confronto, data]) => {
+        if (data.prioridadeAlta) {
+            console.log(`✅ ${confronto} (${data.liga}) - ${data.totalQuedas} quedas`);
+            algumPrioritario = true;
+        }
+    });*/
+    /*if (!algumPrioritario) {
+        console.log('⚠️ Nenhum jogo com prioridade alta nesta rodada.');
+    }/*
+
+    /*console.log(`\n📄 Demais jogos monitorados:`);
+    Object.entries(quedasResumo).forEach(([confronto, data]) => {
+        if (!data.prioridadeAlta) {
+            console.log(`📍 ${confronto} (${data.liga}) - ${data.totalQuedas} quedas`);
+        }
+    });*/
+
+    console.log("✅ Acabei \n")
+
+// === Exporta CSV com todos os jogos monitorados
+    const header = 'data,confronto,liga,totalQuedas,prioridadeAlta\n';
+    const linhas = candidatosCSV.map(l => l.join(',')).join('\n');
+    await fs.writeFile('candidatos_prioritarios.csv', header + linhas);
+    console.log(`📁 Candidatos com prioridade exportados para candidatos_prioritarios.csv`);
+
+// Continua o loop
+    setTimeout(monitor, 1000);
+
 }
 
 monitor();

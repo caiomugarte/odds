@@ -153,5 +153,16 @@
   "jktransnarva": ["narvatrans"],
   "ffjaro": ["jaro"],
   "vpsvaasa": ["vps"],
-  "scgrobinas": ["grobinassclfs"]
-} 
+  "scgrobinas": ["grobinassclfs"],
+  "palmeiras": ["palmeiras"],
+  "psg": ["parissaintgermain", "paris saint-germain", "paris saint germain"],
+  "intermiami": ["intermiamicf", "inter miami cf", "inter miami"],
+  "seattlesoundersfc": ["seattlesounders", "seattle sounders fc", "seattle sounders"],
+  "trinidadandtobago": "trindadeetobago",
+  "saudiarabia": "arbiasaudita",
+  "bayernmunich": "bayerndemunique",
+  "americamineiro": "amricamineiro",
+  "england": ["inglaterrasub21", "inglaterra"],
+  "slovenia": ["eslovniasub21"],
+  "pachuca": ["pachuca"]
+}

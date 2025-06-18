@@ -1,0 +1,94 @@
+{
+  "FIFA Club WC": {
+    "pinnacle_id": "1865",
+    "name": "FIFA - Club World Cup"
+  },
+  "Premier League": {
+    "pinnacle_id": "1001",
+    "name": "English Premier League"
+  },
+  "La Liga": {
+    "pinnacle_id": "1003",
+    "name": "Spanish La Liga"
+  },
+  "Serie A": {
+    "pinnacle_id": "1004",
+    "name": "Italian Serie A"
+  },
+  "Bundesliga": {
+    "pinnacle_id": "1005",
+    "name": "German Bundesliga"
+  },
+  "Ligue 1": {
+    "pinnacle_id": "1006",
+    "name": "French Ligue 1"
+  },
+  "Brasileirão": {
+    "pinnacle_id": "1007",
+    "name": "Brazilian Serie A"
+  },
+  "Primeira Liga": {
+    "pinnacle_id": "1008",
+    "name": "Portuguese Primeira Liga"
+  },
+  "Champions League": {
+    "pinnacle_id": "1009",
+    "name": "UEFA Champions League"
+  },
+  "Europa League": {
+    "pinnacle_id": "1010",
+    "name": "UEFA Europa League"
+  },
+  "Copa do Brasil": {
+    "pinnacle_id": "1011",
+    "name": "Brazilian Cup"
+  },
+  "Copa Libertadores": {
+    "pinnacle_id": "1012",
+    "name": "Copa Libertadores"
+  },
+  "Copa Sudamericana": {
+    "pinnacle_id": "1013",
+    "name": "Copa Sudamericana"
+  },
+  "World Cup": {
+    "pinnacle_id": "1014",
+    "name": "FIFA World Cup"
+  },
+  "Euro": {
+    "pinnacle_id": "1015",
+    "name": "UEFA European Championship"
+  },
+  "Copa América": {
+    "pinnacle_id": "1016",
+    "name": "Copa America"
+  },
+  "AFC Champions League": {
+    "pinnacle_id": "1017",
+    "name": "AFC Champions League"
+  },
+  "CONCACAF Champions League": {
+    "pinnacle_id": "1018",
+    "name": "CONCACAF Champions League"
+  },
+  "African Cup of Nations": {
+    "pinnacle_id": "1019",
+    "name": "Africa Cup of Nations"
+  },
+  "Asian Cup": {
+    "pinnacle_id": "1020",
+    "name": "AFC Asian Cup"
+  },
+  "CONCACAF Gold C": {
+    "pinnacle_id": "2077",
+    "name": "CONCACAF - Gold Cup"
+  },
+  "Camp Brasil B": {
+    "pinnacle_id": "1835",
+    "name": "Brazil - Serie B"
+  },
+  "European U21 Ch": {
+    "pinnacle_id": "2639",
+    "name": "UEFA - U21 European Championship"
+  }
+} 

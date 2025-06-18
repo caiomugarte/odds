@@ -4,8 +4,56 @@ import path from 'path';
 const BET365_FILE = './python/raw_bet365_asian/bet365_organized.json';
 const PINNACLE_DIR = './classified_pinnacle';
 
-// Carrega o mapeamento de times
+// Carrega o mapeamento de times e ligas
 const teamMapping = JSON.parse(fs.readFileSync('./team_mapping.json', 'utf8'));
+const leagueMapping = JSON.parse(fs.readFileSync('./league_mapping.json', 'utf8'));
+
+// Função para extrair a liga do arquivo raw da Bet365
+function extractLeagueFromRaw() {
+    try {
+        const rawFiles = fs.readdirSync('./python/raw_bet365_asian')
+            .filter(f => f.endsWith('.txt'));
+        
+        if (rawFiles.length === 0) {
+            console.log('❌ Nenhum arquivo raw encontrado');
+            return null;
+        }
+        
+        const rawFile = rawFiles[0];
+        const content = fs.readFileSync(`./python/raw_bet365_asian/${rawFile}`, 'utf8');
+        
+        // Procura pela linha que contém a informação da liga
+        const lines = content.split('|');
+        for (const line of lines) {
+            if (line.includes('CC=')) {
+                const match = line.match(/CC=([^;]+)/);
+                if (match) {
+                    const leagueName = match[1];
+                    console.log(`🏆 Liga encontrada na Bet365: "${leagueName}"`);
+                    return leagueName;
+                }
+            }
+        }
+        
+        console.log('❌ Não foi possível extrair a liga do arquivo raw');
+        return null;
+    } catch (error) {
+        console.error('❌ Erro ao extrair liga:', error);
+        return null;
+    }
+}
+
+// Função para obter o ID da Pinnacle baseado na liga da Bet365
+function getPinnacleLeagueId(bet365League) {
+    const mapping = leagueMapping[bet365League];
+    if (mapping) {
+        console.log(`🎯 Liga mapeada: "${bet365League}" -> Pinnacle ID: ${mapping.pinnacle_id}`);
+        return mapping.pinnacle_id;
+    }
+    
+    console.log(`⚠️ Liga não encontrada no mapeamento: "${bet365League}"`);
+    return null;
+}
 
 function normalizeTeamName(name) {
     return name.toLowerCase()
@@ -52,9 +100,12 @@ function normalizeMarketName(name) {
         .replace('handicap - 1º tempo', '1º tempo handicap')
         .replace('1º tempo gols + ou -', '1º tempo mais/menos')
         .replace('total de escanteios', 'mais/menos')
-        .replace('total de escanteios asiáticos', 'mais/menos')
         .replace('handicap - escanteios', 'handicap')
         .replace('1º tempo - escanteios', '1º tempo mais/menos')
+        .replace("1º Tempo - Gols +/- - Alternativas", "1º tempo mais/menos")
+        .replace("1º Tempo - Handicap - Alternativas", "1º tempo handicap")
+        .replace("Gols ＋/- - Alternativas", "mais/menos")
+        .replace("Handicap - Alternativas", 'handicap')
         .trim();
 
     // Remove qualquer 's' solto no final
@@ -85,7 +136,7 @@ function normalizeParticipant(name) {
     return normalizeTeamNameWithMapping(name);
 }
 
-function findMatchingGame(bet365Odds, pinnacleOdds) {
+function findMatchingGame(bet365Odds, pinnacleOdds, pinnacleLeagueId = null) {
     // Pega os times do primeiro handicap da Bet365
     const bet365Handicap = bet365Odds.Gols.find(o => o.mercado === 'Handicap Asiático');
     if (!bet365Handicap) return null;
@@ -94,8 +145,17 @@ function findMatchingGame(bet365Odds, pinnacleOdds) {
     const bet365Team = normalizeParticipant(bet365Handicap.participante);
     console.log(`🔍 Procurando jogo da Bet365: "${bet365Handicap.participante}" -> "${bet365Team}"`);
 
+    // Se temos o ID da liga da Pinnacle, filtra os jogos por liga
+    let pinnacleGames = Object.entries(pinnacleOdds);
+    
+    if (pinnacleLeagueId) {
+        console.log(`🎯 Filtrando jogos da liga Pinnacle ID: ${pinnacleLeagueId}`);
+        // Aqui você pode implementar a lógica para filtrar por liga
+        // Por enquanto, vamos procurar em todos os jogos
+    }
+
     // Procura nos arquivos do Pinnacle
-    for (const [matchupId, pinnacleData] of Object.entries(pinnacleOdds)) {
+    for (const [matchupId, pinnacleData] of pinnacleGames) {
         const pinnacleHandicap = pinnacleData.Gols.find(o => o.mercado === 'Handicap');
         if (!pinnacleHandicap) continue;
 
@@ -143,8 +203,8 @@ function calculateQuarterKelly(odd, ev) {
     return (ev / b) * 0.25;
 }
 
-function compareOdds(bet365Odds, pinnacleOdds) {
-    const matchingGameId = findMatchingGame(bet365Odds, pinnacleOdds);
+function compareOdds(bet365Odds, pinnacleOdds, pinnacleLeagueId = null) {
+    const matchingGameId = findMatchingGame(bet365Odds, pinnacleOdds, pinnacleLeagueId);
     if (!matchingGameId) {
         console.log('❌ Nenhum jogo correspondente encontrado');
         return;
@@ -263,6 +323,19 @@ function compareOdds(bet365Odds, pinnacleOdds) {
 
 async function main() {
     try {
+        // Extrai a liga do arquivo raw da Bet365
+        const bet365League = extractLeagueFromRaw();
+        if (!bet365League) {
+            console.log('❌ Não foi possível extrair a liga da Bet365');
+            return;
+        }
+
+        // Obtém o ID da liga na Pinnacle
+        const pinnacleLeagueId = getPinnacleLeagueId(bet365League);
+        if (!pinnacleLeagueId) {
+            console.log('❌ Liga não mapeada, continuando sem filtro de liga...');
+        }
+
         // Carrega odds da Bet365
         const bet365Content = fs.readFileSync(BET365_FILE, 'utf8');
         const bet365Odds = JSON.parse(bet365Content);
@@ -281,8 +354,8 @@ async function main() {
             pinnacleOdds[matchupId] = JSON.parse(content);
         }
 
-        // Compara as odds
-        compareOdds(bet365Odds, pinnacleOdds);
+        // Compara as odds usando o ID da liga se disponível
+        compareOdds(bet365Odds, pinnacleOdds, pinnacleLeagueId);
 
         // Limpa os arquivos da pasta raw_bet365_asian
         const rawDir = './python/raw_bet365_asian';

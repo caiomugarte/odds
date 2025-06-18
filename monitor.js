@@ -1,22 +1,48 @@
 const axios = require('axios');
 const fs = require('fs').promises;
+const path = require('path');
 
-const OUTPUT_FILE = 'odds_previas.json';
-const RESUMO_FILE = 'quedas_resumo.json';
 const SPORT_ID = 29;
 const DELAY_MIN_MS = 500;
 const DELAY_MAX_MS = 2000;
 const API_KEY = 'CmX2KcMrXuFmNg6YFbmTxE0y9CIrOi0R';
-const DROP_THRESHOLD_PERCENT = 3;
+const RAW_DIR = './python/raw_pinnacle';
+const CLASSIFIED_DIR = './classified_pinnacle';
+
+const { program } = require('commander');
+
+program
+    .option('--all', 'Coleta de todos os jogos')
+    .option('--hours <number>', 'Coleta de jogos das proximas X horas (padrão: 24)', '24')
+    .parse(process.argv);
+
+const options = program.opts();
+
+// Configuração do axios para ignorar erros de certificado
+const axiosInstance = axios.create({
+    headers: {
+        'x-api-key': API_KEY
+    }
+});
+
+function isWithinTimeWindow(startTime, hours) {
+    if (!startTime) return false;
+    const matchTime = new Date(startTime);
+    const now = new Date();
+    const futureTime = new Date(now.getTime() + (hours * 60 * 60 * 1000));
+    return matchTime >= now && matchTime <= futureTime;
+}
 
 function americanToDecimal(price) {
     return price > 0 ? (price / 100) + 1 : (100 / Math.abs(price)) + 1;
 }
 
-function classifyMarket(marketType, period) {
-    let tipo = marketType;
-    if (period === 1) tipo += ' (1º Tempo)';
-    return tipo;
+function getTipoFromMarketType(name) {
+    if (!name) return 'desconhecido';
+    const nome = name.toLowerCase();
+    if (nome.includes('corner')) return 'Escanteios';
+    if (nome.includes('booking') || nome.includes('card')) return 'Cartões';
+    return 'Gols';
 }
 
 async function delay(ms) {
@@ -26,27 +52,15 @@ async function delay(ms) {
 async function fetchLeagues() {
     const url = `https://guest.api.arcadia.pinnacle.com/0.1/sports/${SPORT_ID}/leagues?all=false&brandId=0`;
     const headers = { 'x-api-key': API_KEY };
-    const res = await axios.get(url, { headers });
+    const res = await axiosInstance.get(url);
     return res.data.map(league => ({ id: league.id, name: league.name }));
-}
-
-async function fetchMarkets(leagueId) {
-    const url = `https://guest.api.arcadia.pinnacle.com/0.1/leagues/${leagueId}/markets/straight`;
-    const headers = { 'x-api-key': API_KEY };
-    try {
-        const res = await axios.get(url, { headers });
-        return res.data;
-    } catch (err) {
-        console.error(`Erro ao buscar mercados da liga ${leagueId}:`, err.message);
-        return [];
-    }
 }
 
 async function fetchMatchups(leagueId) {
     const url = `https://guest.api.arcadia.pinnacle.com/0.1/leagues/${leagueId}/matchups?brandId=0`;
     const headers = { 'x-api-key': API_KEY };
     try {
-        const res = await axios.get(url, { headers });
+        const res = await axiosInstance.get(url);
         return res.data;
     } catch (err) {
         console.error(`Erro ao buscar matchups da liga ${leagueId}:`, err.message);
@@ -54,198 +68,159 @@ async function fetchMatchups(leagueId) {
     }
 }
 
-async function monitor() {
-    let previousOdds = {};
-    let quedasResumo = {};
-
+async function fetchRelated(matchupId) {
+    const url = `https://guest.api.arcadia.pinnacle.com/0.1/matchups/${matchupId}/related`;
+    const headers = { 'x-api-key': API_KEY };
     try {
-        const data = await fs.readFile(OUTPUT_FILE, 'utf-8');
-        previousOdds = JSON.parse(data);
-    } catch {
-        console.log('Nenhum arquivo anterior encontrado, criando um novo...');
+        const res = await axiosInstance.get(url);
+        return res.data;
+    } catch (err) {
+        console.error(`Erro ao buscar related do matchup ${matchupId}:`, err.message);
+        return [];
     }
-
-    const leagues = await fetchLeagues();
-    console.log(`🔍 Monitorando TODAS as quedas (exceto jogos ao vivo)`);
-
-    const matchupInfo = {};
-
-    for (const league of leagues) {
-        const [marketData, matchups] = await Promise.all([
-            fetchMarkets(league.id),
-            fetchMatchups(league.id)
-        ]);
-        const jogosComQuedasNestaLiga = new Set();
-
-        for (const m of matchups) {
-            let participants = m.participants;
-            if (m.parent && m.parent.participants) {
-                participants = m.parent.participants;
-            }
-
-            const home = participants.find(p => p.alignment === 'home')?.name ?? 'Equipe A';
-            const away = participants.find(p => p.alignment === 'away')?.name ?? 'Equipe B';
-
-            matchupInfo[m.id] = {
-                home,
-                away,
-                startTime: m.startTime,
-                participants,
-                specialDescription: m.special?.description ?? m.type,
-                isLive: m.isLive ?? false
-            };
-        }
-
-        for (const market of marketData) {
-            const info = matchupInfo[market.matchupId] || {};
-            if (info.isLive) continue; // Ignora jogos ao vivo
-            if (!['spread', 'total'].includes(market.type)) continue;
-
-            const marketDesc = classifyMarket(market.type + (info.specialDescription ? ` - ${info.specialDescription}` : ''), market.period);
-
-            for (const [index, price] of market.prices.entries()) {
-                if(price.points == null) continue;
-                const confronto = info.home && info.away ? `${info.home} vs ${info.away}` : `Matchup ${market.matchupId}`;
-
-                let participantKey = price.designation ?? 'undefined';
-                if ((!participantKey || participantKey === 'undefined') && info.participants) {
-                    let participant = info.participants.find(p => p.rotation === market.rotation || p.rotation === price.rotation);
-                    if (!participant && info.specialDescription) {
-                        participant = info.participants.find(p => info.specialDescription.includes(p.name));
-                    }
-                    if (!participant) {
-                        participant = info.participants[index];
-                    }
-                    participantKey = participant?.name ?? participant?.id ?? 'undefined';
-                }
-
-                const key = [
-                    `matchup:${market.matchupId}`,
-                    `type:${market.type}`,
-                    `side:${market.side ?? '-'}`,  // <- isso aqui é o que faltava
-                    `period:${market.period}`,
-                    `participant:${participantKey}`,
-                    `line:${price.points ?? '-'}`,
-                    `designation:${price.designation ?? '-'}`,
-                    `rotation:${price.rotation ?? '-'}`,
-                ].join('|');
-                const decimalOdd = americanToDecimal(price.price);
-
-                if (previousOdds[key]) {
-                    const previousOdd = previousOdds[key].odd;
-                    const dropPercent = ((previousOdd - decimalOdd) / previousOdd) * 100;
-                    if (dropPercent >= DROP_THRESHOLD_PERCENT) {
-                        if (!quedasResumo[confronto]) {
-                            quedasResumo[confronto] = {
-                                liga: league.name,
-                                totalQuedas: 0,
-                                detalhes: []
-                            };
-                        }
-                        quedasResumo[confronto].totalQuedas += 1;
-                        quedasResumo[confronto].detalhes.push({
-                            mercado: marketDesc,
-                            periodo: market.period,
-                            linha: price.points ?? '-',
-                            participante: participantKey,
-                            oddAnterior: previousOdds[key].odd.toFixed(2),
-                            oddAtual: decimalOdd.toFixed(2),
-                            percentualQueda: dropPercent.toFixed(1),
-                            horario: info.startTime ?? 'desconhecido'
-                        });
-                        jogosComQuedasNestaLiga.add(confronto);
-                    }
-                }
-
-                previousOdds[key] = {
-                    odd: decimalOdd,
-                    leagueName: league.name,
-                    confronto,
-                    mercado: marketDesc,
-                    participante: participantKey,
-                    linha: price.points ?? '-',
-                    startTime: info.startTime ?? 'desconhecido'
-                };
-            }
-        }
-
-        // 🟢 Imprime resumo de jogos com quedas desta liga
-        for (const confronto of jogosComQuedasNestaLiga) {
-            const dados = quedasResumo[confronto];
-            console.log(`📌 ${confronto} (${dados.liga}) - ${dados.totalQuedas} queda${dados.totalQuedas > 1 ? 's' : ''}`);
-        }
-
-        const randomDelay = Math.floor(Math.random() * (DELAY_MAX_MS - DELAY_MIN_MS + 1)) + DELAY_MIN_MS;
-        await delay(randomDelay);
-    }
-
-    // === Salva arquivos JSON (como já fazia antes)
-    await fs.writeFile(OUTPUT_FILE, JSON.stringify(previousOdds, null, 2));
-    await fs.writeFile(RESUMO_FILE, JSON.stringify(quedasResumo, null, 2));
-    console.log(`💾 Odds salvas em ${OUTPUT_FILE}`);
-    console.log(`💾 Resumo salvo em ${RESUMO_FILE}`);
-
-// === Classificação de prioridade + exportação CSV + logs
-    const candidatosCSV = [];
-    const dataHoje = new Date().toISOString().split('T')[0];
-
-    for (const [confronto, dados] of Object.entries(quedasResumo)) {
-        const detalhes = dados.detalhes;
-
-        const quedasFortes = detalhes.filter(q => parseFloat(q.percentualQueda) >= 5);
-        const ladoContagem = detalhes.reduce((acc, cur) => {
-            acc[cur.participante] = (acc[cur.participante] || 0) + 1;
-            return acc;
-        }, {});
-        const maisFrequente = Object.entries(ladoContagem).sort((a, b) => b[1] - a[1])[0];
-
-        const prioridadeAlta = (
-            quedasFortes.length >= 3 &&
-            maisFrequente[1] >= 3
-        );
-
-        dados.prioridadeAlta = prioridadeAlta;
-
-        candidatosCSV.push([
-            dataHoje,
-            confronto,
-            dados.liga,
-            dados.totalQuedas,
-            prioridadeAlta
-        ]);
-    }
-
-// === Log personalizado por prioridade
-    /*console.log(`\n🚀 Jogos com ALTA PRIORIDADE (potencial EV):`);
-    let algumPrioritario = false;
-    Object.entries(quedasResumo).forEach(([confronto, data]) => {
-        if (data.prioridadeAlta) {
-            console.log(`✅ ${confronto} (${data.liga}) - ${data.totalQuedas} quedas`);
-            algumPrioritario = true;
-        }
-    });*/
-    /*if (!algumPrioritario) {
-        console.log('⚠️ Nenhum jogo com prioridade alta nesta rodada.');
-    }/*
-
-    /*console.log(`\n📄 Demais jogos monitorados:`);
-    Object.entries(quedasResumo).forEach(([confronto, data]) => {
-        if (!data.prioridadeAlta) {
-            console.log(`📍 ${confronto} (${data.liga}) - ${data.totalQuedas} quedas`);
-        }
-    });*/
-
-    console.log("✅ Acabei \n")
-
-// === Exporta CSV com todos os jogos monitorados
-    const header = 'data,confronto,liga,totalQuedas,prioridadeAlta\n';
-    const linhas = candidatosCSV.map(l => l.join(',')).join('\n');
-    await fs.writeFile('candidatos_prioritarios.csv', header + linhas);
-    console.log(`📁 Candidatos com prioridade exportados para candidatos_prioritarios.csv`);
-
-// Continua o loop
-    setTimeout(monitor, 1000);
-
 }
 
-monitor();
+async function fetchMarketRelated(matchupId) {
+    const url = `https://guest.api.arcadia.pinnacle.com/0.1/matchups/${matchupId}/markets/related/straight`;
+    const headers = { 'x-api-key': API_KEY };
+    try {
+        const res = await axiosInstance.get(url);
+        return res.data;
+    } catch (err) {
+        console.error(`Erro ao buscar market related do matchup ${matchupId}:`, err.message);
+        return [];
+    }
+}
+
+async function saveRawData(matchupId, relatedData, marketData) {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const relatedPath = path.join(RAW_DIR, `related_${matchupId}_${timestamp}.json`);
+    const marketPath = path.join(RAW_DIR, `pinnacle_${matchupId}_${timestamp}.json`);
+    
+    await fs.mkdir(RAW_DIR, { recursive: true });
+    await fs.writeFile(relatedPath, JSON.stringify(relatedData, null, 2));
+    await fs.writeFile(marketPath, JSON.stringify(marketData, null, 2));
+}
+
+async function processOdds(relatedData, marketData) {
+    const matchupIdToTipo = new Map();
+    const matchupIdToTeams = new Map();
+    
+    for (const entry of relatedData) {
+        const tipo = getTipoFromMarketType(entry.league?.name || '');
+        matchupIdToTipo.set(entry.id, tipo);
+        
+        // Extrai os nomes dos times
+        if (entry.participants) {
+            const homeTeam = entry.participants.find(p => p.alignment === 'home')?.name;
+            const awayTeam = entry.participants.find(p => p.alignment === 'away')?.name;
+            if (homeTeam && awayTeam) {
+                matchupIdToTeams.set(entry.id, {
+                    home: normalizeTeamName(homeTeam),
+                    away: normalizeTeamName(awayTeam)
+                });
+            }
+        }
+    }
+
+    const classificados = {
+        Gols: [],
+        Escanteios: [],
+        Cartões: [],
+        desconhecido: []
+    };
+
+    for (const market of marketData) {
+        const tipo = matchupIdToTipo.get(market.matchupId) || 'desconhecido';
+        const periodo = market.period === 1 ? '1º Tempo ' : '';
+        const teams = matchupIdToTeams.get(market.matchupId) || { home: 'home', away: 'away' };
+
+        if (['spread', 'total'].includes(market.type)) {
+            for (const price of market.prices) {
+                const participante = price.designation === 'home' ? teams.home : 
+                                   price.designation === 'away' ? teams.away :
+                                   price.designation;
+                
+                classificados[tipo].push({
+                    mercado: `${periodo}${market.type === 'spread' ? 'Handicap' : 'Mais/Menos'}`,
+                    participante: participante,
+                    linha: price.points?.toString() ?? '-',
+                    odd: americanToDecimal(price.price),
+                    matchupId: market.matchupId
+                });
+            }
+        }
+    }
+
+    return classificados;
+}
+
+function normalizeTeamName(name) {
+    return name.toLowerCase()
+        .replace(/[^a-z0-9]/g, '')
+        .trim();
+}
+
+async function monitor() {
+    await fs.mkdir(CLASSIFIED_DIR, { recursive: true });
+    console.log('🔍 Iniciando coleta de odds do Pinnacle...');
+    
+    const leagues = await fetchLeagues();
+    console.log(`📊 Encontradas ${leagues.length} ligas`);
+
+    for (const league of leagues) {
+        console.log(`\n🏆 Processando liga: ${league.name}`);
+        const matchups = await fetchMatchups(league.id);
+        console.log(`📝 Encontrados ${matchups.length} jogos`);
+        
+        const filteredMatchups = options.all ? matchups : matchups.filter(m => isWithinTimeWindow(m.startTime, parseInt(options.hours)));
+        console.log(`📝 Encontrados ${filteredMatchups.length} jogos (${matchups.length} total)`);
+        for (const matchup of filteredMatchups) {
+            if (matchup.isLive) {
+                console.log(`⏭️  Pulando jogo ao vivo: ${matchup.id}`);
+                continue;
+            }
+
+            console.log(`⏰ Horário: ${new Date(matchup.startTime).toLocaleString()}`);
+
+            console.log(`\n🎮 Processando jogo: ${matchup.id}`);
+            
+            // Fetch related and market data
+            const [relatedData, marketData] = await Promise.all([
+                fetchRelated(matchup.id),
+                fetchMarketRelated(matchup.id)
+            ]);
+
+            // Save raw data
+            await saveRawData(matchup.id, relatedData, marketData);
+
+            // Process and save classified odds
+            const classificados = await processOdds(relatedData, marketData);
+            const outputPath = path.join(CLASSIFIED_DIR, `pinnacle_classificado_${matchup.id}.json`);
+            await fs.writeFile(outputPath, JSON.stringify(classificados, null, 2));
+
+            // Random delay between requests
+            /*const delayMs = Math.floor(Math.random() * (DELAY_MAX_MS - DELAY_MIN_MS) + DELAY_MIN_MS);
+            await delay(delayMs);*/
+        }
+    }
+
+    console.log('\n✅ Coleta concluída!');
+}
+
+// Ensure the script runs continuously
+async function run() {
+    while (true) {
+        try {
+            await monitor();
+            // Wait 5 minutes before next collection
+            await delay(5 * 60 * 1000);
+        } catch (error) {
+            console.error('❌ Erro durante a coleta:', error);
+            // Wait 1 minute before retrying on error
+            await delay(60 * 1000);
+        }
+    }
+}
+
+run();

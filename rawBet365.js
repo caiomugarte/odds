@@ -83,7 +83,7 @@ function parseBet365Raw(content) {
 
             if (!linha) continue;
 
-            const participantePad = homeAwayMap.get(currentParticipant.toLowerCase()) || currentParticipant.toLowerCase();
+            const participantePad = currentParticipant.toLowerCase();
 
             mercados.push({
                 mercado: currentMarket,

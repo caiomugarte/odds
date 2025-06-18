@@ -1,58 +1,54 @@
 import chokidar from 'chokidar';
 import { exec } from 'child_process';
 import fs from 'fs';
+import path from 'path';
 
 const paths = {
-    pinnacle: './python/raw_pinnacle',
+    pinnacle: './classified_pinnacle',
     bet365: './python/raw_bet365_asian'
 };
 
 function arquivosProntos() {
-    const hasPinnacle = fs.readdirSync(paths.pinnacle).some(f => f.startsWith('pinnacle_') && f.endsWith('.json'));
-    const hasRelated = fs.readdirSync(paths.pinnacle).some(f => f.startsWith('related_') && f.endsWith('.json'));
-    const hasBet365 = fs.readdirSync(paths.bet365).some(f => f.startsWith('bet365_asian_') && f.endsWith('.txt'));
-    return hasPinnacle && hasRelated && hasBet365;
+    const hasPinnacle = fs.readdirSync(paths.pinnacle).some(f => f.startsWith('pinnacle_classificado_') && f.endsWith('.json'));
+    const hasBet365 = fs.readdirSync(paths.bet365).some(f => f.endsWith('.txt'));
+    return hasPinnacle && hasBet365;
 }
 
 let rodando = false;
+let lastFileSize = 0;
+let fileStableCount = 0;
 
 function rodarScripts() {
     if (rodando) return;
     rodando = true;
 
-    console.log('📦 Arquivos detectados. Rodando processamento...');
+    console.log('📦 Arquivos detectados. Processando Bet365...');
+    
+    // Primeiro processa o arquivo txt
     exec('node rawBet365.js', (err) => {
         if (err) {
-            console.error('Erro no Bet365:', err.message);
+            console.error('Erro no processamento Bet365:', err.message);
             rodando = false;
             return;
         }
-        console.log('✅ rawBet365.js concluído');
+        console.log('✅ Bet365 processado');
 
-        exec('node process_pinnacle.js', (err2) => {
+        // Verifica se o arquivo organized.json foi criado
+        if (!fs.existsSync(path.join(paths.bet365, 'bet365_organized.json'))) {
+            console.error('❌ Arquivo bet365_organized.json não foi criado');
+            rodando = false;
+            return;
+        }
+
+        // Depois procura correspondência no Pinnacle
+        exec('node merge.js', (err2, stdout) => {
             if (err2) {
-                console.error('Erro no Pinnacle:', err2.message);
-                rodando = false;
-                return;
+                console.error('Erro na comparação:', err2.message);
+            } else {
+                console.log('✅ merge.js concluído');
+                console.log(stdout);
             }
-            console.log('✅ process_pinnacle.js concluído');
-
-            const classificadoPath = './python/raw_pinnacle/pinnacle_classificado.json';
-            if (!fs.existsSync(classificadoPath)) {
-                console.error('❌ Arquivo pinnacle_classificado.json não encontrado. Abortando merge.');
-                rodando = false;
-                return;
-            }
-
-            exec('node merge.js', (err3, stdout3) => {
-                if (err3) {
-                    console.error('Erro na comparação:', err3.message);
-                } else {
-                    console.log('✅ merge.js concluído');
-                    console.log(stdout3);
-                }
-                rodando = false; // libera para próxima execução
-            });
+            rodando = false;
         });
     });
 }
@@ -60,11 +56,35 @@ function rodarScripts() {
 let debounceTimeout = null;
 
 console.log('👀 Aguardando arquivos...');
-chokidar.watch([paths.pinnacle, paths.bet365], { ignoreInitial: true }).on('add', (path) => {
+chokidar.watch([paths.pinnacle, paths.bet365], { ignoreInitial: true }).on('add', (filePath) => {
+    // Só processa se for o arquivo txt da Bet365
+    if (!filePath.endsWith('.txt')) return;
+    
     if (debounceTimeout) clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(() => {
-        if (arquivosProntos()) {
-            rodarScripts();
+    
+    // Verifica se o arquivo está estável (não está mais sendo modificado)
+    const checkFileStability = () => {
+        const currentSize = fs.statSync(filePath).size;
+        
+        if (currentSize === lastFileSize) {
+            fileStableCount++;
+            if (fileStableCount >= 3) { // Arquivo estável por 3 verificações
+                if (arquivosProntos()) {
+                    rodarScripts();
+                }
+                return;
+            }
+        } else {
+            fileStableCount = 0;
+            lastFileSize = currentSize;
         }
-    }, 2000); // espera 2 segundos após o último arquivo ser adicionado
+        
+        // Verifica novamente em 2 segundos
+        setTimeout(checkFileStability, 2000);
+    };
+    
+    // Inicia a verificação de estabilidade
+    lastFileSize = fs.statSync(filePath).size;
+    fileStableCount = 0;
+    checkFileStability();
 });

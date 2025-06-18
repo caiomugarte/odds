@@ -90,5 +90,17 @@
   "European U21 Ch": {
     "pinnacle_id": "2639",
     "name": "UEFA - U21 European Championship"
+  },
+  "BRA-COPA-ESPSAN": {
+    "pinnacle_id": "219877",
+    "name": "Brazil - Copa Espirito Santo"
+  },
+  "BRAZILCAMPG2": {
+    "pinnacle_id": "206585",
+    "name": "Brazil - Goiano 2"
+  },
+  "BRAZ-PAULI-CUP": {
+    "pinnacle_id": "191548",
+    "name": "Brazil - Copa Paulista"
   }
 } 

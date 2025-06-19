@@ -310,6 +310,7 @@ function compareOdds(bet365Odds, pinnacleOdds, pinnacleLeagueId = null) {
 
     if (opportunities.length > 0) {
         console.log('\n🎯 Oportunidades encontradas:');
+        opportunities.sort((a, b) => a.bet365.ev - b.bet365.ev);
         opportunities.forEach(opp => {
             console.log(`\n${opp.tipo} - ${opp.mercado} (${opp.linha})`);
             console.log(`Participante: ${opp.participante}`);

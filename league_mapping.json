@@ -102,5 +102,26 @@
   "BRAZ-PAULI-CUP": {
     "pinnacle_id": "191548",
     "name": "Brazil - Copa Paulista"
+  },
+  "CAMP-BRAS-D": {
+    "pinnacle_id": "201371",
+    "name": "Brazil - Serie D"
+  },
+  "ARG-NAC-RL": {
+    "pinnacle_id": "200786",
+    "name": "Argentina Liga Nacional de Reservas"
+  },
+  "ARG-RESRV-LEGUE": {
+    "pinnacle_id": "200786",
+    "name": "Argentina Liga de Reservas"
+  },
+  "URU-TOR-INTER": {
+    "pinnacle_id": "5593"
+  },
+  "CECAFA-CUPW": {
+    "pinnacle_id": "271584"
+  },
+  "Estonia-Esil": {
+    "pinnacle_id": "201775"
   }
 } 

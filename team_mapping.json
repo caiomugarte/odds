@@ -164,5 +164,16 @@
   "americamineiro": "amricamineiro",
   "england": ["inglaterrasub21", "inglaterra"],
   "slovenia": ["eslovniasub21"],
-  "pachuca": ["pachuca"]
+  "pachuca": ["pachuca"],
+  "gremioanapolis": ["grmioanpolis"],
+  "clubatleticomitre": ["clubatlticomitrereservas"],
+  "allboys": ["allboysreservas"],
+  "cadefensoresunidos": ["defensoresunidosreservas"],
+  "deportivoeanol": ["deportivoeanolreservas"],
+  "sanmartnburzaco": ["sanmartindeburzacoreserves"],
+  "ituzaingo": ["caituzaingreservas"],
+  "canuelas":["canuelasfcreservas"],
+  "caprogreso": ["clubatlticoprogreso"],
+  "uganda":["ugandafeminino"],
+  "elva": ["fcelva"]
 }

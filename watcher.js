@@ -59,5 +59,5 @@ chokidar.watch([paths.bet365], { ignoreInitial: true }).on('add', (filePath) => 
                 rodando = false;
             });
         }
-    }, 5000); // 5 segundos de delay
+    }, 6000); // 5 segundos de delay
 });

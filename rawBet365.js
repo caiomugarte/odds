@@ -29,7 +29,7 @@ function parseBet365Raw(content) {
         }
     }
     const getMarketType = (marketName) => {
-        if (marketName.includes('Mais Alternativas')) return 'alternatives';
+        if (marketName.includes('Alternativas')) return 'alternatives';
         if (marketName.includes('Asiático') || marketName.includes('Gols +/-')) return 'asian';
         return 'normal';
     };
@@ -67,14 +67,18 @@ function parseBet365Raw(content) {
 
             let linha = '';
             if (marketType === 'alternatives' && !currentMarket.includes('Handicap')) {
-                // Use um contador único por market+participant
+                // Para mercados alternativos, cada odd corresponde a uma linha específica
+                // Vamos usar a posição da odd para determinar a linha
                 const key = `${currentMarket}|${currentParticipant}`;
                 const count = participantCounters.get(key) || 0;
 
-                if (count >= availableLines.length) continue;
-                linha = availableLines[count];
-
-                participantCounters.set(key, count + 1);
+                if (count < availableLines.length) {
+                    linha = availableLines[count];
+                    participantCounters.set(key, count + 1);
+                } else {
+                    // Se já usamos todas as linhas disponíveis, pula
+                    continue;
+                }
             } else {
                 linha = (parts.find(p => p.startsWith('HD=')) || '').replace('HD=', '').trim();
                 if (!linha) linha = (parts.find(p => p.startsWith('HA=')) || '').replace('HA=', '').trim();

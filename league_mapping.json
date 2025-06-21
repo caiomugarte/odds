@@ -126,5 +126,11 @@
   },
   "SOC-FYGA": {
     "pinnacle_id": "2025"
+  },
+  "Japan J-League": {
+    "pinnacle_id": "2157"
+  },
+  "Norway Tippel": {
+    "pinnacle_id": "2333"
   }
 } 

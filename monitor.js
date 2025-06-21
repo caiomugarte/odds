@@ -320,6 +320,17 @@ function findMatchingGame(bet365Odds, pinnacleOdds) {
     return null;
 }
 
+function printOppotunity(opp) {
+    console.log(`\n${opp.tipo} - ${opp.mercado} (${opp.linha})`);
+    console.log(`Participante: ${opp.participante}`);
+    console.log(`Bet365: ${opp.bet365.odd} (EV: ${opp.bet365.ev}, Quarter Kelly: ${opp.bet365.quarterKelly})`);
+    if (opp.mercado.includes('Alternativas')) {
+        console.log(`Pinnacle: ${opp.pinnacle.odd} (linha: ${opp.pinnacle.matchedLine}) (Opposite: ${opp.pinnacle.oppositeOdd})`);
+    } else {
+        console.log(`Pinnacle: ${opp.pinnacle.odd} (Opposite: ${opp.pinnacle.oppositeOdd})`);
+    }
+}
+
 // Função para comparar odds
 function compareOdds(bet365Odds, pinnacleGame) {
     if (!pinnacleGame) {
@@ -595,18 +606,32 @@ function compareOdds(bet365Odds, pinnacleGame) {
     compareMarkets(bet365Odds.Cartões, pinnacleGame.Cartões, 'Cartões');
 
     if (opportunities.length > 0) {
-        console.log('\n🎯 Oportunidades encontradas:');
-        opportunities.sort((a, b) => a.bet365.ev - b.bet365.ev);
-        opportunities.forEach(opp => {
-            console.log(`\n${opp.tipo} - ${opp.mercado} (${opp.linha})`);
-            console.log(`Participante: ${opp.participante}`);
-            console.log(`Bet365: ${opp.bet365.odd} (EV: ${opp.bet365.ev}, Quarter Kelly: ${opp.bet365.quarterKelly})`);
-            if (opp.mercado.includes('Alternativas')) {
-                console.log(`Pinnacle: ${opp.pinnacle.odd} (linha: ${opp.pinnacle.matchedLine}) (Opposite: ${opp.pinnacle.oppositeOdd})`);
-            } else {
-                console.log(`Pinnacle: ${opp.pinnacle.odd} (Opposite: ${opp.pinnacle.oppositeOdd})`);
-            }
-        });
+        // Separa oportunidades positivas e negativas
+        const positiveOpportunities = opportunities.filter(opp => parseFloat(opp.bet365.ev) > 0);
+        const negativeOpportunities = opportunities.filter(opp => parseFloat(opp.bet365.ev) <= 0);
+        
+        // Ordena cada grupo por EV (maior para menor nas positivas, menor para maior nas negativas)
+        positiveOpportunities.sort((a, b) => parseFloat(b.bet365.ev) - parseFloat(a.bet365.ev));
+        negativeOpportunities.sort((a, b) => parseFloat(a.bet365.ev) - parseFloat(b.bet365.ev));
+        
+        // Imprime oportunidades positivas
+        if (positiveOpportunities.length > 0) {
+            console.log('\n🎯 OPORTUNIDADES POSITIVAS:');
+            positiveOpportunities.forEach(opp => {
+                printOppotunity(opp);
+            });
+        }
+        
+        // Imprime oportunidades negativas
+        if (negativeOpportunities.length > 0) {
+            console.log('\n❌ OPORTUNIDADES NEGATIVAS:');
+            negativeOpportunities.forEach(opp => {
+                printOppotunity(opp);
+            });
+        }
+        
+        // Resumo
+        console.log(`\n📊 RESUMO: ${positiveOpportunities.length} positivas, ${negativeOpportunities.length} negativas`);
     } else {
         console.log('\n❌ Nenhuma oportunidade encontrada');
     }

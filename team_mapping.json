@@ -2,7 +2,6 @@
   "manchestercity": ["man city", "manchester city"],
   "wydadac": ["wac casablanca", "wydad casablanca", "wydad ac"],
   "chapecoense": ["chapecoense"],
-  "ferroviariasp": ["ferroviária", "ferroviária sp"],
   "palmeiras": ["palmeiras"],
   "flamengo": ["flamengo"],
   "santos": ["santos"],
@@ -176,5 +175,11 @@
   "caprogreso": ["clubatlticoprogreso"],
   "uganda":["ugandafeminino"],
   "elva": ["fcelva"],
-  "internazionale":  ["interdemilo"]
+  "internazionale":  ["interdemilo"],
+  "avai": ["ava"],
+  "ferroviaria": ["ferroviria"],
+  "portugal": ["portugalsub21"],
+  "ain": ["eanhasub21"],
+  "curacao": ["curao"],
+  "kfumoslo": ["kfum"]
 }

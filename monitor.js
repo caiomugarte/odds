@@ -66,7 +66,13 @@ function extractLeagueFromRaw() {
 // Função para normalizar linhas
 function normalizeLine(line) {
     if (!line || line === '-') return '0';
-    return line.toString().trim();
+    
+    // Converte para string e remove espaços
+    const normalized = line.toString().trim();
+    
+    // Para mercados alternativos, é importante preservar a linha exata
+    // pois cada odd diferente corresponde a uma linha diferente
+    return normalized;
 }
 
 // Função para normalizar nomes de mercados
@@ -364,6 +370,19 @@ function compareOdds(bet365Odds, pinnacleGame) {
             console.log(`  "${m}" -> "${normalized}"`);
         });
 
+        // Debug: Mostra mercados da Pinnacle para comparação
+        const uniquePinnacleMarkets = [...new Set(pinnacleMarkets.map(m => m.mercado))];
+        console.log(`🔍 DEBUG - Mercados únicos da Pinnacle (${uniquePinnacleMarkets.length}):`);
+        uniquePinnacleMarkets.slice(0, 10).forEach(m => {
+            const normalized = normalizeMarketName(m);
+            console.log(`  "${m}" -> "${normalized}"`);
+        });
+
+        // Debug: Mostra linhas únicas da Pinnacle para mercados mais/menos
+        const pinnacleMaisMenos = pinnacleMarkets.filter(m => normalizeMarketName(m.mercado).includes('mais/menos'));
+        const uniquePinnacleLines = [...new Set(pinnacleMaisMenos.map(m => m.linha))];
+        console.log(`🔍 DEBUG - Linhas únicas da Pinnacle (mais/menos): ${uniquePinnacleLines.join(', ')}`);
+
         // Debug: Conta quantos mercados alternativos passaram pela comparação
         let alternativasProcessed = 0;
         let alternativasWithMatches = 0;
@@ -376,75 +395,168 @@ function compareOdds(bet365Odds, pinnacleGame) {
                 alternativasProcessed++;
             }
             
-            const pinnacleOdd = pinnacleMarkets.find(p => {
-                const isPinnacleFirstHalf = isFirstHalfMarket(p.mercado);
-                
-                // Só compara se ambos forem do mesmo tipo (primeiro tempo ou jogo todo)
-                if (isBet365FirstHalf !== isPinnacleFirstHalf) return false;
-                
-                // Normaliza os nomes dos mercados e participantes para comparação
-                const bet365Market = normalizeMarketName(bet365Odd.mercado);
-                const pinnacleMarket = normalizeMarketName(p.mercado);
-                
-                // Verifica se são do mesmo tipo de mercado
-                if (!isSameMarketType(bet365Market, pinnacleMarket)) return false;
-                
-                const bet365Participant = normalizeParticipant(bet365Odd.participante);
-                const pinnacleParticipant = normalizeParticipant(p.participante);
-                
-                // Normaliza as linhas para comparação
-                const bet365Line = normalizeLine(bet365Odd.linha);
-                const pinnacleLine = normalizeLine(p.linha);
-                
-                const mercadoMatch = bet365Market === pinnacleMarket;
-                const participanteMatch = bet365Participant === pinnacleParticipant;
-                const linhaMatch = pinnacleLine === bet365Line;
-                
-                if (mercadoMatch && participanteMatch && linhaMatch) {
-                    console.log(`✅ Match encontrado: ${tipo} - ${bet365Odd.mercado} (${bet365Odd.linha})`);
-                    console.log(`   Bet365: ${bet365Odd.odd} | Pinnacle: ${p.odd}`);
+            let pinnacleOdd;
+            
+            // Para mercados alternativos, usa lógica diferente
+            if (bet365Odd.mercado.includes('Alternativas')) {
+                // Para alternativas, encontra a linha da Pinnacle que corresponde melhor à linha da Bet365
+                const matchingPinnacleOdds = pinnacleMarkets.filter(p => {
+                    const isPinnacleFirstHalf = isFirstHalfMarket(p.mercado);
+                    const isBet365FirstHalf = isFirstHalfMarket(bet365Odd.mercado);
+                    if (isBet365FirstHalf !== isPinnacleFirstHalf) return false;
                     
-                    // Debug: Conta matches de alternativas
-                    if (bet365Odd.mercado.includes('Alternativas')) {
-                        alternativasWithMatches++;
-                    }
-                }
+                    const bet365Market = normalizeMarketName(bet365Odd.mercado);
+                    const pinnacleMarket = normalizeMarketName(p.mercado);
+                    const bet365Participant = normalizeParticipant(bet365Odd.participante);
+                    const pinnacleParticipant = normalizeParticipant(p.participante);
+                    
+                    return bet365Market === pinnacleMarket && bet365Participant === pinnacleParticipant;
+                });
                 
-                return mercadoMatch && participanteMatch && linhaMatch;
-            });
+                if (matchingPinnacleOdds.length > 0) {
+                    // Para mercados alternativos, verifica se a linha da Bet365 existe na Pinnacle
+                    const bet365Line = normalizeLine(bet365Odd.linha);
+                    const exactLineMatch = matchingPinnacleOdds.find(p => normalizeLine(p.linha) === bet365Line);
+                    
+                    if (exactLineMatch) {
+                        console.log(`✅ Match Alternativa encontrado: ${tipo} - ${bet365Odd.mercado} (${bet365Odd.linha}) vs Pinnacle (${exactLineMatch.linha})`);
+                        console.log(`   Bet365: ${bet365Odd.odd} | Pinnacle: ${exactLineMatch.odd}`);
+                        console.log(`   Bet365 Participante: ${bet365Odd.participante} | Pinnacle Participante: ${exactLineMatch.participante}`);
+                        
+                        alternativasWithMatches++;
+                        pinnacleOdd = exactLineMatch;
+                    } else {
+                        console.log(`❌ Match Alternativa rejeitado: ${tipo} - ${bet365Odd.mercado} (${bet365Odd.linha}) - linha não encontrada na Pinnacle`);
+                        pinnacleOdd = undefined;
+                    }
+                } else {
+                    pinnacleOdd = undefined;
+                }
+            } else {
+                // Para mercados normais, usa a lógica original
+                pinnacleOdd = pinnacleMarkets.find(p => {
+                    const isPinnacleFirstHalf = isFirstHalfMarket(p.mercado);
+                    const isBet365FirstHalf = isFirstHalfMarket(bet365Odd.mercado);
+                    
+                    // Só compara se ambos forem do mesmo tipo (primeiro tempo ou jogo todo)
+                    if (isBet365FirstHalf !== isPinnacleFirstHalf) return false;
+                    
+                    // Normaliza os nomes dos mercados e participantes para comparação
+                    const bet365Market = normalizeMarketName(bet365Odd.mercado);
+                    const pinnacleMarket = normalizeMarketName(p.mercado);
+                    
+                    // Verifica se são do mesmo tipo de mercado
+                    if (!isSameMarketType(bet365Market, pinnacleMarket)) return false;
+                    
+                    const bet365Participant = normalizeParticipant(bet365Odd.participante);
+                    const pinnacleParticipant = normalizeParticipant(p.participante);
+                    
+                    // Para mercados normais, compara linha também
+                    const bet365Line = normalizeLine(bet365Odd.linha);
+                    const pinnacleLine = normalizeLine(p.linha);
+                    
+                    const mercadoMatch = bet365Market === pinnacleMarket;
+                    const participanteMatch = bet365Participant === pinnacleParticipant;
+                    const linhaMatch = pinnacleLine === bet365Line;
+                    
+                    if (mercadoMatch && participanteMatch && linhaMatch) {
+                        console.log(`✅ Match encontrado: ${tipo} - ${bet365Odd.mercado} (${bet365Odd.linha})`);
+                        console.log(`   Bet365: ${bet365Odd.odd} | Pinnacle: ${p.odd}`);
+                    }
+                    
+                    return mercadoMatch && participanteMatch && linhaMatch;
+                });
+            }
 
             if (pinnacleOdd && bet365Odd.odd > pinnacleOdd.odd) {
                 // Encontra a odd contrária na Pinnacle
-                const pinnacleOppositeOdd = pinnacleMarkets.find(p => {
-                    const isPinnacleFirstHalf = isFirstHalfMarket(p.mercado);
-                    if (isPinnacleFirstHalf !== isFirstHalfMarket(pinnacleOdd.mercado)) return false;
+                let pinnacleOppositeOdd;
+                let matchedLineForOpposite;
+                
+                if (bet365Odd.mercado.includes('Alternativas')) {
+                    // Para mercados alternativos, usa a linha que foi realmente correspondida
+                    matchedLineForOpposite = pinnacleOdd.linha;
                     
-                    const pinnacleMarket = normalizeMarketName(p.mercado);
-                    const pinnacleParticipant = normalizeParticipant(p.participante);
-                    const pinnacleLine = normalizeLine(p.linha);
-                    
-                    // Verifica se é o mesmo mercado mas participante diferente
-                    const sameMarket = pinnacleMarket === normalizeMarketName(pinnacleOdd.mercado);
-                    const differentParticipant = pinnacleParticipant !== normalizeParticipant(pinnacleOdd.participante);
-                    
-                    // Para handicap, a linha deve ser invertida
-                    if (pinnacleMarket.includes('handicap')) {
-                        const currentLine = parseFloat(pinnacleOdd.linha);
-                        const oppositeLine = parseFloat(pinnacleLine);
-                        const lineInverted = Math.abs(currentLine) === Math.abs(oppositeLine) && 
-                                           Math.sign(currentLine) !== Math.sign(oppositeLine);
-                        
-                        return sameMarket && differentParticipant && lineInverted;
+                    // Debug: Verifica se matchedLine está definido
+                    if (!matchedLineForOpposite) {
+                        console.log(`❌ DEBUG - matchedLine não está definido para ${bet365Odd.mercado} (${bet365Odd.linha})`);
+                        continue;
                     }
                     
-                    // Para outros mercados (mais/menos), a linha deve ser a mesma
-                    return sameMarket && differentParticipant && pinnacleLine === normalizeLine(pinnacleOdd.linha);
-                })?.odd;
+                    // Debug: Verifica se matchedLine está sendo definido corretamente
+                    console.log(`🔍 DEBUG - Verificando matchedLine: ${matchedLineForOpposite} (original: ${pinnacleOdd.linha})`);
+                    console.log(`🔍 DEBUG - Participante atual: ${pinnacleOdd.participante}`);
+                    
+                    pinnacleOppositeOdd = pinnacleMarkets.find(p => {
+                        const isPinnacleFirstHalf = isFirstHalfMarket(p.mercado);
+                        if (isPinnacleFirstHalf !== isFirstHalfMarket(pinnacleOdd.mercado)) return false;
+                        
+                        const pinnacleMarket = normalizeMarketName(p.mercado);
+                        const pinnacleParticipant = normalizeParticipant(p.participante);
+                        const pinnacleLine = normalizeLine(p.linha);
+                        
+                        // Verifica se é o mesmo mercado, mesma linha, mas participante diferente
+                        const sameMarket = pinnacleMarket === normalizeMarketName(pinnacleOdd.mercado);
+                        const sameLine = pinnacleLine === normalizeLine(matchedLineForOpposite);
+                        const differentParticipant = pinnacleParticipant !== normalizeParticipant(pinnacleOdd.participante);
+                        
+                        // Debug: Mostra detalhes da busca da odd contrária
+                        if (sameMarket && sameLine) {
+                            console.log(`🔍 DEBUG - Candidato para odd contrária: ${p.participante} (${p.linha}) - sameMarket: ${sameMarket}, sameLine: ${sameLine}, differentParticipant: ${differentParticipant}`);
+                        }
+                        
+                        return sameMarket && sameLine && differentParticipant;
+                    })?.odd;
+                    
+                    // Debug: Mostra a odd contrária encontrada
+                    if (pinnacleOppositeOdd) {
+                        console.log(`🔍 DEBUG - Odd contrária encontrada para linha ${matchedLineForOpposite}: ${pinnacleOppositeOdd}`);
+                    } else {
+                        console.log(`❌ DEBUG - Nenhuma odd contrária encontrada para linha ${matchedLineForOpposite}`);
+                    }
+                } else {
+                    // Para mercados normais, usa a lógica original
+                    pinnacleOppositeOdd = pinnacleMarkets.find(p => {
+                        const isPinnacleFirstHalf = isFirstHalfMarket(p.mercado);
+                        if (isPinnacleFirstHalf !== isFirstHalfMarket(pinnacleOdd.mercado)) return false;
+                        
+                        const pinnacleMarket = normalizeMarketName(p.mercado);
+                        const pinnacleParticipant = normalizeParticipant(p.participante);
+                        const pinnacleLine = normalizeLine(p.linha);
+                        
+                        // Verifica se é o mesmo mercado mas participante diferente
+                        const sameMarket = pinnacleMarket === normalizeMarketName(pinnacleOdd.mercado);
+                        const differentParticipant = pinnacleParticipant !== normalizeParticipant(pinnacleOdd.participante);
+                        
+                        // Para handicap, a linha deve ser invertida
+                        if (pinnacleMarket.includes('handicap')) {
+                            const currentLine = parseFloat(pinnacleOdd.linha);
+                            const oppositeLine = parseFloat(pinnacleLine);
+                            const lineInverted = Math.abs(currentLine) === Math.abs(oppositeLine) && 
+                                               Math.sign(currentLine) !== Math.sign(oppositeLine);
+                            
+                            return sameMarket && differentParticipant && lineInverted;
+                        }
+                        
+                        // Para outros mercados (mais/menos), a linha deve ser a mesma
+                        return sameMarket && differentParticipant && pinnacleLine === normalizeLine(pinnacleOdd.linha);
+                    })?.odd;
+                }
 
                 if (pinnacleOppositeOdd) {
                     // Calcula EV usando a odd da Bet365 e as odds da Pinnacle (incluindo overround)
                     const ev = calculateEV(bet365Odd.odd, pinnacleOdd.odd, pinnacleOppositeOdd);
                     const quarterKelly = calculateQuarterKelly(bet365Odd.odd, ev);
+
+                    // Debug: Mostra detalhes da oportunidade encontrada
+                    if (bet365Odd.mercado.includes('Alternativas')) {
+                        console.log(`🎯 OPORTUNIDADE ALTERNATIVA: ${tipo} - ${bet365Odd.mercado} (${bet365Odd.linha})`);
+                        console.log(`   Participante: ${bet365Odd.participante}`);
+                        console.log(`   Bet365: ${bet365Odd.odd} (linha: ${bet365Odd.linha})`);
+                        console.log(`   Pinnacle: ${pinnacleOdd.odd} (linha: ${matchedLineForOpposite})`);
+                        console.log(`   Opposite: ${pinnacleOppositeOdd} (linha: ${matchedLineForOpposite})`);
+                        console.log(`   EV: ${(ev * 100).toFixed(2)}%, Quarter Kelly: ${(quarterKelly * 100).toFixed(2)}%`);
+                    }
 
                     opportunities.push({
                         tipo: tipo,
@@ -458,10 +570,16 @@ function compareOdds(bet365Odds, pinnacleGame) {
                         },
                         pinnacle: {
                             odd: pinnacleOdd.odd,
-                            oppositeOdd: pinnacleOppositeOdd
+                            oppositeOdd: pinnacleOppositeOdd,
+                            matchedLine: bet365Odd.mercado.includes('Alternativas') ? matchedLineForOpposite : pinnacleOdd.linha
                         }
                     });
                 }
+            }
+            
+            // Se encontrou um match e processou a oportunidade, pula para a próxima bet365Odd
+            if (pinnacleOdd) {
+                continue;
             }
         }
 
@@ -483,7 +601,11 @@ function compareOdds(bet365Odds, pinnacleGame) {
             console.log(`\n${opp.tipo} - ${opp.mercado} (${opp.linha})`);
             console.log(`Participante: ${opp.participante}`);
             console.log(`Bet365: ${opp.bet365.odd} (EV: ${opp.bet365.ev}, Quarter Kelly: ${opp.bet365.quarterKelly})`);
-            console.log(`Pinnacle: ${opp.pinnacle.odd} (Opposite: ${opp.pinnacle.oppositeOdd})`);
+            if (opp.mercado.includes('Alternativas')) {
+                console.log(`Pinnacle: ${opp.pinnacle.odd} (linha: ${opp.pinnacle.matchedLine}) (Opposite: ${opp.pinnacle.oppositeOdd})`);
+            } else {
+                console.log(`Pinnacle: ${opp.pinnacle.odd} (Opposite: ${opp.pinnacle.oppositeOdd})`);
+            }
         });
     } else {
         console.log('\n❌ Nenhuma oportunidade encontrada');

@@ -506,17 +506,23 @@ function compareOdds(bet365Odds, pinnacleGame) {
                         const pinnacleParticipant = normalizeParticipant(p.participante);
                         const pinnacleLine = normalizeLine(p.linha);
                         
-                        // Verifica se é o mesmo mercado, mesma linha, mas participante diferente
+                        // Verifica se é o mesmo mercado mas participante diferente
                         const sameMarket = pinnacleMarket === normalizeMarketName(pinnacleOdd.mercado);
-                        const sameLine = pinnacleLine === normalizeLine(matchedLineForOpposite);
                         const differentParticipant = pinnacleParticipant !== normalizeParticipant(pinnacleOdd.participante);
                         
-                        // Debug: Mostra detalhes da busca da odd contrária
-                        if (sameMarket && sameLine) {
-                            console.log(`🔍 DEBUG - Candidato para odd contrária: ${p.participante} (${p.linha}) - sameMarket: ${sameMarket}, sameLine: ${sameLine}, differentParticipant: ${differentParticipant}`);
+                        // Para mercados alternativos de handicap, a linha deve ser invertida
+                        if (pinnacleMarket.includes('handicap')) {
+                            const currentLine = parseFloat(matchedLineForOpposite);
+                            const oppositeLine = parseFloat(pinnacleLine);
+                            const lineInverted = Math.abs(currentLine) === Math.abs(oppositeLine) && 
+                                               Math.sign(currentLine) !== Math.sign(oppositeLine);
+                            
+                            return sameMarket && differentParticipant && lineInverted;
                         }
                         
-                        return sameMarket && sameLine && differentParticipant;
+                        // Para outros mercados alternativos (mais/menos), a linha deve ser a mesma
+                        const sameLine = pinnacleLine === normalizeLine(matchedLineForOpposite);
+                        return sameMarket && differentParticipant && sameLine;
                     })?.odd;
                     
                     // Debug: Mostra a odd contrária encontrada

@@ -132,5 +132,62 @@
   },
   "Norway Tippel": {
     "pinnacle_id": "2333"
+  },
+  "BRA-CAMP-PARA2": {
+    "pinnacle_id": "198925"
+  },
+  "BRA-CAMP-A2-W": {
+    "pinnacle_id": ""
+  },
+  "BRAZ-PAULIS-WOM": {
+    "pinnacle_id": "201915"
+  },
+  "Bolivia Clau": {
+    "pinnacle_id": "5595"
+  },
+  "CHL-PRIMERA": {
+    "pinnacle_id": "1857"
+  },
+  "COLOM-PRIM-B": {
+    "pinnacle_id": "10921"
+  },
+  "DOMINICA-PREM": {
+    "pinnacle_id": "227303"
+  },
+  "ECU Apertura": {
+    "pinnacle_id": "5598"
+  },
+  "USA-MLS-NPL": {
+    "pinnacle_id": "219120"
+  },
+  "BRAZCAMPCC": {
+    "pinnacle_id": "214754"
+  },
+  "BRAZILIAN-MATCH": {
+    "pinnacle_id": "216728"
+  },
+  "ARGENT_TORNEO_A": {
+    "pinnacle_id": "202608"
+  },
+  "ARG-PRI-B-METRO": {
+    "pinnacle_id": "201151"
+  },
+  "PARAGUAY-INT": {
+    "pinnacle_id": "201859"
+  },
+  "URUGUAY-RES-LEA": {
+    "pinnacle_id": "214839"
+  },
+  "SOC-WOM-INT": {
+    "pinnacle_id": "2116"
+  },
+  "ARG-CUP": {
+    "pinnacle_id": "1741"
+  },
+  "China Sup Lge": {
+    "pinnacle_id": "6417"
+  },
+  "MLS": {
+    "pinnacle_id": "2663"
   }
 } 

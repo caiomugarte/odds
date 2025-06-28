@@ -324,12 +324,25 @@ function printOppotunity(opp) {
     console.log(`\n${opp.tipo} - ${opp.mercado} (${opp.linha})`);
     console.log(`Participante: ${opp.participante}`);
     console.log(`Bet365: ${opp.bet365.odd} (EV: ${opp.bet365.ev}, Quarter Kelly: ${opp.bet365.quarterKelly})`);
+
+    const kellyPercent = parseFloat(opp.bet365.quarterKelly);
+    const stake = Math.round(kellyPercent * 4) / 4; // Arredonda para 0.25 mais próximo
+
     if (opp.mercado.includes('Alternativas')) {
         console.log(`Pinnacle: ${opp.pinnacle.odd} (linha: ${opp.pinnacle.matchedLine}) (Opposite: ${opp.pinnacle.oppositeOdd})`);
     } else {
         console.log(`Pinnacle: ${opp.pinnacle.odd} (Opposite: ${opp.pinnacle.oppositeOdd})`);
     }
+
+    const hoje = new Date().getDate(); // dia do mês
+    const participanteFormatado = capitalizeWords(opp.participante);
+    const linhaFormatada = normalizeLine(opp.linha);
+    const descricao = `${participanteFormatado} ${linhaFormatada.startsWith('-') ? linhaFormatada : '+' + linhaFormatada}`;
+
+    const copyLine = `${hoje};Eu;Bet365;SIMPLES;${descricao};PRÉ LIVE;Futebol ⚽️;${opp.bet365.odd.toLocaleString('pt-BR')};${stake.toLocaleString('pt-BR')}`;
+    console.log('📋 COPIAR PARA PLANILHA:\n' + copyLine);
 }
+
 
 // Função para comparar odds
 function compareOdds(bet365Odds, pinnacleGame) {
@@ -613,13 +626,18 @@ function compareOdds(bet365Odds, pinnacleGame) {
 
     if (opportunities.length > 0) {
         // Separa oportunidades positivas e negativas
-        const positiveOpportunities = opportunities.filter(opp => parseFloat(opp.bet365.ev) > 0);
+        const positiveOpportunities = opportunities.filter(opp => {
+            const ev = parseFloat(opp.bet365.ev);
+            const kelly = parseFloat(opp.bet365.quarterKelly);
+            return ev >= 3 && kelly >= 0.25;
+        });
         const negativeOpportunities = opportunities.filter(opp => parseFloat(opp.bet365.ev) <= 0);
         
         // Ordena cada grupo por EV (maior para menor nas positivas, menor para maior nas negativas)
         positiveOpportunities.sort((a, b) => parseFloat(b.bet365.ev) - parseFloat(a.bet365.ev));
         negativeOpportunities.sort((a, b) => parseFloat(a.bet365.ev) - parseFloat(b.bet365.ev));
-        
+
+
         // Imprime oportunidades positivas
         if (positiveOpportunities.length > 0) {
             console.log('\n🎯 OPORTUNIDADES POSITIVAS:');
@@ -629,18 +647,25 @@ function compareOdds(bet365Odds, pinnacleGame) {
         }
         
         // Imprime oportunidades negativas
-        if (negativeOpportunities.length > 0) {
+        /*if (negativeOpportunities.length > 0) {
             console.log('\n❌ OPORTUNIDADES NEGATIVAS:');
             negativeOpportunities.forEach(opp => {
                 printOppotunity(opp);
             });
-        }
+        }*/
         
         // Resumo
         console.log(`\n📊 RESUMO: ${positiveOpportunities.length} positivas, ${negativeOpportunities.length} negativas`);
     } else {
         console.log('\n❌ Nenhuma oportunidade encontrada');
     }
+}
+
+function capitalizeWords(str) {
+    return str
+        .split(' ')
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(' ');
 }
 
 // Função principal para buscar e comparar odds
@@ -672,8 +697,8 @@ async function searchAndCompareOdds() {
         console.log(`📝 Encontrados ${matchups.length} jogos na liga`);
 
         // Filtra jogos próximos (até 24 horas)
-        const filteredMatchups = matchups.filter(m => isWithinTimeWindow(m.startTime, 96));
-        console.log(`📅 Filtrados ${filteredMatchups.length} jogos próximos (próximos 96h)`);
+        const filteredMatchups = matchups.filter(m => isWithinTimeWindow(m.startTime, 170));
+        console.log(`📅 Filtrados ${filteredMatchups.length} jogos próximos (próximos 170h)`);
 
         // Extrai o nome do time da Bet365 para filtrar
         const bet365Handicap = bet365Odds.Gols.find(o => o.mercado === 'Handicap Asiático');

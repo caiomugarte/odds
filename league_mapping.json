@@ -189,5 +189,137 @@
   },
   "MLS": {
     "pinnacle_id": "2663"
+  },
+  "BOLIV-COPAD-PRO": {
+    "pinnacle_id": "197206"
+  },
+  "COLOMBIA-PRIM-A": {
+    "pinnacle_id": "5591"
+  },
+  "ECU-PRIMERA-B": {
+    "pinnacle_id": "197248"
+  },
+  "USA-USL-PRO": {
+    "pinnacle_id": "201065"
+  },
+  "COPA-BRAZIL-RIO": {
+    "pinnacle_id": "191543"
+  },
+  "ARG-C-SANTA-FE": {
+    "pinnacle_id": "201979"
+  },
+  "CHL-PRI-DIV-WOM": {
+    "pinnacle_id": "220243"
+  },
+  "USAUSLLEAGUE": {
+    "pinnacle_id": "205322"
+  },
+  "PARAGUAY-CUP": {
+    "pinnacle_id": "202152"
+  },
+  "PERU-PRIMERA": {
+    "pinnacle_id": "2366"
+  },
+  "Venez Cup": {
+    "pinnacle_id": "5597"
+  },
+  "Finnish Veikkau": {
+    "pinnacle_id": "2024"
+  },
+  "Finnish Ykk": {
+    "pinnacle_id": "234884"
+  },
+  "Finn Kakk Grp B": {
+    "pinnacle_id": "228087"
+  },
+  "FISLAND_LW": {
+    "pinnacle_id": "209893"
+  },
+  "IRELAN-PREM-DIV": {
+    "pinnacle_id": "2120"
+  },
+  "IRELA-FIRST-DIV": {
+    "pinnacle_id": "2123"
+  },
+  "Iceland Prem": {
+    "pinnacle_id": "2102"
+  },
+  "Iceland 1 Delid": {
+    "pinnacle_id": "2100"
+  },
+  "ICE-WOM1-DEI": {
+    "pinnacle_id": "197236"
+  },
+  "Latvian Vars": {
+    "pinnacle_id": "2203"
+  },
+  "Norwegian Cup": {
+    "pinnacle_id": "2280"
+  },
+  "Sweden Superett": {
+    "pinnacle_id": "2476"
+  },
+  "Swedish 1.div N": {
+    "pinnacle_id": "2510"
+  },
+  "Swedish 1.div S": {
+    "pinnacle_id": "2513"
+  },
+  "EUR-FRIENDLIES": {
+    "pinnacle_id": "1863"
+  },
+  "S-KOREA-KL-1": {
+    "pinnacle_id": "207551"
+  },
+  "JAPAN-J3-LEAG": {
+    "pinnacle_id": "10078"
+  },
+  "LEBANONLEAGUE": {
+    "pinnacle_id": "2205"
+  },
+  "MYANMAR-U21-LG": {
+    "pinnacle_id": "264033"
+  },
+  "TANZA-PREM-LEAG": {
+    "pinnacle_id": "210948"
+  },
+  "VIETNAM-CUP": {
+    "pinnacle_id": "9253"
+  },
+  "Camp-Gauc-2": {
+    "pinnacle_id": "201007"
+  },
+  "Swedish Allsven": {
+    "pinnacle_id": "1728"
+  },
+  "USLWLW": {
+    "pinnacle_id": "219811"
+  },
+  "CHINA-DIV2": {
+    "pinnacle_id": "213349"
+  },
+  "URUGUAY-SEG": {
+    "pinnacle_id": "205369"
+  },
+  "EST-MEIST": {
+    "pinnacle_id": "1989"
+  },
+  "Fin Kakk Grp A": {
+    "pinnacle_id": "228086"
+  },
+  "Finn Kakk Grp C": {
+    "pinnacle_id": "228088"
+  },
+  "GEORG-SUP-CUP": {
+    "pinnacle_id": "212164"
+  },
+  "FAROE-PREM": {
+    "pinnacle_id": "201777"
+  },
+  "MONGOLIA-PREM": {
+    "pinnacle_id": "201951"
+  },
+  "UKBEK-PFL": {
+    "pinnacle_id": "202026"
   }
 } 

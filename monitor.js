@@ -269,6 +269,7 @@ async function processOdds(relatedData, marketData) {
         const tipo = matchupIdToTipo.get(market.matchupId) || 'desconhecido';
         const periodo = market.period === 1 ? '1º Tempo ' : '';
         const teams = matchupIdToTeams.get(market.matchupId) || { home: 'home', away: 'away' };
+        const maxLimit = (market.limits?.find(l => l.type === 'maxRiskStake')?.amount)/100;
 
         if (['spread', 'total'].includes(market.type)) {
             for (const price of market.prices) {
@@ -281,6 +282,7 @@ async function processOdds(relatedData, marketData) {
                     participante: participante,
                     linha: price.points?.toString() ?? '-',
                     odd: americanToDecimal(price.price),
+                    limit: maxLimit,
                     matchupId: market.matchupId
                 });
             }
@@ -321,7 +323,7 @@ function findMatchingGame(bet365Odds, pinnacleOdds) {
 }
 
 function printOppotunity(opp) {
-    console.log(`\n${opp.tipo} - ${opp.mercado} (${opp.linha})`);
+    console.log(`\n${opp.tipo} - ${opp.mercado} (${opp.linha}) com limite: ${opp.pinnacle.limit}`);
     console.log(`Participante: ${opp.participante}`);
     console.log(`Bet365: ${opp.bet365.odd} (EV: ${opp.bet365.ev}, Quarter Kelly: ${opp.bet365.quarterKelly})`);
 
@@ -574,9 +576,13 @@ function compareOdds(bet365Odds, pinnacleGame) {
                 }
 
                 if (pinnacleOppositeOdd) {
-                    // Calcula EV usando a odd da Bet365 e as odds da Pinnacle (incluindo overround)
-                    const ev = calculateEV(bet365Odd.odd, pinnacleOdd.odd, pinnacleOppositeOdd);
-                    const quarterKelly = calculateQuarterKelly(bet365Odd.odd, ev);
+                    const limit = pinnacleOdd.limit;
+                    const { fairProbs, Z } = calculateFairProbabilitiesShin([pinnacleOdd.odd, pinnacleOppositeOdd], limit);
+                    const fairProb = fairProbs[0]; // correspondente à sua seleção
+                    const ev = calculateEVWithFairProb(bet365Odd.odd, fairProb);
+                    const kellyFraction = getKellyFractionByZ(Z);
+                    const octKelly = calculateOctKelly(bet365Odd.odd, ev, kellyFraction);
+
 
                     // Debug: Mostra detalhes da oportunidade encontrada
                     if (bet365Odd.mercado.includes('Alternativas')) {
@@ -585,7 +591,7 @@ function compareOdds(bet365Odds, pinnacleGame) {
                         console.log(`   Bet365: ${bet365Odd.odd} (linha: ${bet365Odd.linha})`);
                         console.log(`   Pinnacle: ${pinnacleOdd.odd} (linha: ${matchedLineForOpposite})`);
                         console.log(`   Opposite: ${pinnacleOppositeOdd} (linha: ${matchedLineForOpposite})`);
-                        console.log(`   EV: ${(ev * 100).toFixed(2)}%, Quarter Kelly: ${(quarterKelly * 100).toFixed(2)}%`);
+                        console.log(`   EV: ${(ev * 100).toFixed(2)}%, Oct Kelly: ${(octKelly * 100).toFixed(2)}%`);
                     }
 
                     opportunities.push({
@@ -596,12 +602,13 @@ function compareOdds(bet365Odds, pinnacleGame) {
                         bet365: {
                             odd: bet365Odd.odd,
                             ev: (ev * 100).toFixed(2) + '%',
-                            quarterKelly: (quarterKelly * 100).toFixed(2) + '%'
+                            quarterKelly: (octKelly * 100).toFixed(2) + '%'
                         },
                         pinnacle: {
                             odd: pinnacleOdd.odd,
                             oppositeOdd: pinnacleOppositeOdd,
-                            matchedLine: bet365Odd.mercado.includes('Alternativas') ? matchedLineForOpposite : pinnacleOdd.linha
+                            matchedLine: bet365Odd.mercado.includes('Alternativas') ? matchedLineForOpposite : pinnacleOdd.linha,
+                            limit: pinnacleOdd.limit
                         }
                     });
                 }
@@ -647,12 +654,12 @@ function compareOdds(bet365Odds, pinnacleGame) {
         }
         
         // Imprime oportunidades negativas
-        /*if (negativeOpportunities.length > 0) {
+        if (negativeOpportunities.length > 0) {
             console.log('\n❌ OPORTUNIDADES NEGATIVAS:');
             negativeOpportunities.forEach(opp => {
                 printOppotunity(opp);
             });
-        }*/
+        }
         
         // Resumo
         console.log(`\n📊 RESUMO: ${positiveOpportunities.length} positivas, ${negativeOpportunities.length} negativas`);
@@ -806,9 +813,38 @@ function calculateEV(bet365Odd, pinnacleOdd, pinnacleOppositeOdd) {
 }
 
 // Função para calcular Quarter Kelly
-function calculateQuarterKelly(odd, ev) {
-    const b = odd - 1; // profit
-    return (ev / b) * 0.25;
+function calculateOctKelly(odd, ev, fraction = 0.25) {
+    const b = odd - 1;
+    return (ev / b) * fraction;
+}
+
+function calculateFairProbabilitiesShin(oddsArray, limit) {
+    const Z = 0.1 * Math.exp(-0.001 * limit);
+
+    const impliedProbs = oddsArray.map(odd => 1 / odd);
+    const overround = impliedProbs.reduce((a, b) => a + b, 0) - 1; // Ex: 1.02 - 1 = 0.02
+    const adjustedOverround = overround + 1; // F5 + 1 na sua fórmula
+
+    const probShin = oddsArray.map((odd, i) => {
+        const sqrtTerm = Math.sqrt(Z ** 2 + 4 * (1 - Z) * (1 / (odd * adjustedOverround)) / odd)- Z;
+        return (sqrtTerm) / (2 * (1 - Z));
+    });
+    const sum = probShin.reduce((a, b) => a + b, 0);
+    const fairProbs = probShin.map(p => p/sum)
+
+    return {
+        fairProbs,
+        Z,
+        overround: overround.toFixed(5)
+    };
+}
+
+function calculateEVWithFairProb(bet365Odd, fairProb) {
+    return (bet365Odd * fairProb) - 1;
+}
+
+function getKellyFractionByZ(Z) {
+    return 0.125; // Z muito pequeno, mercado muito líquido
 }
 
 // Exporta a função para ser usada pelo watcher

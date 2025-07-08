@@ -268,6 +268,9 @@
   "EUR-FRIENDLIES": {
     "pinnacle_id": "1863"
   },
+  "US-FRIENDLIES": {
+    "pinnacle_id": "1863"
+  },
   "S-KOREA-KL-1": {
     "pinnacle_id": "207551"
   },
@@ -321,5 +324,77 @@
   },
   "UKBEK-PFL": {
     "pinnacle_id": "202026"
+  },
+  "CAMP-BRAS-C": {
+    "pinnacle_id": "1836"
+  },
+  "Arg Nac B": {
+    "pinnacle_id": "1739"
+  },
+  "USAUSLLEAGUE2": {
+    "pinnacle_id": "201642"
+  },
+  "USA-WPSL-Women": {
+    "pinnacle_id": "201730"
+  },
+  "Lith A Lyga": {
+    "pinnacle_id": "2211"
+  },
+  "SAFRICA-PLAYOFF": {
+    "pinnacle_id": "196763"
+  },
+  "CANADA-P-L": {
+    "pinnacle_id": "205098"
+  },
+  "Chile Cup": {
+    "pinnacle_id": "1856"
+  },
+  "ICELANDCUP": {
+    "pinnacle_id": "2101"
+  },
+  "Nor Div 2 G1": {
+    "pinnacle_id": "2332"
+  },
+  "Swedish Cup": {
+    "pinnacle_id": "2516"
+  },
+  "CALC-F-L": {
+    "pinnacle_id": "202235"
+  },
+  "S Korea Cup": {
+    "pinnacle_id": "2181"
+  },
+  "W E Champs": {
+    "pinnacle_id": "2640"
+  },
+  "AUS-FQPL-WOM": {
+    "pinnacle_id": "219046"
+  },
+  "AUS-NPL-QUE-WOM": {
+    "pinnacle_id": "220555"
+  },
+  "J2 League": {
+    "pinnacle_id": "2159"
+  },
+  "Mexico Clausura": {
+    "pinnacle_id": "2242"
+  },
+  "AUSNPLVIC": {
+    "pinnacle_id": "1769"
+  },
+  "BRZ-CMP-C-A2": {
+    "pinnacle_id": "215951"
+  },
+  "CHILE-PRIM-B": {
+    "pinnacle_id": "10279"
+  },
+  "UEFA-CL-QUAL": {
+    "pinnacle_id": "205451"
+  },
+  "UEFA Europa Ql": {
+    "pinnacle_id": "2632"
+  },
+  "UEFAECLQ": {
+    "pinnacle_id": "271382"
   }
 } 

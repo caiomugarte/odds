@@ -654,12 +654,12 @@ function compareOdds(bet365Odds, pinnacleGame) {
         }
         
         // Imprime oportunidades negativas
-        if (negativeOpportunities.length > 0) {
+        /*if (negativeOpportunities.length > 0) {
             console.log('\n❌ OPORTUNIDADES NEGATIVAS:');
             negativeOpportunities.forEach(opp => {
                 printOppotunity(opp);
             });
-        }
+        }*/
         
         // Resumo
         console.log(`\n📊 RESUMO: ${positiveOpportunities.length} positivas, ${negativeOpportunities.length} negativas`);

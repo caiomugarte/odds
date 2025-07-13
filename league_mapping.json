@@ -256,6 +256,9 @@
   "Norwegian Cup": {
     "pinnacle_id": "2280"
   },
+  "VENEZ-SEGUNDA-D": {
+    "pinnacle_id": "201212"
+  },
   "Sweden Superett": {
     "pinnacle_id": "2476"
   },
@@ -468,5 +471,11 @@
   },
   "SOC-EASTA-CHAM": {
     "pinnacle_id": "1939"
+  },
+  "MOL-DIV-NAT": {
+    "pinnacle_id": "205096"
+  },
+  "Womens Friendly": {
+    "pinnacle_id": "1864"
   }
 }
